@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import org.apache.logging.log4j.Logger;
 
-@Mod(modid = ModInfo.MODID,name = ModInfo.NAME,version = ModInfo.VERSION)
+@Mod(modid = ModInfo.MODID,name = ModInfo.NAME,version = ModInfo.VERSION,acceptedMinecraftVersions = "[1.12]",guiFactory ="com.evanko.likewise.gui.ConfigGuiFactory",updateJSON = "https://github.com/Evanechecssss/LikewiseMod/blob/main/production/LikewiseMod.main/mcmod.info")
 public class LikeWiseMod {
     @SidedProxy(clientSide = "com.evanko.likewise.proxy.ClientProxy",serverSide = "com.evanko.likewise.proxy.CommonProxy")
     public static CommonProxy proxy;
