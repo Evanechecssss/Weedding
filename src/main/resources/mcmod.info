@@ -1,0 +1,10 @@
+[
+  {
+    "modid": "likewise",
+    "name": "LikeWise",
+    "description":"LikeWise evryone",
+    "version": "1.0",
+    "mcversion": "1.12.2",
+    "authorList": ["Evan Ko"]
+  }
+]

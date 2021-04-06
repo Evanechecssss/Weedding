@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "normal": {
+      "model": "likewise:redinjector"
+    },
+    "facing=north": {
+      "model": "likewise:redinjector"
+    },
+    "facing=east": {
+      "model": "likewise:redinjector",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "likewise:redinjector",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "likewise:redinjector",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "likewise:redinjector",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "likewise:redinjector",
+      "x": 90
+    }
+  }
+}

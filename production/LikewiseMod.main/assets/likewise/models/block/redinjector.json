@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "likewise:blocks/redinjector_front",
+    "down": "likewise:blocks/redinjector_down",
+    "up": "likewise:blocks/redinjector_up",
+    "east": "likewise:blocks/redinjector_back",
+    "west": "likewise:blocks/redinjector_side",
+    "north": "likewise:blocks/redinjector_front",
+    "south": "likewise:blocks/redinjector_sider"
+  }
+}
