@@ -20,16 +20,16 @@ public class LikeWiseMod {
     public void preInit(FMLPreInitializationEvent event){
         proxy.preInit(event);
         logger = event.getModLog();
-        logger.warn("Mod preInitialization :" + ModInfo.NAME);
+        logger.warn("!Mod preInitialization :" + ModInfo.NAME);
     }
     @Mod.EventHandler
     public void init(FMLInitializationEvent event){
         proxy.init(event);
-        logger.warn("Mod initialization :" + ModInfo.NAME);
+        logger.warn("!Mod initialization :" + ModInfo.NAME);
     }
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event){
         proxy.postInit(event);
-        logger.warn("Mod postInitialization :" + ModInfo.NAME);
+        logger.warn("!Mod postInitialization :" + ModInfo.NAME);
     }
 }
