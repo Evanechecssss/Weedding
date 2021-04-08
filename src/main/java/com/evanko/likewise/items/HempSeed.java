@@ -1,5 +1,6 @@
 package com.evanko.likewise.items;
 
+import com.evanko.likewise.api.Materials;
 import com.evanko.likewise.base.items.ItemBase;
 import com.evanko.likewise.init.LikewiseBlocks;
 import net.minecraft.advancements.CriteriaTriggers;
@@ -8,6 +9,7 @@ import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
+import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.EnumActionResult;
 import net.minecraft.util.EnumFacing;
@@ -46,12 +48,18 @@ public class HempSeed extends ItemBase implements IPlantable {
             }
             itemstack.shrink(1);
             return EnumActionResult.SUCCESS;
-        }else {
+        } else {
             return EnumActionResult.FAIL;
         }
     }
+
     @Override
     public IBlockState getPlant(IBlockAccess world, BlockPos pos) {
         return LikewiseBlocks.HEMP.getDefaultState();
+    }
+
+    @Override
+    public EnumRarity getRarity(ItemStack stack) {
+        return Materials.Rarity.FORBIDDEN;
     }
 }

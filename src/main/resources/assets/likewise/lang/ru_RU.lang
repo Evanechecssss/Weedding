@@ -1,9 +1,22 @@
-tile.likewise.redinjector.name=Повторный инжектор
-item.likewise.katana.name=Катана
-tile.likewise.loveblock.name=Блок любви
-itemGroup.likewise=
-itemGroup.helper=Помощь
-item.hemp_seed.name=Семена конопли
-item.hemp_calik.name=Жижа для кальяна
+#=================================
+#              BLOCK
+#=================================
+tile.likewise.empty_hookah.name=Калик
+tile.likewise.hemp.name=Блок конопли
+tile.likewise.boiler.name=Котел для грешников
+#=================================
+#              ITEMS
+#=================================
+item.likewise.hemp_seed.name=Семена конопли
 item.likewise.hemp_food.name=Початок конопли
-tile.hemp.name=Блок конопли
+item.likewise.hemp_calik.name=Жижа для кальяна
+item.likewise.hemp_axe.name=Топор для конопли
+item.ngm.name=NGM
+#=================================
+#               TAB
+#=================================
+itemGroup.likewise=LIKEWISE
+#=================================
+#               CHAT
+#=================================
+likewise.chat.message.hookah.variant1=%s: Бля... хорошая затяжка

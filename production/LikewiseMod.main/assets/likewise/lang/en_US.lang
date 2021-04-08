@@ -1,9 +1,29 @@
-tile.likewise.redinjector.name=Redinjector
-item.likewise.katana.name=Katana
-tile.likewise.loveblock.name=Love Block
-itemGroup.likewise=
-itemGroup.helper=HELP
-item.hemp_seed.name=Hemp seed
-item.hemp_calik.name=Hemp calik
+#=================================
+#              BLOCK
+#=================================
+tile.likewise.empty_hookah.name=Bong
+tile.likewise.hemp.name=Hemp block
+tile.likewise.boiler.name=Boiler for sinners
+#=================================
+#              ITEMS
+#=================================
+item.likewise.hemp_seed.name=Hemp seed
 item.likewise.hemp_food.name=Hemp food
-tile.hemp.name=Hemp block
+item.likewise.hemp_calik.name=Hemp calik
+item.likewise.hemp_axe.name=Axe for hemp
+item.ngm.name=NGM
+#=================================
+#               TAB
+#=================================
+itemGroup.likewise=LIKEWISE
+#=================================
+#               CHAT
+#=================================
+likewise.chat.message.hookah.variant1=%s: Fuck... good puff
+
+
+
+
+
+
+
