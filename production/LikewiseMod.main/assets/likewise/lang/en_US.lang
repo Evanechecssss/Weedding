@@ -4,6 +4,7 @@
 tile.likewise.empty_hookah.name=Bong
 tile.likewise.hemp.name=Hemp block
 tile.likewise.boiler.name=Boiler for sinners
+tile.likewise.box.name=Box
 #=================================
 #              ITEMS
 #=================================
@@ -19,11 +20,11 @@ itemGroup.likewise=LIKEWISE
 #=================================
 #               CHAT
 #=================================
-likewise.chat.message.hookah.variant1=%s: Fuck... good puff
-
-
-
-
-
-
+likewise.chat.message.hookah.variant1=Fuck... good puff
+likewise.chat.message.hookah.variant2=I feel a little sick from the smoke
+likewise.chat.message.hookah.variant3=I'm high, fucked up
+likewise.chat.message.hookah.variant4=Eh, now I would like to fuck... a girl, but I chose a bong...
+likewise.chat.message.hookah.variant5=La hookah ... relaxation ...
+likewise.chat.message.hookah.variant6=Fuck scored a double bull's-eye, or maybe that's not it, but I don't give a fuck
+likewise.chat.message.hookah.variant7=Damn ... I'm such a "kalik" with PewDiePie smoking ...\n honestly...\n but no, I cheated
 

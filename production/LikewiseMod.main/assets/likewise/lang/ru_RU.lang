@@ -4,6 +4,7 @@
 tile.likewise.empty_hookah.name=Калик
 tile.likewise.hemp.name=Блок конопли
 tile.likewise.boiler.name=Котел для грешников
+tile.likewise.box.name=Коробка
 #=================================
 #              ITEMS
 #=================================
@@ -13,10 +14,16 @@ item.likewise.hemp_calik.name=Жижа для кальяна
 item.likewise.hemp_axe.name=Топор для конопли
 item.ngm.name=NGM
 #=================================
+#               CHAT
+#=================================
+likewise.chat.message.hookah.variant1=Бля... хорошая затяжка
+likewise.chat.message.hookah.variant2=Мне немного поплохело
+likewise.chat.message.hookah.variant3=Я под кайфом, пиздец
+likewise.chat.message.hookah.variant4=Эх, теперь я хотел бы ... девушку, но я выбрал кальян...
+likewise.chat.message.hookah.variant5=Ля кальян... расслабление...
+likewise.chat.message.hookah.variant6=Ебать забил двойной яблочко, а может это не то, но мне плевать
+likewise.chat.message.hookah.variant7=Бляха... я такой калик с Демастером курю...\n честно...\n а нет, наебал
+#=================================
 #               TAB
 #=================================
 itemGroup.likewise=LIKEWISE
-#=================================
-#               CHAT
-#=================================
-likewise.chat.message.hookah.variant1=%s: Бля... хорошая затяжка

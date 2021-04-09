@@ -1,0 +1,55 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "color": {
+      "black": {
+        "model": "likewise:empty_hookah_black"
+      },
+      "blue": {
+        "model": "likewise:empty_hookah_blue"
+      },
+      "red": {
+        "model": "likewise:empty_hookah_red"
+      },
+      "brown": {
+        "model": "likewise:empty_hookah_brown"
+      },
+      "cyan": {
+        "model": "likewise:empty_hookah_cyan"
+      },
+      "gray": {
+        "model": "likewise:empty_hookah_gray"
+      },
+      "green": {
+        "model": "likewise:empty_hookah_green"
+      },
+      "lightblue": {
+        "model": "likewise:empty_hookah_lightblue"
+      },
+      "lime": {
+        "model": "likewise:empty_hookah_lime"
+      },
+      "magenta": {
+        "model": "likewise:empty_hookah_magenta"
+      },
+      "orange": {
+        "model": "likewise:empty_hookah_orange"
+      },
+      "pink": {
+        "model": "likewise:empty_hookah_pink"
+      },
+      "purple": {
+        "model": "likewise:empty_hookah_purple"
+      },
+      "silver": {
+        "model": "likewise:empty_hookah_silver"
+      },
+      "white": {
+        "model": "likewise:empty_hookah_white"
+      },
+      "yellow": {
+        "model": "likewise:empty_hookah_yellow"
+      }
+    }
+  }
+}
