@@ -1,12 +1,18 @@
+#PARSE_ESCAPES
+#blocks
 tile.likewise.empty_hookah.name=Калик
 tile.likewise.hemp.name=Блок конопли
 tile.likewise.boiler.name=Котел для грешников
 tile.likewise.box.name=Коробка
+#items
 item.likewise.hemp_seed.name=Семена конопли
 item.likewise.hemp_food.name=Початок конопли
 item.likewise.hemp_calik.name=Жижа для кальяна
 item.likewise.hemp_axe.name=Топор для конопли
-item.ngm.name=NGM
+item.likewise.ngm.name=NGM
+#tabs
+itemGroup.likewise=LIKEWISE
+#chat
 likewise.chat.message.hookah.variant1=Бля... хорошая затяжка
 likewise.chat.message.hookah.variant2=Мне немного поплохело
 likewise.chat.message.hookah.variant3=Я под кайфом, пиздец
@@ -14,4 +20,5 @@ likewise.chat.message.hookah.variant4=Эх, теперь я хотел бы ... 
 likewise.chat.message.hookah.variant5=Ля кальян... расслабление...
 likewise.chat.message.hookah.variant6=Ебать забил двойной яблочко, а может это не то, но мне плевать
 likewise.chat.message.hookah.variant7=Бляха... я такой калик с Демастером курю...\n честно...\n а нет, наебал
-itemGroup.likewise=LIKEWISE
+likewise.chat.message.hookah.mistake1=Блять... нахуя я кальян разбил... пиздец!
+likewise.chat.message.hookah.dialogue.variant1=Вспомнил историю...\n\t-Артур, блять! Тебе кто разрешал дуть сладкую десертную забивулю со вкусом шоколада и мяты а???\n\t-Прости мама! Я думал мне можно...\n\t-Можно, но только после того как покуришь забивку со вкусом супа и пюрешную миксулю: А потом уже десерт\n\t-Понял\n§o§eпарень не по годам развит) с детства знает, что и как нужно курить) Вырастит знатным кальянщиком

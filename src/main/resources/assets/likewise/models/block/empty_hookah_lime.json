@@ -5,7 +5,7 @@
     "3": "blocks/gold_block",
     "13": "blocks/glazed_terracotta_lime",
     "27": "blocks/glass_lime",
-    "particle": "blocks/glazed_terracotta_red"
+    "particle": "blocks/glazed_terracotta_lime"
   },
   "elements": [
     {

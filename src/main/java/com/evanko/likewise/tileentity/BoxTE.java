@@ -1,6 +1,5 @@
 package com.evanko.likewise.tileentity;
 
-import net.minecraft.block.ITileEntityProvider;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
@@ -11,10 +10,10 @@ import net.minecraft.tileentity.TileEntity;
 
 import javax.annotation.Nullable;
 
-public class Box_TE extends TileEntity {
+public class BoxTE extends TileEntity {
     private int crackerCount = 0;
 
-    public Box_TE() {
+    public BoxTE() {
 
     }
 

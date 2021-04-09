@@ -1,6 +1,6 @@
 package com.evanko.likewise.common.blocks;
 
-import com.evanko.likewise.tileentity.Box_TE;
+import com.evanko.likewise.tileentity.BoxTE;
 import com.evanko.likewise.utils.base.blocks.HorizontalBlockBase;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
@@ -44,13 +44,13 @@ public class Box extends HorizontalBlockBase {
         super(name, material, tabs, soundType);
     }
 
-    public Class<Box_TE> getTileEntityClass() {
-        return Box_TE.class;
+    public Class<BoxTE> getTileEntityClass() {
+        return BoxTE.class;
     }
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        Box_TE tile = (Box_TE) world.getTileEntity(pos);
+        BoxTE tile = (BoxTE) world.getTileEntity(pos);
         if (!world.isRemote) {
             ItemStack item = playerIn.getHeldItem(EnumHand.MAIN_HAND);
             if (item.getItem() == Items.COOKIE) {
@@ -81,8 +81,8 @@ public class Box extends HorizontalBlockBase {
 
     @Nullable
     @Override
-    public Box_TE createTileEntity(World world, IBlockState blockState) {
-        return new Box_TE();
+    public BoxTE createTileEntity(World world, IBlockState blockState) {
+        return new BoxTE();
     }
 
     @Override

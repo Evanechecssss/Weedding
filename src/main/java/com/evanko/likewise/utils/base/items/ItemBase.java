@@ -9,18 +9,18 @@ import java.util.List;
 public class ItemBase extends Item {
     public ItemBase(String name) {
         this.setRegistryName(name);
-        this.setUnlocalizedName(name);
+        this.setUnlocalizedName("likewise." + name);
     }
     public ItemBase(String name, int damage, int stackSize, CreativeTabs tab) {
         this.setRegistryName(name);
-        this.setUnlocalizedName(name);
+        this.setUnlocalizedName("likewise." + name);
         this.setMaxDamage(damage);
         this.setMaxStackSize(stackSize);
         this.setCreativeTab(tab);
     }
     public ItemBase(String name, int damage, int stackSize, CreativeTabs tab, String toolClass, int toolLevel, List<String> stringList) {
         this.setRegistryName(name);
-        this.setUnlocalizedName(name);
+        this.setUnlocalizedName("likewise." + name);
         this.setMaxDamage(damage);
         this.setMaxStackSize(stackSize);
         this.setCreativeTab(tab);
