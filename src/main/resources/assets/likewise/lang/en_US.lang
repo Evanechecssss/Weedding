@@ -1,25 +1,13 @@
-#=================================
-#              BLOCK
-#=================================
 tile.likewise.empty_hookah.name=Bong
 tile.likewise.hemp.name=Hemp block
 tile.likewise.boiler.name=Boiler for sinners
 tile.likewise.box.name=Box
-#=================================
-#              ITEMS
-#=================================
 item.likewise.hemp_seed.name=Hemp seed
 item.likewise.hemp_food.name=Hemp food
 item.likewise.hemp_calik.name=Hemp calik
 item.likewise.hemp_axe.name=Axe for hemp
 item.ngm.name=NGM
-#=================================
-#               TAB
-#=================================
 itemGroup.likewise=LIKEWISE
-#=================================
-#               CHAT
-#=================================
 likewise.chat.message.hookah.variant1=Fuck... good puff
 likewise.chat.message.hookah.variant2=I feel a little sick from the smoke
 likewise.chat.message.hookah.variant3=I'm high, fucked up
