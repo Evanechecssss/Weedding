@@ -15,5 +15,5 @@ public class ModCreativeTabs{
         public boolean hasSearchBar() {
             return true;
         }
-    }.setBackgroundImageName("likewise.png").setNoScrollbar();
+    }.setBackgroundImageName("likewise.png").setNoTitle();
 }

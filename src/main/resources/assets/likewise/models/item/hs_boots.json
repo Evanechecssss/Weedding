@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "likewise:items/key"
+    "layer0": "likewise:items/hs_boots"
   }
 }

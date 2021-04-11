@@ -1,14 +1,13 @@
 package com.evanko.likewise.common.items;
 
 import com.evanko.likewise.api.Materials;
-import com.evanko.likewise.utils.base.items.ItemBase;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 
 import java.util.List;
 
-public class HempCalik extends ItemBase {
+public class HempCalik extends HookahSlurry {
 
     public HempCalik(String name) {
         super(name);
