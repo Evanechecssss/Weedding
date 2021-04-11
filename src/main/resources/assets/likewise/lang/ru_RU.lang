@@ -10,6 +10,17 @@ item.likewise.hemp_food.name=Початок конопли
 item.likewise.hemp_calik.name=Жижа для кальяна
 item.likewise.hemp_axe.name=Топор для конопли
 item.likewise.ngm.name=NGM
+item.likewise.hs_leggs.name=Штаны кальянщика
+item.likewise.hs_head.name=Повязка кальянщика
+item.likewise.hs_chestplate.name=Накидка кальянщика
+item.likewise.hemp_leggs.name=Штаны из конопли
+item.likewise.hemp_head.name=Маска из конопли
+item.likewise.hemp_chestplate.name=Штаны из конопли
+item.likewise.hemp_boots.name=Ботинки из конопли
+item.likewise.hsd_leggs.name=Штаны районного кальянщика
+item.likewise.hsd_head.name=Шапка районного кальянщика
+item.likewise.hsd_chestplate.name=Штаны районного кальянщика
+item.likewise.hs_boots.name=Тапки районного кальянщика
 #tabs
 itemGroup.likewise=LIKEWISE
 #chat

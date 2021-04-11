@@ -4,11 +4,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-
-import javax.annotation.Nullable;
 
 public class BoxTE extends TileEntity {
     private int crackerCount = 0;
@@ -57,24 +53,5 @@ public class BoxTE extends TileEntity {
         super.readFromNBT(compound);
         this.crackerCount = compound.getInteger("crackerCount");
     }
-    @Override
-    @Nullable
-    public SPacketUpdateTileEntity getUpdatePacket() {
 
-        return new SPacketUpdateTileEntity(this.pos, 3, this.getUpdateTag());
-    }
-
-    @Override
-    public NBTTagCompound getUpdateTag() {
-
-        return this.writeToNBT(new NBTTagCompound());//Запись данных для синхронизации, можно выбрать нужные либо всё (как тут).
-    }
-
-    @Override
-    public void onDataPacket(NetworkManager networkManager, SPacketUpdateTileEntity packet) {
-
-        super.onDataPacket(networkManager, packet);
-
-        this.handleUpdateTag(packet.getNbtCompound());
-    }
 }

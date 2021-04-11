@@ -10,6 +10,17 @@ item.likewise.hemp_food.name=Hemp food
 item.likewise.hemp_calik.name=Hemp calik
 item.likewise.hemp_axe.name=Axe for hemp
 item.likewise.ngm.name=NGM
+item.likewise.hs_leggs.name=Hookah pants
+item.likewise.hs_head.name=Hookah bandage
+item.likewise.hs_chestplate.name=Hookah jacket
+item.likewise.hemp_leggs.name=Hemp pants
+item.likewise.hemp_head.name=Hemp bandage
+item.likewise.hemp_chestplate.name=Hemp jacket
+item.likewise.hemp_boots.name=Hemp boots
+item.likewise.hsd_leggs.name=District hookah pants
+item.likewise.hsd_head.name=District hookah bandage
+item.likewise.hsd_chestplate.name=District hookah jacket
+item.likewise.hs_boots.name=District hookah boots
 #tabs
 itemGroup.likewise=LIKEWISE
 #chat
