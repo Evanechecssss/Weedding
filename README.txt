@@ -1,4 +1,4 @@
 -------------------------------------------
-LikewiseMod is here
+WeeddingMod is here!
 -------------------------------------------
 special thanks to McHorse

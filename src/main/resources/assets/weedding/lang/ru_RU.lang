@@ -1,0 +1,40 @@
+#PARSE_ESCAPES
+#blocks
+tile.weedding.empty_hookah.name=Калик
+tile.weedding.hemp.name=Блок конопли
+tile.weedding.boiler.name=Котел для грешников
+tile.weedding.box.name=Коробка
+#items
+item.weedding.hemp_seed.name=Семена конопли
+item.weedding.hemp_food.name=Початок конопли
+item.weedding.hemp_calik.name=Жижа для кальяна
+item.weedding.hemp_axe.name=Топор для конопли
+item.weedding.ngm.name=NGM
+item.weedding.hs_leggs.name=Штаны кальянщика
+item.weedding.hs_head.name=Повязка кальянщика
+item.weedding.hs_chestplate.name=Накидка кальянщика
+item.weedding.hemp_leggs.name=Штаны из конопли
+item.weedding.hemp_head.name=Маска из конопли
+item.weedding.hemp_chestplate.name=Штаны из конопли
+item.weedding.hemp_boots.name=Ботинки из конопли
+item.weedding.hsd_leggs.name=Штаны районного кальянщика
+item.weedding.hsd_head.name=Шапка районного кальянщика
+item.weedding.hsd_chestplate.name=Штаны районного кальянщика
+item.weedding.hsd_boots.name=Тапки районного кальянщика
+#advancements
+advancements.weedding.hookah.root.title=WEEDDING
+advancements.weedding.hookah.root.description=Скачать мод и начать своё дымное приключение
+advancements.weedding.hookah.mine_hemp.title=Любитель газона
+advancements.weedding.hookah.mine_hemp.description=Подстричь коноплю ножницами
+#tabs
+itemGroup.weedding=weedding
+#chat
+weedding.chat.message.hookah.variant1=Бля... хорошая затяжка
+weedding.chat.message.hookah.variant2=Мне немного поплохело
+weedding.chat.message.hookah.variant3=Я под кайфом, пиздец
+weedding.chat.message.hookah.variant4=Эх, теперь я хотел бы ... девушку, но я выбрал кальян...
+weedding.chat.message.hookah.variant5=Ля кальян... расслабление...
+weedding.chat.message.hookah.variant6=Ебать забил двойной яблочко, а может это не то, но мне плевать
+weedding.chat.message.hookah.variant7=Бляха... я такой калик с Демастером курю...\n честно...\n а нет, наебал
+weedding.chat.message.hookah.mistake1=Блять... нахуя я кальян разбил... пиздец!
+weedding.chat.message.hookah.dialogue.variant1=Вспомнил историю...\n\t-Артур, блять! Тебе кто разрешал дуть сладкую десертную забивулю со вкусом шоколада и мяты а???\n\t-Прости мама! Я думал мне можно...\n\t-Можно, но только после того как покуришь забивку со вкусом супа и пюрешную миксулю: А потом уже десерт\n\t-Понял\n§o§eпарень не по годам развит) с детства знает, что и как нужно курить) Вырастит знатным кальянщиком

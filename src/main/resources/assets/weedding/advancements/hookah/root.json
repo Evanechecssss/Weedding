@@ -1,0 +1,20 @@
+{
+  "display": {
+    "icon": {
+      "item": "weedding:empty_hookah",
+      "data": 12
+    },
+    "title": {
+      "translate": "advancements.weedding.hookah.root.title"
+    },
+    "description": {
+      "translate": "advancements.weedding.hookah.root.description"
+    },
+    "background": "weedding:textures/gui/advancements/backgrounds/hookah.png"
+  },
+  "criteria": {
+    "tick": {
+      "trigger": "minecraft:tick"
+    }
+  }
+}

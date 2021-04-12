@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "normal": {
+      "model": "weedding:box"
+    },
+    "facing=north": {
+      "model": "weedding:box"
+    },
+    "facing=east": {
+      "model": "weedding:box",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "weedding:box",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "weedding:box",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "weedding:box",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "weedding:box",
+      "x": 90
+    }
+  }
+}

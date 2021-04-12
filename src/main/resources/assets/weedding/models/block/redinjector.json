@@ -1,0 +1,12 @@
+{
+  "parent": "block/cube",
+  "textures": {
+    "particle": "weedding:blocks/redinjector_front",
+    "down": "weedding:blocks/redinjector_down",
+    "up": "weedding:blocks/redinjector_up",
+    "east": "weedding:blocks/redinjector_back",
+    "west": "weedding:blocks/redinjector_side",
+    "north": "weedding:blocks/redinjector_front",
+    "south": "weedding:blocks/redinjector_sider"
+  }
+}

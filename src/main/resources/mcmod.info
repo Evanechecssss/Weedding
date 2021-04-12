@@ -1,7 +1,7 @@
 [
   {
-    "modid": "likewise",
-    "name": "LikeWise",
+    "modid": "weedding",
+    "name": "Weedding",
     "description": "This mod adds hemp and hookahs ",
     "version": "1.0",
     "mcversion": "1.12.2",
@@ -9,8 +9,8 @@
       "Evanechecssss"
     ],
     "url": "",
-    "updateJSON": "https://github.com/Evanechecssss/LikewiseMod/blob/main/production/LikewiseMod.main/mcmod.info",
-    "credits": "Спасибо McHorse, спасибо Kirkus,спасибо Andruxioid,спасибо родителям, спасибо бабушкам, спасибо всем кому спасибо",
+    "updateJSON": "https://github.com/Evanechecssss/weeddingMod/blob/main/production/weeddingMod.main/mcmod.info",
+    "credits": "Спасибо McHorse, спасибо Kirkus, спасибо Andruxioid, спасибо всем кому спасибо",
     "logoFile": "",
     "useDependencyInformation": false
   }

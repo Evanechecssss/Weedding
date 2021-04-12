@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "normal": {
+      "model": "weedding:boiler"
+    },
+    "facing=north": {
+      "model": "weedding:boiler"
+    },
+    "facing=east": {
+      "model": "weedding:boiler",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "weedding:boiler",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "weedding:boiler",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "weedding:boiler",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "weedding:boiler",
+      "x": 90
+    }
+  }
+}

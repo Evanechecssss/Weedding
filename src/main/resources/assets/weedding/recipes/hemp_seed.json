@@ -1,0 +1,25 @@
+{
+  "result": {
+    "item": "weedding:hemp_calik"
+  },
+  "pattern": [
+    "gwg",
+    "ghg",
+	"ggg"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+   "g": {
+      "item": "minecraft:glass",
+      "data": 0
+    },
+	"h": {
+      "item": "weedding:hemp_food",
+      "data": 0
+    },
+	"w": {
+      "item": "minecraft:water_bucket",
+      "data": 0
+    }
+  }
+}

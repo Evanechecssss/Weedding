@@ -1,0 +1,55 @@
+{
+  "forge_marker": 1,
+  "variants": {
+    "color": {
+      "black": {
+        "model": "weedding:empty_hookah_black"
+      },
+      "blue": {
+        "model": "weedding:empty_hookah_blue"
+      },
+      "red": {
+        "model": "weedding:empty_hookah_red"
+      },
+      "brown": {
+        "model": "weedding:empty_hookah_brown"
+      },
+      "cyan": {
+        "model": "weedding:empty_hookah_cyan"
+      },
+      "gray": {
+        "model": "weedding:empty_hookah_gray"
+      },
+      "green": {
+        "model": "weedding:empty_hookah_green"
+      },
+      "lightblue": {
+        "model": "weedding:empty_hookah_lightblue"
+      },
+      "lime": {
+        "model": "weedding:empty_hookah_lime"
+      },
+      "magenta": {
+        "model": "weedding:empty_hookah_magenta"
+      },
+      "orange": {
+        "model": "weedding:empty_hookah_orange"
+      },
+      "pink": {
+        "model": "weedding:empty_hookah_pink"
+      },
+      "purple": {
+        "model": "weedding:empty_hookah_purple"
+      },
+      "silver": {
+        "model": "weedding:empty_hookah_silver"
+      },
+      "white": {
+        "model": "weedding:empty_hookah_white"
+      },
+      "yellow": {
+        "model": "weedding:empty_hookah_yellow"
+      }
+    }
+  }
+}

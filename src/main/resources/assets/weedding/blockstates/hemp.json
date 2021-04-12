@@ -1,0 +1,28 @@
+{
+  "variants": {
+    "age=0": {
+      "model": "weedding:hemp_0"
+    },
+    "age=1": {
+      "model": "weedding:hemp_1"
+    },
+    "age=2": {
+      "model": "weedding:hemp_2"
+    },
+    "age=3": {
+      "model": "weedding:hemp_3"
+    },
+    "age=4": {
+      "model": "weedding:hemp_4"
+    },
+    "age=5": {
+      "model": "weedding:hemp_5"
+    },
+    "age=6": {
+      "model": "weedding:hemp_6"
+    },
+    "age=7": {
+      "model": "weedding:hemp_7"
+    }
+  }
+}

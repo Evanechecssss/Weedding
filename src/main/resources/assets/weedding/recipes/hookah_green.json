@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "weedding:empty_hookah",
+    "data": 5
+  },
+  "pattern": [
+    " a ",
+    "bcb",
+    "aaa"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "a": {
+      "item": "minecraft:green_glazed_terracotta",
+      "data": 0
+    },
+    "b": {
+      "item": "minecraft:gold_block",
+      "data": 0
+    },
+    "c": {
+      "item": "minecraft:glass_bottle",
+      "data": 0
+    }
+  }
+}
