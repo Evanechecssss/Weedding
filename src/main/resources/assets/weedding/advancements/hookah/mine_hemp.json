@@ -11,7 +11,7 @@
     },
     "frame": "goal"
   },
-  "parent": "weedding:hookah/root",
+  "parent": "weedding:hookah/hemp_seed",
   "criteria": {
     "get_stone": {
       "trigger": "minecraft:inventory_changed",

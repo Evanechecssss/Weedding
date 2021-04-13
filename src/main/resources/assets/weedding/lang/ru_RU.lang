@@ -26,6 +26,8 @@ advancements.weedding.hookah.root.title=WEEDDING
 advancements.weedding.hookah.root.description=Скачать мод и начать своё дымное приключение
 advancements.weedding.hookah.mine_hemp.title=Любитель газона
 advancements.weedding.hookah.mine_hemp.description=Подстричь коноплю ножницами
+advancements.weedding.hookah.hemp_seed.title=Юный снупдог
+advancements.weedding.hookah.hemp_seed.description=Посодить коноплю, пусть растёт, потому что вам надо "Smoke weed everyday"
 #tabs
 itemGroup.weedding=weedding
 #chat
@@ -36,5 +38,6 @@ weedding.chat.message.hookah.variant4=Эх, теперь я хотел бы ... 
 weedding.chat.message.hookah.variant5=Ля кальян... расслабление...
 weedding.chat.message.hookah.variant6=Ебать забил двойной яблочко, а может это не то, но мне плевать
 weedding.chat.message.hookah.variant7=Бляха... я такой калик с Демастером курю...\n честно...\n а нет, наебал
+weedding.chat.message.hookah.variant8=Я бы очень хотел обнять космос, но я обнимаю кальян
 weedding.chat.message.hookah.mistake1=Блять... нахуя я кальян разбил... пиздец!
 weedding.chat.message.hookah.dialogue.variant1=Вспомнил историю...\n\t-Артур, блять! Тебе кто разрешал дуть сладкую десертную забивулю со вкусом шоколада и мяты а???\n\t-Прости мама! Я думал мне можно...\n\t-Можно, но только после того как покуришь забивку со вкусом супа и пюрешную миксулю: А потом уже десерт\n\t-Понял\n§o§eпарень не по годам развит) с детства знает, что и как нужно курить) Вырастит знатным кальянщиком

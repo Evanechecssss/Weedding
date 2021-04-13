@@ -1,0 +1,22 @@
+{
+  "display": {
+    "icon": {
+      "item": "weedding:hemp_seed"
+    },
+    "title": {
+      "translate": "advancements.weedding.hookah.hemp_seed.title"
+    },
+    "description": {
+      "translate": "advancements.weedding.hookah.hemp_seed.description"
+    }
+  },
+  "parent": "weedding:hookah/root",
+  "criteria": {
+    "get_stone": {
+      "trigger": "minecraft:placed_block",
+       "conditions": {
+            "block": "weedding:hemp"
+       }
+    }
+  }
+}
