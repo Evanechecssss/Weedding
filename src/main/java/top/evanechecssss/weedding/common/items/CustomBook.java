@@ -9,6 +9,8 @@ import net.minecraft.util.EnumHand;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import top.evanechecssss.weedding.Weedding;
 import top.evanechecssss.weedding.client.gui.BookGuiScreen;
 import top.evanechecssss.weedding.utils.base.items.ItemBase;
@@ -44,16 +46,21 @@ public class CustomBook extends ItemBase {
             Weedding.logger.info("BOOK IS ACTIVE");
 
         } else {
-            String lang = "";
-            if (Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode().equalsIgnoreCase("en_us")) {
-                lang = "en";
-            }
-            if (Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode().equalsIgnoreCase("ru_ru")) {
-                lang = "ru";
-            }
-            ResourceLocation text = new ResourceLocation(WeeddingInfo.MODID, "information/" + lang + "/" + textName + ".json");
-            Minecraft.getMinecraft().displayGuiScreen(new BookGuiScreen(texture, text));
+            this.openBook();
         }
         return EnumActionResult.SUCCESS;
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void openBook() {
+        String lang = "";
+        if (Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode().equalsIgnoreCase("en_us")) {
+            lang = "en";
+        }
+        if (Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode().equalsIgnoreCase("ru_ru")) {
+            lang = "ru";
+        }
+        ResourceLocation text = new ResourceLocation(WeeddingInfo.MODID, "information/" + lang + "/" + textName + ".json");
+        Minecraft.getMinecraft().displayGuiScreen(new BookGuiScreen(texture, text));
     }
 }

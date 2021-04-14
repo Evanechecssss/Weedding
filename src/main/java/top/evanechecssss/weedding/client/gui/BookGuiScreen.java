@@ -1,5 +1,6 @@
 package top.evanechecssss.weedding.client.gui;
 
+import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.gui.GuiButton;
@@ -13,9 +14,11 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.GL11;
+import top.evanechecssss.weedding.Weedding;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 
 
 public class BookGuiScreen extends GuiScreen {
@@ -24,17 +27,51 @@ public class BookGuiScreen extends GuiScreen {
     public static ResourceLocation locationTexture;
     public static ResourceLocation locationText;
     public GuiButton buttonNext;
+    public static int MaxPage = 0;
     public int Page = 0;
-    public int MaxPage = 1;
+    public GuiButton buttonBack;
+    private ArrayList<String> BookText = new ArrayList<String>();
 
     public BookGuiScreen(ResourceLocation locationTexture, ResourceLocation locationText) {
         BookGuiScreen.locationTexture = locationTexture;
         BookGuiScreen.locationText = locationText;
+        try {
+            BookText = JsonParsing(Minecraft.getMinecraft().getResourceManager());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
-    private String JsonParsing(int i, IResourceManager resourceManager) throws IOException {
+    private static ArrayList<String> JsonParsing(IResourceManager resourceManager) throws IOException {
+        ArrayList<String> pages = new ArrayList<String>();
         IResource resource = resourceManager.getResource(locationText);
-        return new JsonParser().parse(IOUtils.toString(resource.getInputStream(), Charset.defaultCharset())).getAsJsonObject().get("pages").getAsJsonArray().get(i).getAsString();
+        JsonArray JSONArray = new JsonParser().parse(IOUtils.toString(resource.getInputStream(), Charset.defaultCharset())).getAsJsonObject().get("pages").getAsJsonArray();
+        MaxPage = JSONArray.size();
+        for (int j = 0; j < JSONArray.size(); j++) {
+            pages.add(JSONArray.get(j).getAsString());
+        }
+        return pages;
+    }
+
+    @Override
+    public void onGuiClosed() {
+        Page = 0;
+    }
+
+    private void updateButtons() {
+        if (Page == MaxPage) {
+            buttonNext.enabled = false;
+            buttonNext.visible = false;
+        } else if (Page == 0) {
+            buttonBack.enabled = false;
+            buttonBack.visible = false;
+        } else {
+            buttonBack.enabled = true;
+            buttonNext.enabled = true;
+            buttonBack.visible = true;
+            buttonNext.visible = true;
+        }
     }
 
     @Override
@@ -45,11 +82,9 @@ public class BookGuiScreen extends GuiScreen {
         int centerY = (height - HEIGHT) / 2;
         mc.renderEngine.bindTexture(locationTexture);
         drawTexturedModalRect(centerX, centerY, 0, 0, WIDTH, HEIGHT);
-        try {
-            fontRenderer.drawSplitString(JsonParsing(Page, Minecraft.getMinecraft().getResourceManager()), centerX + 15, centerY + 15, WIDTH - 25, 1);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+
+        fontRenderer.drawSplitString(BookText.get(this.Page), centerX + 15, centerY + 15, WIDTH - 25, 1);
+
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -60,7 +95,8 @@ public class BookGuiScreen extends GuiScreen {
 
     @Override
     public void initGui() {
-        this.buttonNext = this.addButton(new NextButton(0, (width - WIDTH) / 2 + WIDTH, (height - HEIGHT) / 2 + HEIGHT, "ЗАБАНЕН ЧЕКАЙ"));
+        this.buttonNext = this.addButton(new NextButton(0, (width - WIDTH) / 2 + WIDTH, (height - HEIGHT) / 2 + HEIGHT, "", true));
+        this.buttonBack = this.addButton(new NextButton(1, (width - WIDTH) / 2, (height - HEIGHT) / 2 + HEIGHT, "", false));
     }
 
     @Override
@@ -77,16 +113,28 @@ public class BookGuiScreen extends GuiScreen {
     protected void actionPerformed(GuiButton button) throws IOException {
         if (button.enabled) {
             if (button.id == 0) {
-                Page += 1;
-
+                this.Page += 1;
+                Weedding.logger.warn("BUTTON 0");
+            } else if (button.id == 1) {
+                this.Page -= 1;
+                Weedding.logger.warn("BUTTON 1");
             }
         }
+        this.updateButtons();
     }
 
     @SideOnly(Side.CLIENT)
     private static class NextButton extends GuiButton {
-        public NextButton(int buttonId, int x, int y, String buttonText) {
-            super(buttonId, x, y, buttonText);
+        private final boolean isForward;
+
+        public NextButton(int buttonId, int x, int y, String buttonText, boolean isForward) {
+            super(buttonId, x, y, "");
+            this.isForward = isForward;
+        }
+
+        @Override
+        public int getButtonWidth() {
+            return 18;
         }
 
         @Override
@@ -95,11 +143,15 @@ public class BookGuiScreen extends GuiScreen {
             if (this.visible) {
                 GlStateManager.color(1.0F, 1.0F, 1.0F, 1.0F);
                 mc.getTextureManager().bindTexture(BookGuiScreen.locationTexture);
-                int i = 0;
+                int i = 151;
+                int j = 10;
+                if (!this.isForward) {
+                    j += 13;
+                }
                 if (flag) {
                     i += 23;
                 }
-                this.drawTexturedModalRect(x, y, 151 + i, 10, 18, 10);
+                this.drawTexturedModalRect(x, y, i, j, 18, 10);
             }
 
         }
