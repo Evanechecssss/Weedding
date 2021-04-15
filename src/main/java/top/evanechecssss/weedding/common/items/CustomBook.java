@@ -16,28 +16,20 @@ import top.evanechecssss.weedding.client.gui.BookGuiScreen;
 import top.evanechecssss.weedding.utils.base.items.ItemBase;
 import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
 
-import java.util.List;
-
 public class CustomBook extends ItemBase {
     String textName = "";
     ResourceLocation texture;
+    public boolean showCount;
+    public int angel;
+    public int countColor;
 
-    public CustomBook(String name, String textName, ResourceLocation texture) {
-        super(name);
-        this.textName = textName;
-        this.texture = texture;
-    }
-
-    public CustomBook(String name, int damage, int stackSize, CreativeTabs tab, String textName, ResourceLocation texture) {
+    public CustomBook(String name, int damage, int stackSize, CreativeTabs tab, String textName, ResourceLocation texture, boolean showCount, int angel, int countColor) {
         super(name, damage, stackSize, tab);
         this.textName = textName;
         this.texture = texture;
-    }
-
-    public CustomBook(String name, int damage, int stackSize, CreativeTabs tab, String toolClass, int toolLevel, List<String> stringList, String textName, ResourceLocation texture) {
-        super(name, damage, stackSize, tab, toolClass, toolLevel, stringList);
-        this.textName = textName;
-        this.texture = texture;
+        this.angel = angel;
+        this.showCount = showCount;
+        this.countColor = countColor;
     }
 
     @Override
@@ -61,6 +53,6 @@ public class CustomBook extends ItemBase {
             lang = "ru";
         }
         ResourceLocation text = new ResourceLocation(WeeddingInfo.MODID, "information/" + lang + "/" + textName + ".json");
-        Minecraft.getMinecraft().displayGuiScreen(new BookGuiScreen(texture, text));
+        Minecraft.getMinecraft().displayGuiScreen(new BookGuiScreen(texture, text, showCount, angel, countColor));
     }
 }

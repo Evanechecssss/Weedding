@@ -14,7 +14,6 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.apache.commons.io.IOUtils;
 import org.lwjgl.opengl.GL11;
-import top.evanechecssss.weedding.Weedding;
 
 import java.io.IOException;
 import java.nio.charset.Charset;
@@ -22,25 +21,37 @@ import java.util.ArrayList;
 
 
 public class BookGuiScreen extends GuiScreen {
-    public static final int WIDTH = 147;
-    public static final int HEIGHT = 181;
+    private static final int pageShiftX = 15;
+    private static final int pageShiftY = 15;
     public static ResourceLocation locationTexture;
     public static ResourceLocation locationText;
     public GuiButton buttonNext;
-    public static int MaxPage = 0;
+    private static final int countShiftY = 6;
     public int Page = 0;
     public GuiButton buttonBack;
-    private ArrayList<String> BookText = new ArrayList<String>();
+    public static int WIDTH = 147;
+    private static final int countShiftX = WIDTH / 2;
+    private static final int wrapWidth = WIDTH - 25;
+    public static int HEIGHT = 181;
+    public static int MaxPage;
+    public ArrayList<String> BookText = new ArrayList<String>();
+    private float angel = 0;
+    private boolean showCount = true;
+    private int countColor = 1;
 
     public BookGuiScreen(ResourceLocation locationTexture, ResourceLocation locationText) {
         BookGuiScreen.locationTexture = locationTexture;
         BookGuiScreen.locationText = locationText;
-        try {
-            BookText = JsonParsing(Minecraft.getMinecraft().getResourceManager());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+        Parsing();
+    }
 
+    public BookGuiScreen(ResourceLocation locationTexture, ResourceLocation locationText, boolean showCount, float angel, int countColor) {
+        BookGuiScreen.locationTexture = locationTexture;
+        BookGuiScreen.locationText = locationText;
+        this.angel = angel;
+        this.countColor = countColor;
+        this.showCount = showCount;
+        Parsing();
     }
 
     private static ArrayList<String> JsonParsing(IResourceManager resourceManager) throws IOException {
@@ -48,29 +59,33 @@ public class BookGuiScreen extends GuiScreen {
         IResource resource = resourceManager.getResource(locationText);
         JsonArray JSONArray = new JsonParser().parse(IOUtils.toString(resource.getInputStream(), Charset.defaultCharset())).getAsJsonObject().get("pages").getAsJsonArray();
         MaxPage = JSONArray.size();
+        MaxPage -= 1;
         for (int j = 0; j < JSONArray.size(); j++) {
             pages.add(JSONArray.get(j).getAsString());
         }
         return pages;
     }
 
-    @Override
-    public void onGuiClosed() {
-        Page = 0;
+    private void Parsing() {
+        try {
+            BookText = JsonParsing(Minecraft.getMinecraft().getResourceManager());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private void updateButtons() {
+        buttonBack.enabled = true;
+        buttonNext.enabled = true;
+        buttonBack.visible = true;
+        buttonNext.visible = true;
         if (Page == MaxPage) {
             buttonNext.enabled = false;
             buttonNext.visible = false;
-        } else if (Page == 0) {
+        }
+        if (Page == 0) {
             buttonBack.enabled = false;
             buttonBack.visible = false;
-        } else {
-            buttonBack.enabled = true;
-            buttonNext.enabled = true;
-            buttonBack.visible = true;
-            buttonNext.visible = true;
         }
     }
 
@@ -82,9 +97,13 @@ public class BookGuiScreen extends GuiScreen {
         int centerY = (height - HEIGHT) / 2;
         mc.renderEngine.bindTexture(locationTexture);
         drawTexturedModalRect(centerX, centerY, 0, 0, WIDTH, HEIGHT);
-
-        fontRenderer.drawSplitString(BookText.get(this.Page), centerX + 15, centerY + 15, WIDTH - 25, 1);
-
+        if (showCount)
+            fontRenderer.drawString(this.getCurrentPage() + "/" + this.getMaxPage(), centerX + countShiftX, centerY + countShiftY, countColor);
+        GlStateManager.pushMatrix();
+        GlStateManager.translate(centerX + pageShiftX, centerY + pageShiftY, 0);
+        GlStateManager.rotate(angel, 0, 0, 1);
+        fontRenderer.drawSplitString(BookText.get(this.Page), 0, 0, wrapWidth, 1);
+        GlStateManager.popMatrix();
         super.drawScreen(mouseX, mouseY, partialTicks);
     }
 
@@ -93,10 +112,25 @@ public class BookGuiScreen extends GuiScreen {
         super.updateScreen();
     }
 
+    private int getCurrentPage() {
+        int number;
+        number = Page;
+        number++;
+        return number;
+    }
+
+    private int getMaxPage() {
+        int number;
+        number = MaxPage;
+        number++;
+        return number;
+    }
+
     @Override
     public void initGui() {
         this.buttonNext = this.addButton(new NextButton(0, (width - WIDTH) / 2 + WIDTH, (height - HEIGHT) / 2 + HEIGHT, "", true));
         this.buttonBack = this.addButton(new NextButton(1, (width - WIDTH) / 2, (height - HEIGHT) / 2 + HEIGHT, "", false));
+        this.updateButtons();
     }
 
     @Override
@@ -114,10 +148,8 @@ public class BookGuiScreen extends GuiScreen {
         if (button.enabled) {
             if (button.id == 0) {
                 this.Page += 1;
-                Weedding.logger.warn("BUTTON 0");
             } else if (button.id == 1) {
                 this.Page -= 1;
-                Weedding.logger.warn("BUTTON 1");
             }
         }
         this.updateButtons();
@@ -130,12 +162,10 @@ public class BookGuiScreen extends GuiScreen {
         public NextButton(int buttonId, int x, int y, String buttonText, boolean isForward) {
             super(buttonId, x, y, "");
             this.isForward = isForward;
+            this.height = 10;
+            this.width = 18;
         }
 
-        @Override
-        public int getButtonWidth() {
-            return 18;
-        }
 
         @Override
         public void drawButton(Minecraft mc, int mouseX, int mouseY, float partialTicks) {

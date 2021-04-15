@@ -20,7 +20,7 @@ public class WeeddingItems {
     public static final Item HEMP_FOOD = new ItemFoodBase("hemp_food", 2, 1, true, true, 0, 64, WeeddingCreativeTabs.weedding);
     public static final Item HEMP_CALIK = new HempCalik("hemp_calik", 1, 1, WeeddingCreativeTabs.weedding);
     public static final Item HEMP_AXE = new ItemAxeBase("hemp_axe", Materials.ToolMaterials.ZINC_METAL, 10, 10, 1, 5, WeeddingCreativeTabs.weedding);
-    public static final Item WEEDDING_BOOK = new CustomBook("weedding_book", 1, 1, WeeddingCreativeTabs.weedding, "text", new ResourceLocation(WeeddingInfo.MODID, "textures/gui/book.png"));
+    public static final Item WEEDDING_BOOK = new CustomBook("weedding_book", 1, 1, WeeddingCreativeTabs.weedding, "text", new ResourceLocation(WeeddingInfo.MODID, "textures/gui/book.png"), true, 0, 1);
     public static final Item HS_LEGGS = new HookahSuit("hs_leggs", Materials.ArmorMaterials.HOOKAH_SUITS, 2, EntityEquipmentSlot.LEGS);
     public static final Item HS_CHESTPLATE = new HookahSuit("hs_chestplate", Materials.ArmorMaterials.HOOKAH_SUITS, 1, EntityEquipmentSlot.CHEST);
     public static final Item HS_HEAD = new HookahSuit("hs_head", Materials.ArmorMaterials.HOOKAH_SUITS, 1, EntityEquipmentSlot.HEAD);
