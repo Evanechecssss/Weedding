@@ -8,7 +8,7 @@ import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import top.evanechecssss.weedding.network.capability.provider.AddictionProvider;
+import top.evanechecssss.weedding.network.capability.main.Addiction;
 
 public class AddictionMessage implements IMessage {
 
@@ -27,12 +27,13 @@ public class AddictionMessage implements IMessage {
 
     @Override
     public void fromBytes(ByteBuf buf) {
-        buf.writeFloat(addiction);
+        addiction = buf.readFloat();
+
     }
 
     @Override
     public void toBytes(ByteBuf buf) {
-        addiction = buf.readFloat();
+        buf.writeFloat(addiction);
     }
 
     public static class AddictionMessageHandler implements IMessageHandler<AddictionMessage, IMessage> {
@@ -51,7 +52,7 @@ public class AddictionMessage implements IMessage {
             EntityPlayerSP player = Minecraft.getMinecraft().player;
 
             Minecraft.getMinecraft().addScheduledTask(() -> {
-                player.getCapability(AddictionProvider.ADDICTION_CAPABILITY, null).set(message.addiction);
+                Addiction.get(player).set(message.addiction);
             });
         }
     }

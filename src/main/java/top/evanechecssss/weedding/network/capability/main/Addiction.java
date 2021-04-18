@@ -1,9 +1,15 @@
 package top.evanechecssss.weedding.network.capability.main;
 
+import net.minecraft.entity.player.EntityPlayer;
 import top.evanechecssss.weedding.network.capability.interfaces.IAddiction;
+import top.evanechecssss.weedding.network.capability.provider.AddictionProvider;
 
 public class Addiction implements IAddiction {
     private float addiction = 0F;
+
+    public static IAddiction get(EntityPlayer player) {
+        return player.getCapability(AddictionProvider.ADDICTION_CAPABILITY, null);
+    }
 
     @Override
     public void consume(float points) {

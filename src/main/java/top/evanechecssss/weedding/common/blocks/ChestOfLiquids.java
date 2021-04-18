@@ -13,6 +13,7 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jetbrains.annotations.Nullable;
 import top.evanechecssss.weedding.Weedding;
 import top.evanechecssss.weedding.common.tileEntitys.ChestOfLiquidsTE;
+import top.evanechecssss.weedding.network.capability.main.Addiction;
 import top.evanechecssss.weedding.network.packets.AddictionMessage;
 import top.evanechecssss.weedding.network.packets.WeeddingPacketHandler;
 import top.evanechecssss.weedding.utils.base.blocks.HorizontalBlockBase;
@@ -26,11 +27,11 @@ public class ChestOfLiquids extends HorizontalBlockBase {
     }
 
     @Override
-    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (playerIn instanceof EntityPlayerMP) {
-            WeeddingPacketHandler.INSTANCE.sendTo(new AddictionMessage(), (EntityPlayerMP) playerIn);
+    public boolean onBlockActivated(World worldIn, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (player instanceof EntityPlayerMP) {
+            WeeddingPacketHandler.INSTANCE.sendTo(new AddictionMessage(Addiction.get(player).getAddiction()), (EntityPlayerMP) player);
         }
-        playerIn.openGui(Weedding.instance, WeeddingGUIs.CHEST_OF_LIQUIDS, worldIn, pos.getX(), pos.getY(), pos.getZ());
+        player.openGui(Weedding.instance, WeeddingGUIs.CHEST_OF_LIQUIDS, worldIn, pos.getX(), pos.getY(), pos.getZ());
         return true;
     }
 
