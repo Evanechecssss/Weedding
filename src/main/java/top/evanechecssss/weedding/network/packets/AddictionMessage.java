@@ -1,10 +1,13 @@
 package top.evanechecssss.weedding.network.packets;
 
 import io.netty.buffer.ByteBuf;
-import net.minecraft.entity.player.EntityPlayerMP;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
 import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
 import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import top.evanechecssss.weedding.network.capability.provider.AddictionProvider;
 
 public class AddictionMessage implements IMessage {
@@ -32,17 +35,24 @@ public class AddictionMessage implements IMessage {
         addiction = buf.readFloat();
     }
 
-    public static class AddictionMassageHandler implements IMessageHandler<AddictionMessage, IMessage> {
+    public static class AddictionMessageHandler implements IMessageHandler<AddictionMessage, IMessage> {
 
         @Override
         public IMessage onMessage(AddictionMessage message, MessageContext ctx) {
-            EntityPlayerMP serverPlayer = ctx.getServerHandler().player;
-            float addiction = message.addiction;
-            serverPlayer.getServerWorld().addScheduledTask(() -> {
-                serverPlayer.getCapability(AddictionProvider.ADDICTION_CAPABILITY, null).set(addiction);
-            });
-            WeeddingPacketHandler.INSTANCE.sendTo(new AddictionMessage(), serverPlayer);
+            if (ctx.side.isClient()) {
+                this.handleAddiction(message, ctx);
+            }
+
             return null;
+        }
+
+        @SideOnly(Side.CLIENT)
+        private void handleAddiction(AddictionMessage message, MessageContext ctx) {
+            EntityPlayerSP player = Minecraft.getMinecraft().player;
+
+            Minecraft.getMinecraft().addScheduledTask(() -> {
+                player.getCapability(AddictionProvider.ADDICTION_CAPABILITY, null).set(message.addiction);
+            });
         }
     }
 }

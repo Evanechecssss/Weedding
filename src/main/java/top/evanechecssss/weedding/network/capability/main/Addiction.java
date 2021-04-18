@@ -8,6 +8,7 @@ public class Addiction implements IAddiction {
     @Override
     public void consume(float points) {
         if (this.addiction > 0) this.addiction -= points;
+
     }
 
     @Override

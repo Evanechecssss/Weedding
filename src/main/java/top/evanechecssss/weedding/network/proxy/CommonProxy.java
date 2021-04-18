@@ -27,7 +27,7 @@ public class CommonProxy {
         BlockRegister.registerBlock();
         GameRegistry.registerWorldGenerator(new WeeddingWorldGen(), 3);
         CapabilityManager.INSTANCE.register(IAddiction.class, new AddictionStorage(), Addiction.class);
-        WeeddingPacketHandler.INSTANCE.registerMessage(AddictionMessage.AddictionMassageHandler.class, AddictionMessage.class, 0, Side.SERVER);
+        WeeddingPacketHandler.INSTANCE.registerMessage(AddictionMessage.AddictionMessageHandler.class, AddictionMessage.class, 0, Side.CLIENT);
     }
     public void init(FMLInitializationEvent event) {
         MinecraftForge.EVENT_BUS.register(new AddictionHandler());
