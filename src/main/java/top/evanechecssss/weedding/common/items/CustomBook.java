@@ -20,14 +20,14 @@ public class CustomBook extends ItemBase {
     String textName = "";
     ResourceLocation texture;
     public boolean showCount;
-    public int angel;
+    public int angle;
     public int countColor;
 
-    public CustomBook(String name, int damage, int stackSize, CreativeTabs tab, String textName, ResourceLocation texture, boolean showCount, int angel, int countColor) {
+    public CustomBook(String name, int damage, int stackSize, CreativeTabs tab, String textName, ResourceLocation texture, boolean showCount, int angle, int countColor) {
         super(name, damage, stackSize, tab);
         this.textName = textName;
         this.texture = texture;
-        this.angel = angel;
+        this.angle = angle;
         this.showCount = showCount;
         this.countColor = countColor;
     }
@@ -53,6 +53,6 @@ public class CustomBook extends ItemBase {
             lang = "ru";
         }
         ResourceLocation text = new ResourceLocation(WeeddingInfo.MODID, "information/" + lang + "/" + textName + ".json");
-        Minecraft.getMinecraft().displayGuiScreen(new BookGuiScreen(texture, text, showCount, angel, countColor));
+        Minecraft.getMinecraft().displayGuiScreen(new BookGuiScreen(texture, text, showCount, angle, countColor));
     }
 }

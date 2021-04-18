@@ -22,6 +22,7 @@ import top.evanechecssss.weedding.utils.base.blocks.HorizontalBlockBase;
 public class Box extends HorizontalBlockBase {
     public Box(String name, Material material, float hardness, float resistance, String toolClass, int toolLevel, CreativeTabs tabs, SoundType soundType, float lightLevel, int lightOpacity) {
         super(name, material, hardness, resistance, toolClass, toolLevel, tabs, soundType, lightLevel, lightOpacity);
+        GameRegistry.registerTileEntity(this.getTileEntityClass(), this.getRegistryName().toString());
     }
 
     public Box(String name, Material material, CreativeTabs tabs, SoundType soundType, int hardness, int resistance, String toolClass, int toolLevel) {
@@ -34,7 +35,7 @@ public class Box extends HorizontalBlockBase {
 
     public Box(String name, Material material) {
         super(name, material);
-        GameRegistry.registerTileEntity(this.getTileEntityClass(), this.getRegistryName().toString());
+
     }
 
     public Box(String name) {

@@ -35,7 +35,7 @@ public class BookGuiScreen extends GuiScreen {
     public static int HEIGHT = 181;
     public static int MaxPage;
     public ArrayList<String> BookText = new ArrayList<String>();
-    private float angel = 0;
+    private float angle = 0;
     private boolean showCount = true;
     private int countColor = 1;
 
@@ -45,10 +45,10 @@ public class BookGuiScreen extends GuiScreen {
         Parsing();
     }
 
-    public BookGuiScreen(ResourceLocation locationTexture, ResourceLocation locationText, boolean showCount, float angel, int countColor) {
+    public BookGuiScreen(ResourceLocation locationTexture, ResourceLocation locationText, boolean showCount, float angle, int countColor) {
         BookGuiScreen.locationTexture = locationTexture;
         BookGuiScreen.locationText = locationText;
-        this.angel = angel;
+        this.angle = angle;
         this.countColor = countColor;
         this.showCount = showCount;
         Parsing();
@@ -101,7 +101,7 @@ public class BookGuiScreen extends GuiScreen {
             fontRenderer.drawString(this.getCurrentPage() + "/" + this.getMaxPage(), centerX + countShiftX, centerY + countShiftY, countColor);
         GlStateManager.pushMatrix();
         GlStateManager.translate(centerX + pageShiftX, centerY + pageShiftY, 0);
-        GlStateManager.rotate(angel, 0, 0, 1);
+        GlStateManager.rotate(angle, 0, 0, 1);
         fontRenderer.drawSplitString(BookText.get(this.Page), 0, 0, wrapWidth, 1);
         GlStateManager.popMatrix();
         super.drawScreen(mouseX, mouseY, partialTicks);

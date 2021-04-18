@@ -27,6 +27,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import top.evanechecssss.weedding.common.blocks.help.IHookah;
 import top.evanechecssss.weedding.common.blocks.types.HookahEmptyTypes;
 import top.evanechecssss.weedding.common.tileEntitys.HookahEmptyTE;
+import top.evanechecssss.weedding.network.capability.interfaces.IAddiction;
+import top.evanechecssss.weedding.network.capability.provider.AddictionProvider;
 import top.evanechecssss.weedding.utils.base.blocks.BlockBase;
 
 public class HookahEmpty extends BlockBase implements IHookah {
@@ -92,6 +94,8 @@ public class HookahEmpty extends BlockBase implements IHookah {
                 breack = true;
 
             }
+            IAddiction addiction = player.getCapability(AddictionProvider.ADDICTION_CAPABILITY, null);
+            addiction.fill(1);
             HookahEmptyTE tileEntity = (HookahEmptyTE) world.getTileEntity(pos);
             SendMessageHookah(world, player, hand, facing, fortune, breack);
         }

@@ -54,4 +54,5 @@ public class BoxTE extends TileEntity {
         this.crackerCount = compound.getInteger("crackerCount");
     }
 
+
 }
