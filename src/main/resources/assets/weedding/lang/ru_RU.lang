@@ -28,6 +28,8 @@ advancements.weedding.hookah.mine_hemp.title=Любитель газона
 advancements.weedding.hookah.mine_hemp.description=Подстричь коноплю ножницами
 advancements.weedding.hookah.hemp_seed.title=Юный снупдог
 advancements.weedding.hookah.hemp_seed.description=Посодить коноплю, пусть растёт, потому что вам надо "Smoke weed everyday"
+#entity
+entity.dafuk.name=Дафук
 #tabs
 itemGroup.weedding=weedding
 #chat

@@ -1,0 +1,21 @@
+{
+  "result": {
+    "item": "weedding:hemp_axe"
+  },
+  "pattern": [
+    "dad",
+    "dad",
+    " a "
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "a": {
+      "item": "minecraft:stick",
+      "data": 0
+    },
+    "d": {
+      "item": "minecraft:iron_ingot",
+      "data": 0
+    }
+  }
+}

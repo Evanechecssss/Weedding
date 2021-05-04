@@ -18,6 +18,7 @@ public class HempCalik extends HookahSlurry {
 
     public HempCalik(String name, int damage, int stackSize, CreativeTabs tab) {
         super(name, damage, stackSize, tab);
+
     }
 
     public HempCalik(String name, int damage, int stackSize, CreativeTabs tab, String toolClass, int toolLevel, List<String> stringList) {

@@ -24,11 +24,11 @@ import net.minecraft.util.math.RayTraceResult;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import top.evanechecssss.weedding.Weedding;
 import top.evanechecssss.weedding.common.blocks.help.IHookah;
 import top.evanechecssss.weedding.common.blocks.types.HookahEmptyTypes;
 import top.evanechecssss.weedding.common.tileEntitys.HookahEmptyTE;
-import top.evanechecssss.weedding.network.capability.interfaces.IAddiction;
-import top.evanechecssss.weedding.network.capability.provider.AddictionProvider;
+import top.evanechecssss.weedding.init.WeeddingGUIs;
 import top.evanechecssss.weedding.utils.base.blocks.BlockBase;
 
 public class HookahEmpty extends BlockBase implements IHookah {
@@ -87,6 +87,9 @@ public class HookahEmpty extends BlockBase implements IHookah {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
+            if (player.isSneaking()) {
+                player.openGui(Weedding.instance, WeeddingGUIs.HOOKAH_GUI, world, pos.getX(), pos.getY(), pos.getZ());
+            }
             float fortune = player.getLuck();
             boolean breack = false;
             if (player.getHeldItem(hand).getItem() instanceof ItemBlock && fortune < 1) {
@@ -94,8 +97,6 @@ public class HookahEmpty extends BlockBase implements IHookah {
                 breack = true;
 
             }
-            IAddiction addiction = player.getCapability(AddictionProvider.ADDICTION_CAPABILITY, null);
-            addiction.fill(1);
             HookahEmptyTE tileEntity = (HookahEmptyTE) world.getTileEntity(pos);
             SendMessageHookah(world, player, hand, facing, fortune, breack);
         }
@@ -103,6 +104,7 @@ public class HookahEmpty extends BlockBase implements IHookah {
     }
 
     public boolean SendMessageHookah(World world, EntityPlayer player, EnumHand hand, EnumFacing facing, float fortune, boolean breack) {
+
         if (breack) {
             Minecraft.getMinecraft().player.sendChatMessage(I18n.format("weedding.chat.message.hookah.mistake1"));
             return true;

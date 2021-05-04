@@ -28,6 +28,8 @@ advancements.weedding.hookah.mine_hemp.title=Lawn lover
 advancements.weedding.hookah.mine_hemp.description=Trim cannabis with scissors
 advancements.weedding.hookah.hemp_seed.title=Young snoop dog
 advancements.weedding.hookah.hemp_seed.description=Plant hemp, let it grow, because you need "Smoke weed everyday"
+#entity
+entity.dafuk.name=Dafuk
 #tabs
 itemGroup.weedding=weedding
 #chat

@@ -98,6 +98,7 @@ public class HempBlock extends CropBase implements IShearable {
         return true;
     }
 
+
     @Override
     public NonNullList onSheared(ItemStack item, IBlockAccess world, BlockPos pos, int fortune) {
         return NonNullList.withSize(1, new ItemStack(WeeddingBlocks.HEMP));
