@@ -1,4 +1,4 @@
-package top.evanechecssss.weedding.client.gui;
+package top.evanechecssss.weedding.gui;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonParser;

@@ -12,7 +12,7 @@ import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import top.evanechecssss.weedding.Weedding;
-import top.evanechecssss.weedding.client.gui.BookGuiScreen;
+import top.evanechecssss.weedding.gui.BookGuiScreen;
 import top.evanechecssss.weedding.utils.base.items.ItemBase;
 import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
 

@@ -1,4 +1,4 @@
-package top.evanechecssss.weedding.common.tileEntitys;
+package top.evanechecssss.weedding.tiles;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.init.Items;

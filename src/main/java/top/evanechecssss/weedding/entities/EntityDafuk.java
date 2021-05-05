@@ -1,4 +1,4 @@
-package top.evanechecssss.weedding.entity;
+package top.evanechecssss.weedding.entities;
 
 
 import net.minecraft.block.Block;
@@ -27,6 +27,10 @@ public class EntityDafuk extends EntitySheep {
     protected void updateAITasks() {
         this.sheepTimer = this.entityAIEatGrass.getEatingGrassTimer();
         super.updateAITasks();
+    }
+
+    public boolean isChest() {
+        return false;
     }
 
     @Override

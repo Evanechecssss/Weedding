@@ -16,7 +16,7 @@ import net.minecraft.util.text.TextComponentString;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import org.jetbrains.annotations.Nullable;
-import top.evanechecssss.weedding.common.tileEntitys.BoxTE;
+import top.evanechecssss.weedding.tiles.BoxTE;
 import top.evanechecssss.weedding.utils.base.blocks.HorizontalBlockBase;
 
 public class Box extends HorizontalBlockBase {

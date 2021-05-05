@@ -5,8 +5,8 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import top.evanechecssss.weedding.Weedding;
-import top.evanechecssss.weedding.entity.EntityDafuk;
-import top.evanechecssss.weedding.entity.models.DafukModel;
+import top.evanechecssss.weedding.entities.EntityDafuk;
+import top.evanechecssss.weedding.entities.models.DafukModel;
 import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
 import top.evanechecssss.weedding.utils.registry.RenderEntityBase;
 

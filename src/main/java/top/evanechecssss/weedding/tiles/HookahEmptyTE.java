@@ -1,15 +1,17 @@
-package top.evanechecssss.weedding.common.tileEntitys;
+package top.evanechecssss.weedding.tiles;
 
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.NetworkManager;
-import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.items.ItemStackHandler;
+import top.evanechecssss.weedding.utils.gui.IHasContainer;
 
-public class HookahEmptyTE extends TileEntity {
-    public ItemStackHandler inventory = new ItemStackHandler(3);
+public class HookahEmptyTE extends TileEntity implements IHasContainer {
+    public int size = 6;
     private int liquidVolume = 0;
     private int liquidId = 0;
+    public ItemStackHandler inventory = new ItemStackHandler(size);
+
 
     public HookahEmptyTE() {
 
@@ -40,6 +42,11 @@ public class HookahEmptyTE extends TileEntity {
         return compound;
     }
 
+    public void blockBreaking() {
+        for (int i = 0; i < getInventoryMaxIndex(); ++i)
+            world.spawnEntity(new EntityItem(world, pos.getX(), pos.up().getY(), pos.getZ(), inventory.getStackInSlot(i)));
+    }
+
     @Override
     public void readFromNBT(NBTTagCompound compound) {
         super.readFromNBT(compound);
@@ -49,34 +56,17 @@ public class HookahEmptyTE extends TileEntity {
     }
 
     @Override
-    public SPacketUpdateTileEntity getUpdatePacket() {
-        NBTTagCompound nbt = new NBTTagCompound();
-        this.writeToNBT(nbt);
-        int metadata = getBlockMetadata();
-        return new SPacketUpdateTileEntity(this.pos, metadata, nbt);
+    public ItemStackHandler getInventory() {
+        return inventory;
     }
 
     @Override
-    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
-        this.readFromNBT(pkt.getNbtCompound());
+    public int getInventorySize() {
+        return size;
     }
 
     @Override
-    public NBTTagCompound getUpdateTag() {
-        NBTTagCompound nbt = new NBTTagCompound();
-        this.writeToNBT(nbt);
-        return nbt;
-    }
-
-    @Override
-    public void handleUpdateTag(NBTTagCompound tag) {
-        this.readFromNBT(tag);
-    }
-
-    @Override
-    public NBTTagCompound getTileData() {
-        NBTTagCompound nbt = new NBTTagCompound();
-        this.writeToNBT(nbt);
-        return nbt;
+    public int getInventoryMaxIndex() {
+        return size -= 1;
     }
 }

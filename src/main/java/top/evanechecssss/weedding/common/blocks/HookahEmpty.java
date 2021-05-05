@@ -27,8 +27,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import top.evanechecssss.weedding.Weedding;
 import top.evanechecssss.weedding.common.blocks.help.IHookah;
 import top.evanechecssss.weedding.common.blocks.types.HookahEmptyTypes;
-import top.evanechecssss.weedding.common.tileEntitys.HookahEmptyTE;
 import top.evanechecssss.weedding.init.WeeddingGUIs;
+import top.evanechecssss.weedding.tiles.HookahEmptyTE;
 import top.evanechecssss.weedding.utils.base.blocks.BlockBase;
 
 public class HookahEmpty extends BlockBase implements IHookah {
@@ -89,6 +89,7 @@ public class HookahEmpty extends BlockBase implements IHookah {
         if (!world.isRemote) {
             if (player.isSneaking()) {
                 player.openGui(Weedding.instance, WeeddingGUIs.HOOKAH_GUI, world, pos.getX(), pos.getY(), pos.getZ());
+                return true;
             }
             float fortune = player.getLuck();
             boolean breack = false;
@@ -153,6 +154,17 @@ public class HookahEmpty extends BlockBase implements IHookah {
         for (HookahEmptyTypes base : HookahEmptyTypes.values()) {
             list.add(new ItemStack(this, 1, base.ordinal()));
         }
+    }
+
+    @Override
+    public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
+        getTileEntity(worldIn, pos).blockBreaking();
+        worldIn.removeTileEntity(pos);
+        super.breakBlock(worldIn, pos, state);
+    }
+
+    public HookahEmptyTE getTileEntity(World world, BlockPos pos) {
+        return (HookahEmptyTE) world.getTileEntity(pos);
     }
 
     @Override

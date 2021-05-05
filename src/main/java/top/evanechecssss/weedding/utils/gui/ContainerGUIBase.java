@@ -1,21 +1,22 @@
-package top.evanechecssss.weedding.utils.base.gui;
+package top.evanechecssss.weedding.utils.gui;
 
 import net.minecraft.client.gui.inventory.GuiContainer;
+import net.minecraft.inventory.Container;
 import net.minecraft.util.ResourceLocation;
 
-public class ContainerGUIBase<T, C> extends GuiContainer {
+public class ContainerGUIBase<T extends IHasContainer> extends GuiContainer {
     private static ResourceLocation background;
     private static int width;
     private static int height;
     private final boolean isDefaultBackground;
     private final boolean doesPause;
-    private final T tileEntity;
-    private final C container;
+    private final T entity;
+    private final Container container;
 
-    public ContainerGUIBase(T tileEntity, C container, ResourceLocation background, int width, int height, boolean isDefaultBackground, boolean doesPause) {
-        super((net.minecraft.inventory.Container) container);
+    public ContainerGUIBase(T entity, Container container, ResourceLocation background, int width, int height, boolean isDefaultBackground, boolean doesPause) {
+        super(container);
         ContainerGUIBase.background = background;
-        this.tileEntity = tileEntity;
+        this.entity = entity;
         this.container = container;
         this.doesPause = doesPause;
         ContainerGUIBase.width = width;

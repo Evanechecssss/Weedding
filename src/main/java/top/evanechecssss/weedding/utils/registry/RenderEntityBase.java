@@ -4,7 +4,7 @@ import net.minecraft.client.model.ModelBase;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
-import top.evanechecssss.weedding.entity.EntityDafuk;
+import top.evanechecssss.weedding.entities.EntityDafuk;
 
 public class RenderEntityBase extends RenderLiving<EntityDafuk> {
 
