@@ -1,0 +1,11 @@
+{
+  "smooth_bong": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/smooth_bong",
+        "stream": true,
+      }
+    ]
+  }
+}

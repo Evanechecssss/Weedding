@@ -10,6 +10,7 @@ import top.evanechecssss.weedding.common.items.HempSeed;
 import top.evanechecssss.weedding.common.items.armor.HookahSuit;
 import top.evanechecssss.weedding.utils.base.items.ItemBase;
 import top.evanechecssss.weedding.utils.base.items.ItemFoodBase;
+import top.evanechecssss.weedding.utils.base.items.ItemRecordBase;
 import top.evanechecssss.weedding.utils.base.items.tools.ItemAxeBase;
 import top.evanechecssss.weedding.utils.reference.WeeddingCreativeTabs;
 import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
@@ -32,7 +33,8 @@ public class WeeddingItems {
     public static final Item HEMP_CHESTPLATE = new HookahSuit("hemp_chestplate", Materials.ArmorMaterials.HEMP, 1, EntityEquipmentSlot.CHEST);
     public static final Item HEMP_HEAD = new HookahSuit("hemp_head", Materials.ArmorMaterials.HEMP, 1, EntityEquipmentSlot.HEAD);
     public static final Item HEMP_BOOTS = new HookahSuit("hemp_boots", Materials.ArmorMaterials.HEMP, 1, EntityEquipmentSlot.FEET);
+    public static final Item RECORD1 = new ItemRecordBase("smooth_bong", WeeddingSounds.SMOOTH_BONG);
     public static final Item[] ITEMS = new Item[]{
-            NGM, HEMP_SEED, HEMP_FOOD, HEMP_CALIK, HEMP_AXE, HS_LEGGS, HS_CHESTPLATE, HS_HEAD, HEMP_LEGGS, HEMP_CHESTPLATE, HEMP_BOOTS, HEMP_HEAD, HSD_HEAD, HSD_LEGGS, HSD_CHESTPLATE, HSD_BOOTS, WEEDDING_BOOK
+            NGM, HEMP_SEED, HEMP_FOOD, HEMP_CALIK, HEMP_AXE, HS_LEGGS, HS_CHESTPLATE, HS_HEAD, HEMP_LEGGS, HEMP_CHESTPLATE, HEMP_BOOTS, HEMP_HEAD, HSD_HEAD, HSD_LEGGS, HSD_CHESTPLATE, HSD_BOOTS, WEEDDING_BOOK, RECORD1
     };
 }

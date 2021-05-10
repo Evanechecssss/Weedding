@@ -32,4 +32,8 @@ public class RenderEntityWarlock extends RenderLiving<EntityWarlock> {
         super.applyRotations(entityLiving, p_77043_2_, rotationYaw, partialTicks);
     }
 
+    @Override
+    public void setRenderOutlines(boolean renderOutlinesIn) {
+        super.setRenderOutlines(renderOutlinesIn);
+    }
 }

@@ -21,6 +21,7 @@ item.weedding.hsd_leggs.name=District hookah pants
 item.weedding.hsd_head.name=District hookah bandage
 item.weedding.hsd_chestplate.name=District hookah jacket
 item.weedding.hsd_boots.name=District hookah boots
+item.weedding.smooth_bong.name="Smooth bong" desc
 #advancements
 advancements.weedding.hookah.root.title=WEEDDING
 advancements.weedding.hookah.root.description=Download the mod and start your smoky journey)
@@ -32,6 +33,8 @@ advancements.weedding.hookah.hemp_seed.description=Plant hemp, let it grow, beca
 entity.dafuk.name=Dafuk
 #tabs
 itemGroup.weedding=weedding
+#desc
+item.record.smooth_bong.desc=Smooth bong
 #chat
 weedding.chat.message.hookah.variant1=Fuck... good puff
 weedding.chat.message.hookah.variant2=I feel a little sick from the smoke

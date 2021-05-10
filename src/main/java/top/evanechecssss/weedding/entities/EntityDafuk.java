@@ -57,6 +57,9 @@ public class EntityDafuk extends EntitySheep {
 
     @Override
     protected void initEntityAI() {
+        super.initEntityAI();
+
+        this.tasks.taskEntries.clear();
         this.tasks.addTask(0, new EntityAISwimming(this));
         this.tasks.addTask(1, new EntityAIPanic(this, 1.25D));
         this.tasks.addTask(3, new EntityAIMate(this, 1.0D));
@@ -70,7 +73,7 @@ public class EntityDafuk extends EntitySheep {
 
     @Override
     public float getEyeHeight() {
-        return 2;
+        return 1;
     }
 
     @Override

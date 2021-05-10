@@ -21,6 +21,7 @@ item.weedding.hsd_leggs.name=Штаны районного кальянщика
 item.weedding.hsd_head.name=Шапка районного кальянщика
 item.weedding.hsd_chestplate.name=Штаны районного кальянщика
 item.weedding.hsd_boots.name=Тапки районного кальянщика
+item.weedding.smooth_bong.name=Пластинка "Гладкий калик"
 #advancements
 advancements.weedding.hookah.root.title=WEEDDING
 advancements.weedding.hookah.root.description=Скачать мод и начать своё дымное приключение
@@ -32,6 +33,8 @@ advancements.weedding.hookah.hemp_seed.description=Посодить конопл
 entity.dafuk.name=Дафук
 #tabs
 itemGroup.weedding=weedding
+#desc
+item.record.smooth_bong.desc=Гладкий калик
 #chat
 weedding.chat.message.hookah.variant1=Бля... хорошая затяжка
 weedding.chat.message.hookah.variant2=Мне немного поплохело
