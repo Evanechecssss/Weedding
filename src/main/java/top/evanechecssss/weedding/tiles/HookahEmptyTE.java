@@ -7,7 +7,7 @@ import net.minecraftforge.items.ItemStackHandler;
 import top.evanechecssss.weedding.utils.gui.IHasContainer;
 
 public class HookahEmptyTE extends TileEntity implements IHasContainer {
-    public int size = 6;
+    private final int size = 6;
     private int liquidVolume = 0;
     private int liquidId = 0;
     public ItemStackHandler inventory = new ItemStackHandler(size);
@@ -67,6 +67,6 @@ public class HookahEmptyTE extends TileEntity implements IHasContainer {
 
     @Override
     public int getInventoryMaxIndex() {
-        return size -= 1;
+        return size - 1;
     }
 }

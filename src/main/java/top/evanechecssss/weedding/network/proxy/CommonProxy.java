@@ -11,14 +11,16 @@ import top.evanechecssss.weedding.init.WeeddingEntity;
 import top.evanechecssss.weedding.init.WeeddingGUIs;
 import top.evanechecssss.weedding.utils.registry.BlockRegister;
 import top.evanechecssss.weedding.world.gen.WeeddingWorldGen;
+import top.evanechecssss.weedding.world.spawn.WeeddingEntitySpawner;
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
         BlockRegister.registerBlock();
         GameRegistry.registerWorldGenerator(new WeeddingWorldGen(), 3);
-        WeeddingEntity.EntityRegister.RegisterEntityRender();
+        WeeddingEntity.EntityRenderRegister.RegisterEntityRender();
         WeeddingEntity.RegisterEntities();
+        WeeddingEntitySpawner.spawnEntities();
     }
     public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(Weedding.instance, new WeeddingGUIs.GUIHandler());

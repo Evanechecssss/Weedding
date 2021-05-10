@@ -7,6 +7,7 @@ import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
+import top.evanechecssss.weedding.Weedding;
 
 public class ContainerBase<T extends IHasContainer> extends Container {
     private final boolean canInteractWith;
@@ -26,7 +27,7 @@ public class ContainerBase<T extends IHasContainer> extends Container {
     }
 
 
-    public void addPlayerInventory(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isAbsolute, boolean isHorizontal) {
+    public void addPlayerInventory(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isHorizontal) {
 
     }
 
@@ -35,7 +36,7 @@ public class ContainerBase<T extends IHasContainer> extends Container {
     }
 
 
-    public void addPlayerInventorySlots(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isAbsolute, boolean isHorizontal) {
+    public void addPlayerInventorySlots(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isHorizontal) {
 
     }
 
@@ -48,7 +49,7 @@ public class ContainerBase<T extends IHasContainer> extends Container {
     }
 
 
-    public void addPlayerInventoryBar(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isAbsolute, boolean isHorizontal) {
+    public void addPlayerInventoryBar(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isHorizontal) {
 
     }
 
@@ -56,15 +57,15 @@ public class ContainerBase<T extends IHasContainer> extends Container {
 
     }
 
-    public void addContainerInventory(int cordX, int cordY, boolean isAbsolute, boolean isHorizontal) {
+    public void addContainerInventory(int cordX, int cordY, boolean isHorizontal) {
 
     }
 
-    public void addContainerInventory(int SlotsX, int SlotsY, int cordX, int cordY, boolean isAbsolute, boolean isHorizontal) {
+    public void addContainerInventory(int SlotsX, int SlotsY, int cordX, int cordY, boolean isHorizontal) {
 
     }
 
-    public void addContainerInventory(int gapIdMin, int gapIdMax, int SlotsX, int SlotsY, int cordX, int cordY, boolean isAbsolute, boolean isHorizontal) {
+    public void addContainerInventory(int gapIdMin, int gapIdMax, int SlotsX, int SlotsY, int cordX, int cordY, boolean isHorizontal) {
 
     }
 
@@ -72,13 +73,14 @@ public class ContainerBase<T extends IHasContainer> extends Container {
 
     }
 
-    public void addContainerInventoryLine(int SlotsX, int gapIdMin, int gapIdMax, int cordX, int cordY, boolean isAbsolute, boolean isHorizontal) {
+    public void addContainerInventoryLine(int SlotsX, int gapIdMin, int gapIdMax, int cordX, int cordY, boolean isHorizontal) {
 
     }
 
-    public void addContainerSlot(int Id, int cordX, int cordY, boolean isAbsolute) {
-        this.addSlotToContainer(new SlotItemHandler(getInventoryEntity(), Id, cordX, cordY));
-
+    public void addContainerSlot(int Id, int cordX, int cordY) {
+        if (isIdExist(Id)) {
+            this.addSlotToContainer(new SlotItemHandler(getInventoryEntity(), Id, cordX - 50, cordY));
+        }
     }
 
     public ItemStackHandler getInventoryEntity() {
@@ -90,8 +92,30 @@ public class ContainerBase<T extends IHasContainer> extends Container {
         return canInteractWith;
     }
 
+    public void setItemInSlot(int Id, ItemStack item) {
+        inventorySlots.get(Id).putStack(item);
+    }
+
+    public ItemStack getItemFromSlot(int Id) {
+        return inventorySlots.get(Id).getStack();
+    }
+
+    private boolean idInRegion(int IdCount, int Max, int Min) {
+        if (Max - Min > IdCount) {
+            return true;
+        } else {
+            Weedding.logger.error("The selected region is too small".toUpperCase());
+            return false;
+        }
+    }
+
     private boolean isIdExist(int Id) {
-        return Id <= entity.getInventoryMaxIndex();
+        if (Id <= entity.getInventoryMaxIndex()) {
+            return true;
+        } else {
+            Weedding.logger.error(("such id is not available for the slot:" + Id).toUpperCase());
+            return false;
+        }
     }
 
     @Override
@@ -99,8 +123,7 @@ public class ContainerBase<T extends IHasContainer> extends Container {
         ItemStack item = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
         ItemStack itemSlot = slot.getStack();
-        int size = inventorySlots.size();
-        size -= 1;
+        int size = entity.getInventoryMaxIndex();
         if (!canTransferStack || !slot.getHasStack()) {
             return item;
         }
