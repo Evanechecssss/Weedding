@@ -29,4 +29,5 @@ public enum HookahEmptyTypes implements IStringSerializable {
     public String getName() {
         return this.name;
     }
+
 }

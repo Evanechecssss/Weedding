@@ -16,7 +16,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
-import top.evanechecssss.weedding.api.Materials;
+import top.evanechecssss.weedding.api.WeeddingMisc;
 import top.evanechecssss.weedding.init.WeeddingBlocks;
 import top.evanechecssss.weedding.utils.base.items.ItemBase;
 
@@ -60,6 +60,6 @@ public class HempSeed extends ItemBase implements IPlantable {
 
     @Override
     public EnumRarity getRarity(ItemStack stack) {
-        return Materials.Rarity.FORBIDDEN;
+        return WeeddingMisc.Rarity.FORBIDDEN;
     }
 }

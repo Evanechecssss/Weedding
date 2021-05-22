@@ -13,13 +13,12 @@ import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
-import net.minecraft.util.DamageSource;
-import net.minecraft.util.EnumActionResult;
-import net.minecraft.util.EnumHand;
-import net.minecraft.util.SoundEvent;
+import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
 import net.minecraft.world.World;
+import org.jetbrains.annotations.Nullable;
+import top.evanechecssss.weedding.api.WeeddingMisc;
 import top.evanechecssss.weedding.init.WeeddingItems;
 
 import java.util.Set;
@@ -86,6 +85,12 @@ public class EntityDafuk extends EntitySheep {
         this.playSound(SoundEvents.ENTITY_SHEEP_STEP, 0.15F, 1.0F);
     }
 
+    @Nullable
+    @Override
+    protected ResourceLocation getLootTable() {
+        return WeeddingMisc.LootTable.DAFUK_LOOT;
+    }
+
     @Override
     protected SoundEvent getAmbientSound() {
         return SoundEvents.ENTITY_SHEEP_AMBIENT;
@@ -105,4 +110,5 @@ public class EntityDafuk extends EntitySheep {
     public EntityDafuk createChild(EntityAgeable ageable) {
         return new EntityDafuk(this.world);
     }
+
 }

@@ -6,7 +6,7 @@ import net.minecraft.item.EnumRarity;
 import net.minecraft.item.ItemStack;
 import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
-import top.evanechecssss.weedding.api.Materials;
+import top.evanechecssss.weedding.api.WeeddingMisc;
 
 import java.util.List;
 
@@ -38,6 +38,6 @@ public class HempCalik extends HookahSlurry {
 
     @Override
     public EnumRarity getRarity(ItemStack stack) {
-        return Materials.Rarity.FORBIDDEN;
+        return WeeddingMisc.Rarity.FORBIDDEN;
     }
 }

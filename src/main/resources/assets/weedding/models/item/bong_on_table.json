@@ -1,0 +1,6 @@
+{
+  "parent": "item/generated",
+  "textures": {
+    "layer0": "weedding:items/bong_on_table"
+  }
+}

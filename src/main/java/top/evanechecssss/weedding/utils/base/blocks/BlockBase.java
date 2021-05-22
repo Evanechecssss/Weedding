@@ -20,23 +20,24 @@ public class BlockBase extends Block {
         this.setResistance(resistance);
         this.setHarvestLevel(toolClass,toolLevel);
     }
-    public BlockBase(String name,Material material,float hardness,float resistance,String toolClass,int toolLevel,CreativeTabs tab, SoundType type) {
+    public BlockBase(String name, Material material, float hardness, float resistance, String toolClass, int toolLevel, CreativeTabs tab, SoundType type) {
         super(material);
         this.setRegistryName(name);
         this.setUnlocalizedName(WeeddingInfo.MODID + "." + name);
         this.setHardness(hardness);
         this.setResistance(resistance);
-        this.setHarvestLevel(toolClass,toolLevel);
+        this.setHarvestLevel(toolClass, toolLevel);
         this.setSoundType(type);
         this.setCreativeTab(tab);
     }
-    public BlockBase(String name, Material material, float hardness, float resistance, String toolClass, int toolLevel, CreativeTabs tab, SoundType type,float lightLevel, int lightOpacity) {
+
+    public BlockBase(String name, Material material, float hardness, float resistance, String toolClass, int toolLevel, CreativeTabs tab, SoundType type, float lightLevel, int lightOpacity) {
         super(material);
         this.setRegistryName(name);
         this.setUnlocalizedName(WeeddingInfo.MODID + "." + name);
         this.setHardness(hardness);
         this.setResistance(resistance);
-        this.setHarvestLevel(toolClass,toolLevel);
+        this.setHarvestLevel(toolClass, toolLevel);
         this.setCreativeTab(tab);
         this.setLightLevel(lightLevel);
         this.setLightOpacity(lightOpacity);

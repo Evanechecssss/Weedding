@@ -5,8 +5,11 @@ import net.minecraft.client.renderer.culling.ICamera;
 import net.minecraft.client.renderer.entity.RenderLiving;
 import net.minecraft.client.renderer.entity.RenderManager;
 import net.minecraft.util.ResourceLocation;
+import net.minecraftforge.fml.relauncher.Side;
+import net.minecraftforge.fml.relauncher.SideOnly;
 import top.evanechecssss.weedding.entities.EntityWarlock;
 
+@SideOnly(Side.CLIENT)
 public class RenderEntityWarlock extends RenderLiving<EntityWarlock> {
 
     public ResourceLocation resourceLocation;
@@ -32,8 +35,5 @@ public class RenderEntityWarlock extends RenderLiving<EntityWarlock> {
         super.applyRotations(entityLiving, p_77043_2_, rotationYaw, partialTicks);
     }
 
-    @Override
-    public void setRenderOutlines(boolean renderOutlinesIn) {
-        super.setRenderOutlines(renderOutlinesIn);
-    }
+
 }

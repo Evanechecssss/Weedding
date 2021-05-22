@@ -21,20 +21,40 @@ item.weedding.hsd_leggs.name=District hookah pants
 item.weedding.hsd_head.name=District hookah bandage
 item.weedding.hsd_chestplate.name=District hookah jacket
 item.weedding.hsd_boots.name=District hookah boots
-item.weedding.smooth_bong.name="Smooth bong" desc
+item.weedding.smooth_bong.name=Smooth bong disk
+item.weedding.bong_on_table.name=Bong on the table disk
+item.weedding.good_puff.name=Good_puff disk
+item.weedding.hookah_d.name=Hookah disk
+item.weedding.hookah_girl.name=Hookah girl disk
+item.weedding.horse.name=Horse disk
+item.weedding.horse_rhapsody.name=Horse rhapsody disk
+item.weedding.horse_squad.name=Horse squad disk
+item.weedding.if_u_have_a_hemp.name=If u have a hemp disk
+item.weedding.my_hookah.name=My_hookah disk
+item.weedding.kirkus_killer.name=Kirkus killer
 #advancements
 advancements.weedding.hookah.root.title=WEEDDING
-advancements.weedding.hookah.root.description=Download the mod and start your smoky journey)
+advancements.weedding.hookah.root.diskription=Download the mod and start your smoky journey)
 advancements.weedding.hookah.mine_hemp.title=Lawn lover
-advancements.weedding.hookah.mine_hemp.description=Trim cannabis with scissors
+advancements.weedding.hookah.mine_hemp.diskription=Trim cannabis with scissors
 advancements.weedding.hookah.hemp_seed.title=Young snoop dog
-advancements.weedding.hookah.hemp_seed.description=Plant hemp, let it grow, because you need "Smoke weed everyday"
+advancements.weedding.hookah.hemp_seed.diskription=Plant hemp, let it grow, because you need "Smoke weed everyday"
 #entity
 entity.dafuk.name=Dafuk
 #tabs
 itemGroup.weedding=weedding
-#desc
+#disk
 item.record.smooth_bong.desc=Smooth bong
+item.record.bong_on_table.desc=Bong on the table
+item.record.good_puff.desc=Good_puff
+item.record.hookah_d.desc=Hookah
+item.record.hookah_girl.desc=Hookah girl
+item.record.horse.desc=Horse
+item.record.horse_rhapsody.desc=Horse rhapsody
+item.record.horse_squad.desc=If u have a hemp
+item.record.if_u_have_a_hemp.desc=My_hookah
+item.record.my_hookah.desc=Horse squad
+item.record.kirkus_killer.desc=Kirkus killer
 #chat
 weedding.chat.message.hookah.variant1=Fuck... good puff
 weedding.chat.message.hookah.variant2=I feel a little sick from the smoke

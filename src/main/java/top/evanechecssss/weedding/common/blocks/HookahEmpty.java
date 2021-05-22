@@ -36,7 +36,7 @@ public class HookahEmpty extends BlockBase implements IHookah {
 
     public HookahEmpty(String name, Material material, float hardness, float resistance, String toolClass, int toolLevel, CreativeTabs tab, SoundType type, float lightLevel, int lightOpacity) {
         super(name, material, hardness, resistance, toolClass, toolLevel, tab, type, lightLevel, lightOpacity);
-        this.getDefaultState().withProperty(COLOR, HookahEmptyTypes.WHITE);
+        this.setDefaultState(blockState.getBaseState().withProperty(COLOR, HookahEmptyTypes.WHITE));
         GameRegistry.registerTileEntity(HookahEmptyTE.class, this.getRegistryName().toString());
     }
 

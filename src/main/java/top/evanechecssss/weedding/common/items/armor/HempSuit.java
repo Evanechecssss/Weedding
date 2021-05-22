@@ -10,7 +10,7 @@ public class HempSuit extends ItemArmor {
         super(materialIn, renderIndexIn, equipmentSlotIn);
         this.setRegistryName(name);
         this.setUnlocalizedName("weedding." + name);
-        this.setCreativeTab(WeeddingCreativeTabs.weedding);
+        this.setCreativeTab(WeeddingCreativeTabs.WEEDDING_CT);
     }
 
 }

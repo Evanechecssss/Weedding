@@ -17,7 +17,7 @@ public class EntitySpawner {
     private static void spawnDafuk() {
         for (Biome biome : Biome.REGISTRY) {
             if (biome.getTempCategory() == Biome.TempCategory.MEDIUM) {
-                EntityRegistry.addSpawn(EntityDafuk.class, 20, 1, 10, EnumCreatureType.AMBIENT, biome);
+                EntityRegistry.addSpawn(EntityDafuk.class, 1, 1, 5, EnumCreatureType.AMBIENT, biome);
             }
         }
     }

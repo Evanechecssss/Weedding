@@ -5,7 +5,7 @@ import net.minecraft.item.ItemStack;
 import top.evanechecssss.weedding.init.WeeddingBlocks;
 
 public class WeeddingCreativeTabs {
-    public static final CreativeTabs weedding = new CreativeTabs("weedding") {
+    public static final CreativeTabs WEEDDING_CT = new CreativeTabs("weedding") {
         @Override
         public ItemStack getTabIconItem() {
             return new ItemStack(WeeddingBlocks.HEMP);

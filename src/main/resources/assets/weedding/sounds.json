@@ -4,7 +4,97 @@
     "sounds": [
       {
         "name": "weedding:music/smooth_bong",
-        "stream": true,
+        "stream": true
+      }
+    ]
+  },
+  "bong_on_table": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/bong_on_table",
+        "stream": true
+      }
+    ]
+  },
+  "good_puff": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/good_puff",
+        "stream": true
+      }
+    ]
+  },
+  "hookah": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/hookah",
+        "stream": true
+      }
+    ]
+  },
+  "hookah_girl": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/hookah_girl",
+        "stream": true
+      }
+    ]
+  },
+  "horse_squad": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/horse_squad",
+        "stream": true
+      }
+    ]
+  },
+  "if_u_have_a_hemp": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/if_u_have_a_hemp",
+        "stream": true
+      }
+    ]
+  },
+  "horse_rhapsody": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/horse_rhapsody",
+        "stream": true
+      }
+    ]
+  },
+  "horse": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/horse",
+        "stream": true
+      }
+    ]
+  },
+  "my_hookah": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/my_hookah",
+        "stream": true
+      }
+    ]
+  },
+  "kirkus_killer": {
+    "category": "record",
+    "sounds": [
+      {
+        "name": "weedding:music/kirkus_killer",
+        "stream": true
       }
     ]
   }

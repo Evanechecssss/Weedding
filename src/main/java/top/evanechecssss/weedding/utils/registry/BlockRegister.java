@@ -6,6 +6,7 @@ import net.minecraft.client.renderer.block.model.ModelResourceLocation;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemBlock;
 import net.minecraft.item.ItemColored;
+import net.minecraft.util.IStringSerializable;
 import net.minecraftforge.fml.common.Mod;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
 import net.minecraftforge.fml.relauncher.Side;
@@ -17,40 +18,40 @@ import top.evanechecssss.weedding.init.WeeddingBlocks;
 public class BlockRegister {
     public static void registerBlock() {
         setRegister(WeeddingBlocks.BLOCKS);
-        setRegisterSubBlocks();
+        setRegisterSubBlocks(WeeddingBlocks.HOOKAH_EMPTY);
     }
 
     public static void setRegister(Block[] block) {
-        for (int i = 0; i < block.length; i++) {
-            ForgeRegistries.BLOCKS.register(block[i]);
-            ForgeRegistries.ITEMS.register(new ItemBlock(block[i]).setRegistryName(block[i].getRegistryName()));
+        for (Block value : block) {
+            ForgeRegistries.BLOCKS.register(value);
+            ForgeRegistries.ITEMS.register(new ItemBlock(value).setRegistryName(value.getRegistryName()));
         }
     }
 
-    public static void setRegisterSubBlocks() {
-        ForgeRegistries.BLOCKS.register(WeeddingBlocks.HOOKAH_EMPTY);
-        ForgeRegistries.ITEMS.register(new ItemColored(WeeddingBlocks.HOOKAH_EMPTY, true).setRegistryName(WeeddingBlocks.HOOKAH_EMPTY.getRegistryName()));
+    public static void setRegisterSubBlocks(Block block) {
+        ForgeRegistries.BLOCKS.register(block);
+        ForgeRegistries.ITEMS.register(new ItemColored(block, true).setRegistryName(block.getRegistryName()));
     }
 
     @SideOnly(Side.CLIENT)
     public static void renderBlock() {
         setRender(WeeddingBlocks.BLOCKS);
-        setRenderSubBlocs();
+        setRenderSubBlocs(HookahEmptyTypes.values(), WeeddingBlocks.HOOKAH_EMPTY);
     }
 
     @SideOnly(Side.CLIENT)
     public static void setRender(Block[] block) {
-        for (int i = 0; i < block.length; i++) {
-            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(block[i]), 0, new ModelResourceLocation(block[i].getRegistryName(), "inventory"));
+        for (Block value : block) {
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(Item.getItemFromBlock(value), 0, new ModelResourceLocation(value.getRegistryName(), "inventory"));
         }
     }
 
     @SideOnly(Side.CLIENT)
-    public static void setRenderSubBlocs() {
-        Item hookah = Item.getItemFromBlock(WeeddingBlocks.HOOKAH_EMPTY);
-        for (HookahEmptyTypes color : HookahEmptyTypes.values()) {
-            ModelResourceLocation location = new ModelResourceLocation(WeeddingBlocks.HOOKAH_EMPTY.getRegistryName(), "color=" + color.getName().toLowerCase());
-            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(hookah, color.ordinal(), location);
+    public static void setRenderSubBlocs(Enum<? extends IStringSerializable>[] _val, Block block) {
+        Item item = Item.getItemFromBlock(block);
+        for (Enum<? extends IStringSerializable> type : _val) {
+            ModelResourceLocation location = new ModelResourceLocation(block.getRegistryName(), "color=" + ((IStringSerializable) type).getName());
+            Minecraft.getMinecraft().getRenderItem().getItemModelMesher().register(item, type.ordinal(), location);
         }
     }
 }
