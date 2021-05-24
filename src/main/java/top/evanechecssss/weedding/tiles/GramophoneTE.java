@@ -5,8 +5,7 @@ import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.network.NetworkManager;
 import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
-
-import javax.annotation.Nullable;
+import org.jetbrains.annotations.Nullable;
 
 public class GramophoneTE extends TileEntity {
     private ItemStack record = ItemStack.EMPTY;
@@ -36,28 +35,25 @@ public class GramophoneTE extends TileEntity {
 
     public void setRecord(ItemStack recordStack) {
         this.record = recordStack;
-        this.markDirty();
-    }
+        markDirty();
 
-    @Override
-    @Nullable
-    public SPacketUpdateTileEntity getUpdatePacket() {
-
-        return new SPacketUpdateTileEntity(this.pos, 3, this.getUpdateTag());
     }
 
     @Override
     public NBTTagCompound getUpdateTag() {
+        return writeToNBT(new NBTTagCompound());
+    }
 
-        return this.writeToNBT(new NBTTagCompound());
+    @Nullable
+    @Override
+    public SPacketUpdateTileEntity getUpdatePacket() {
+        return new SPacketUpdateTileEntity(pos, 3, this.getUpdateTag());
     }
 
     @Override
-    public void onDataPacket(NetworkManager networkManager, SPacketUpdateTileEntity packet) {
+    public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
+        super.onDataPacket(net, pkt);
 
-        super.onDataPacket(networkManager, packet);
-
-        this.handleUpdateTag(packet.getNbtCompound());
+        this.handleUpdateTag(pkt.getNbtCompound());
     }
-
 }

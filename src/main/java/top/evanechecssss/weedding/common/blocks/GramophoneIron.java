@@ -3,7 +3,6 @@ package top.evanechecssss.weedding.common.blocks;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
-import net.minecraft.block.properties.PropertyEnum;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
@@ -19,14 +18,13 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.Nullable;
-import top.evanechecssss.weedding.common.blocks.types.GramophoneTypes;
 import top.evanechecssss.weedding.tiles.GramophoneTE;
 import top.evanechecssss.weedding.utils.base.blocks.HorizontalBlockBase;
 
 import java.util.Random;
 
 public class GramophoneIron extends HorizontalBlockBase {
-    public static final PropertyEnum<GramophoneTypes> COLOR = PropertyEnum.create("color", GramophoneTypes.class);
+
 
     public GramophoneIron(String name, Material material, float hardness, float resistance, String toolClass, int toolLevel, CreativeTabs tab, SoundType type, float lightLevel, int lightOpacity) {
         super(name, material, hardness, resistance, toolClass, toolLevel, tab, type, lightLevel, lightOpacity);
@@ -48,6 +46,17 @@ public class GramophoneIron extends HorizontalBlockBase {
             }
 
             return true;
+        } else {
+            if (getTileEntity(world, pos).getRecord().isEmpty()) {
+                if (playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRecord) {
+                    ItemStack record = playerIn.getHeldItem(EnumHand.MAIN_HAND).copy();
+                    if (record.getItem() instanceof ItemRecord) {
+                        ItemRecord record1 = (ItemRecord) record.getItem();
+                        world.playRecord(pos, ((ItemRecord) playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem()).getSound());
+                    }
+
+                }
+            }
         }
 
         return true;
@@ -70,6 +79,8 @@ public class GramophoneIron extends HorizontalBlockBase {
 
     @Override
     public void harvestBlock(World worldIn, EntityPlayer player, BlockPos pos, IBlockState state, @Nullable TileEntity te, ItemStack stack) {
+        worldIn.playEvent(1010, pos, 0);
+        worldIn.playRecord(pos, null);
         if (te instanceof GramophoneTE) {
             ItemStack record = ((GramophoneTE) te).getRecord();
             if (!record.isEmpty()) {
@@ -86,7 +97,6 @@ public class GramophoneIron extends HorizontalBlockBase {
         tile.setRecord(record);
         if (record.getItem() instanceof ItemRecord) {
             ItemRecord record1 = (ItemRecord) record.getItem();
-            world.playSound(null, pos, record1.getSound(), SoundCategory.RECORDS, 1F, 1F);
         }
 
     }
@@ -133,10 +143,13 @@ public class GramophoneIron extends HorizontalBlockBase {
 
 
     private void dropRecord(World world, BlockPos pos) {
+        world.playEvent(1010, pos, 0);
+        world.playRecord(pos, null);
         if (!world.isRemote) {
             GramophoneTE tile = getTileEntity(world, pos);
             ItemStack item = tile.getRecord();
             if (!item.isEmpty()) {
+                world.playRecord(pos, null);
                 tile.setRecord(ItemStack.EMPTY);
                 double d = new Random().nextDouble();
                 BlockPos blockPos1 = new BlockPos(pos.getX() + d, pos.getY() + d, pos.getZ() + d);
