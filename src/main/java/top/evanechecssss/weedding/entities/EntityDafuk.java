@@ -8,6 +8,7 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
@@ -20,11 +21,13 @@ import net.minecraft.world.World;
 import org.jetbrains.annotations.Nullable;
 import top.evanechecssss.weedding.api.WeeddingMisc;
 import top.evanechecssss.weedding.init.WeeddingItems;
+import top.evanechecssss.weedding.utils.AchievementHelper;
 
 import java.util.Set;
 
 public class EntityDafuk extends EntitySheep {
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.CARROT, Items.POTATO, Items.BEETROOT, WeeddingItems.HEMP_FOOD);
+
     public EntityDafuk(World worldIn) {
         super(worldIn);
     }
@@ -46,11 +49,20 @@ public class EntityDafuk extends EntitySheep {
     @Override
     public EnumActionResult applyPlayerInteraction(EntityPlayer player, Vec3d vec, EnumHand hand) {
         ItemStack itemHand = player.getHeldItem(hand);
+        if (player instanceof EntityPlayerMP) {
+            AchievementHelper.completeAchievement(player, "hookah", "dafuk");
+        }
         if (itemHand.getItem().equals(Item.getItemFromBlock(Blocks.WHITE_SHULKER_BOX))) {
             itemHand.setCount(0);
             IsChest = true;
+            if (isChild()) {
+                AchievementHelper.completeAchievement(player, "hookah", "dafuk_loader");
+            }
+
             return EnumActionResult.SUCCESS;
+
         }
+
         return EnumActionResult.PASS;
     }
 

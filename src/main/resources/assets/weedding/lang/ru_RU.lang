@@ -39,6 +39,10 @@ advancements.weedding.hookah.mine_hemp.title=Любитель газона
 advancements.weedding.hookah.mine_hemp.diskription=Подстричь коноплю ножницами
 advancements.weedding.hookah.hemp_seed.title=Юный снупдог
 advancements.weedding.hookah.hemp_seed.diskription=Посодить коноплю, пусть растёт, потому что вам надо "Smoke weed everyday"
+advancements.weedding.hookah.dafuk.title=Дафук - это кто?
+advancements.weedding.hookah.dafuk.description=Познакомится с Дафуком поближе...
+advancements.weedding.hookah.dafuk_loader.title=Детский труд
+advancements.weedding.hookah.dafuk_loader.description=Заставить работать маленького Дафука
 #entity
 entity.dafuk.name=Дафук
 #tabs
@@ -66,3 +70,7 @@ weedding.chat.message.hookah.variant7=Бляха... я такой калик с 
 weedding.chat.message.hookah.variant8=Я бы очень хотел обнять космос, но я обнимаю кальян
 weedding.chat.message.hookah.mistake1=Блять... нахуя я кальян разбил... пиздец!
 weedding.chat.message.hookah.dialogue.variant1=Вспомнил историю...\n\t-Артур, блять! Тебе кто разрешал дуть сладкую десертную забивулю со вкусом шоколада и мяты а???\n\t-Прости мама! Я думал мне можно...\n\t-Можно, но только после того как покуришь забивку со вкусом супа и пюрешную миксулю: А потом уже десерт\n\t-Понял\n§o§eпарень не по годам развит) с детства знает, что и как нужно курить) Вырастит знатным кальянщиком
+weedding.chat.message.dafuk.variant1=Джеб: Ну что ты за тварь, %s, он же ребёнок!
+weedding.chat.message.dafuk.variant2=Нотч: Как тебе не стыдно? %s, ты это заслужил!
+weedding.chat.message.dafuk.variant3=Джеб: Ну ты чисто гнида! %s, наверняка ты голосовал за фантомов!
+weedding.chat.message.dafuk.variant4=Агнес: Надеюсь ты так больше делать не будешь, %s, пожалуйста!!!

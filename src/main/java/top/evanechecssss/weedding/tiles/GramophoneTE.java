@@ -53,7 +53,6 @@ public class GramophoneTE extends TileEntity {
     @Override
     public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity pkt) {
         super.onDataPacket(net, pkt);
-
         this.handleUpdateTag(pkt.getNbtCompound());
     }
 }

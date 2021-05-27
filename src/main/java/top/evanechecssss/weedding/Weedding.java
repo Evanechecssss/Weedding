@@ -21,18 +21,18 @@ public class Weedding {
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
         proxy.preInit(event);
-        logger.info("\u001B!Mod preInitialization :" + WeeddingInfo.NAME);
+        logger.info("!Mod preInitialization :" + WeeddingInfo.NAME);
     }
 
     @Mod.EventHandler
     public void init(FMLInitializationEvent event) {
         proxy.init(event);
-        logger.info("\u001B!Mod initialization :" + WeeddingInfo.NAME);
+        logger.info("!Mod initialization :" + WeeddingInfo.NAME);
     }
 
     @Mod.EventHandler
     public void postInit(FMLPostInitializationEvent event) {
         proxy.postInit(event);
-        logger.info("\u001B!Mod postInitialization :" + WeeddingInfo.NAME);
+        logger.info("!Mod postInitialization :" + WeeddingInfo.NAME);
     }
 }

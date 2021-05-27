@@ -16,6 +16,7 @@ import top.evanechecssss.weedding.utils.reference.WeeddingCreativeTabs;
 import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
 
 public class WeeddingItems {
+    public static final Item DAFUK_ICON = new ItemBase("dafuk_icon");
     public static final Item NGM = new ItemBase("ngm", 1, 1, WeeddingCreativeTabs.WEEDDING_CT);
     public static final Item HEMP_SEED = new HempSeed("hemp_seed", 0, 64, WeeddingCreativeTabs.WEEDDING_CT);
     public static final Item HEMP_FOOD = new ItemFoodBase("hemp_food", 2, 1, true, true, 0, 64, WeeddingCreativeTabs.WEEDDING_CT);
@@ -44,10 +45,11 @@ public class WeeddingItems {
     public static final Item RECORD9 = new ItemRecordBase("my_hookah", WeeddingSounds.MY_HOOKAH).addInfo("B2", "My rock and roll ");
     public static final Item RECORD10 = new ItemRecordBase("hookah_d", WeeddingSounds.HOOKAH_D).addInfo("Gas sector", "30 years");
     public static final Item RECORD11 = new ItemRecordBase("kirkus_killer", WeeddingSounds.KIRKUS_KILLER).addInfo("Talking heads", "Psycho killer");
+
     public static final Item[] ITEMS = new Item[]{
             NGM, HEMP_SEED, HEMP_FOOD, HEMP_CALIK, HEMP_AXE, HS_LEGGS,
             HS_CHESTPLATE, HS_HEAD, HEMP_LEGGS, HEMP_CHESTPLATE, HEMP_BOOTS,
             HEMP_HEAD, HSD_HEAD, HSD_LEGGS, HSD_CHESTPLATE, HSD_BOOTS, WEEDDING_BOOK, RECORD1, RECORD2,
-            RECORD3, RECORD4, RECORD5, RECORD6, RECORD7, RECORD8, RECORD9, RECORD10, RECORD11
+            RECORD3, RECORD4, RECORD5, RECORD6, RECORD7, RECORD8, RECORD9, RECORD10, RECORD11, DAFUK_ICON
     };
 }

@@ -111,7 +111,7 @@ public class HookahEmpty extends BlockBase implements IHookah {
             return true;
         }
 
-        Minecraft.getMinecraft().player.sendChatMessage(I18n.format("weedding.chat.message.hookah.variant" + (int) Math.round(Math.random() * 6 + 1)));
+        Minecraft.getMinecraft().player.sendChatMessage(I18n.format("weedding.chat.message.hookah.variant" + (int) Math.round(Math.random() * 7 + 1)));
         return true;
     }
 

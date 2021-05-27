@@ -1,0 +1,23 @@
+{
+  "display": {
+    "icon": {
+      "item": "weedding:dafuk_icon"
+    },
+    "title": {
+      "translate": "advancements.weedding.hookah.dafuk.title"
+    },
+    "description": {
+      "translate": "advancements.weedding.hookah.dafuk.description"
+    },
+    "frame": "goal"
+  },
+  "parent": "weedding:hookah/root",
+  "rewards": {
+    "experience": 10
+  },
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}
