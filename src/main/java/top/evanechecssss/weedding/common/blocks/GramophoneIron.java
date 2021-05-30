@@ -1,24 +1,32 @@
 package top.evanechecssss.weedding.common.blocks;
 
+import io.netty.buffer.ByteBuf;
 import net.minecraft.block.Block;
 import net.minecraft.block.SoundType;
 import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
+import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
+import net.minecraftforge.fml.common.network.ByteBufUtils;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessage;
+import net.minecraftforge.fml.common.network.simpleimpl.IMessageHandler;
+import net.minecraftforge.fml.common.network.simpleimpl.MessageContext;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.Nullable;
-import top.evanechecssss.weedding.tiles.GramophoneTE;
+import top.evanechecssss.weedding.Weedding;
 import top.evanechecssss.weedding.utils.base.blocks.HorizontalBlockBase;
 
 import java.util.Random;
@@ -36,30 +44,95 @@ public class GramophoneIron extends HorizontalBlockBase {
         if (!world.isRemote) {
             if (getTileEntity(world, pos).getRecord().isEmpty()) {
                 if (playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRecord) {
+                    Weedding.NETWORK.sendToServer(new GramophoneMessage(playerIn.getHeldItem(EnumHand.MAIN_HAND), pos));
                     setRecord(world, pos, playerIn.getHeldItem(EnumHand.MAIN_HAND));
                     playerIn.getHeldItem(EnumHand.MAIN_HAND).setCount(0);
                 }
 
             } else {
-
                 dropRecord(world, pos);
             }
-
             return true;
-        } else {
-            if (getTileEntity(world, pos).getRecord().isEmpty()) {
-                if (playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRecord) {
-                    ItemStack record = playerIn.getHeldItem(EnumHand.MAIN_HAND).copy();
-                    if (record.getItem() instanceof ItemRecord) {
-                        ItemRecord record1 = (ItemRecord) record.getItem();
-                        world.playRecord(pos, ((ItemRecord) playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem()).getSound());
-                    }
-
-                }
-            }
         }
 
         return true;
+    }
+
+    public static class GramophoneTE extends TileEntity {
+        private ItemStack record = ItemStack.EMPTY;
+
+        public GramophoneTE() {
+
+        }
+
+        public void readFromNBT(NBTTagCompound compound) {
+            super.readFromNBT(compound);
+
+            if (compound.hasKey("RecordItem")) {
+                this.setRecord(new ItemStack(compound.getCompoundTag("RecordItem")));
+            }
+        }
+
+        public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+            if (!this.record.isEmpty()) {
+                compound.setTag("RecordItem", this.record.serializeNBT());
+            }
+            return super.writeToNBT(compound);
+        }
+
+        public ItemStack getRecord() {
+            return record;
+        }
+
+        public void setRecord(ItemStack recordStack) {
+            this.record = recordStack;
+            markDirty();
+        }
+
+
+    }
+
+    public static class GramophoneMessage implements IMessage {
+
+        private ItemStack itemSend;
+        private BlockPos posSend;
+
+        public GramophoneMessage() {
+        }
+
+        public GramophoneMessage(ItemStack itemSend, BlockPos posSend) {
+            this.itemSend = itemSend;
+            this.posSend = posSend;
+        }
+
+        @Override
+        public void fromBytes(ByteBuf buf) {
+            this.itemSend = ByteBufUtils.readItemStack(buf);
+            this.posSend = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
+        }
+
+        @Override
+        public void toBytes(ByteBuf buf) {
+            buf.writeInt(this.posSend.getX());
+            buf.writeInt(this.posSend.getY());
+            buf.writeInt(this.posSend.getZ());
+            ByteBufUtils.writeItemStack(buf, itemSend);
+        }
+    }
+
+    public static class GramophoneMessageHandler implements IMessageHandler<GramophoneMessage, IMessage> {
+        @SideOnly(Side.CLIENT)
+        public static void PlayRecordClient(ItemStack itemStack, World world, BlockPos pos) {
+            world.playRecord(pos, ((ItemRecord) itemStack.getItem()).getSound());
+        }
+
+        @Override
+        public IMessage onMessage(GramophoneMessage message, MessageContext ctx) {
+            EntityPlayerSP sp = Minecraft.getMinecraft().player;
+            World world = sp.getEntityWorld();
+            PlayRecordClient(message.itemSend, world, message.posSend);
+            return null;
+        }
     }
 
     @Override

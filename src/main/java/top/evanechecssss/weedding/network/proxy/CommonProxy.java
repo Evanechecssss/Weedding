@@ -9,12 +9,12 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import top.evanechecssss.weedding.Weedding;
+import top.evanechecssss.weedding.common.blocks.GramophoneIron;
 import top.evanechecssss.weedding.handlers.WeeddingEventHandler;
 import top.evanechecssss.weedding.init.WeeddingEntity;
 import top.evanechecssss.weedding.init.WeeddingGUIs;
 import top.evanechecssss.weedding.init.WeeddingSounds;
 import top.evanechecssss.weedding.network.packets.OpenMenuExecution;
-import top.evanechecssss.weedding.tiles.GramophoneTE;
 import top.evanechecssss.weedding.utils.registry.BlockRegister;
 import top.evanechecssss.weedding.world.gen.WeeddingWorldGen;
 import top.evanechecssss.weedding.world.spawn.EntitySpawner;
@@ -30,7 +30,8 @@ public class CommonProxy {
         EntitySpawner.spawnEntities();
         MinecraftForge.EVENT_BUS.register(new WeeddingSounds.SoundRegistry());
         Weedding.NETWORK.registerMessage(OpenMenuExecution.OpenMenuMessageHandler.class, OpenMenuExecution.OpenMenuMessage.class, 0, Side.SERVER);
-        Weedding.NETWORK.registerMessage(GramophoneTE.GramophoneMessageHandler.class, GramophoneTE.GramophoneMessage.class, 0, Side.CLIENT);
+        Weedding.NETWORK.registerMessage(GramophoneIron.GramophoneMessageHandler.class, GramophoneIron.GramophoneMessage.class, 0, Side.SERVER);
+        Weedding.NETWORK.registerMessage(GramophoneIron.GramophoneMessageHandler.class, GramophoneIron.GramophoneMessage.class, 0, Side.CLIENT);
     }
     public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(Weedding.instance, new WeeddingGUIs.GUIHandler());
