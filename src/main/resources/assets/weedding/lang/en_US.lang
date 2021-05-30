@@ -43,8 +43,12 @@ advancements.weedding.hookah.dafuk.title=Who is Dafuk?
 advancements.weedding.hookah.dafuk.description=get to know Dafuk closer...
 advancements.weedding.hookah.dafuk_loader.title=Child labour
 advancements.weedding.hookah.dafuk_loader.description=Make little Dafuk work
+advancements.weedding.hookah.dafuk_shulker.title=Dafuk loader
+advancements.weedding.hookah.dafuk_shulker.description=give Dafuk a white shulker and let him work for you
 #entity
 entity.dafuk.name=Dafuk
+#key
+weedding.key.open_menu=Open the weedding menu
 #tabs
 itemGroup.weedding=weedding
 #disk

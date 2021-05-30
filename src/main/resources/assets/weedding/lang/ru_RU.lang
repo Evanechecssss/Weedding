@@ -43,8 +43,12 @@ advancements.weedding.hookah.dafuk.title=Дафук - это кто?
 advancements.weedding.hookah.dafuk.description=Познакомится с Дафуком поближе...
 advancements.weedding.hookah.dafuk_loader.title=Детский труд
 advancements.weedding.hookah.dafuk_loader.description=Заставить работать маленького Дафука
+advancements.weedding.hookah.dafuk_shulker.title=Дафук грузчик
+advancements.weedding.hookah.dafuk_shulker.description=дайте Дафуку белый шалкер и заставьте работать на вас
 #entity
 entity.dafuk.name=Дафук
+#key
+weedding.key.open_menu=Открыть меню виддинга
 #tabs
 itemGroup.weedding=weedding
 #disk

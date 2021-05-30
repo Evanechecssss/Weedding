@@ -4,13 +4,13 @@
       "item": "minecraft:white_shulker_box"
     },
     "title": {
-      "translate": "advancements.weedding.hookah.dafuk_loader.title"
+      "translate": "advancements.weedding.hookah.dafuk_shulker.title"
     },
     "description": {
-      "translate": "advancements.weedding.hookah.dafuk_loader.description"
+      "translate": "advancements.weedding.hookah.dafuk_shulker.description"
     }
   },
-  "parent": "weedding:hookah/dafuk_shulker",
+  "parent": "weedding:hookah/dafuk",
   "criteria": {
     "impossible": {
       "trigger": "minecraft:impossible"

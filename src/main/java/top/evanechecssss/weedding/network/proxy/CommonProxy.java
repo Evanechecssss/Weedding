@@ -7,11 +7,13 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
+import net.minecraftforge.fml.relauncher.Side;
 import top.evanechecssss.weedding.Weedding;
 import top.evanechecssss.weedding.handlers.WeeddingEventHandler;
 import top.evanechecssss.weedding.init.WeeddingEntity;
 import top.evanechecssss.weedding.init.WeeddingGUIs;
 import top.evanechecssss.weedding.init.WeeddingSounds;
+import top.evanechecssss.weedding.network.packets.OpenMenuExecution;
 import top.evanechecssss.weedding.utils.registry.BlockRegister;
 import top.evanechecssss.weedding.world.gen.WeeddingWorldGen;
 import top.evanechecssss.weedding.world.spawn.EntitySpawner;
@@ -27,6 +29,8 @@ public class CommonProxy {
         WeeddingEntity.RegisterEntities();
         EntitySpawner.spawnEntities();
         MinecraftForge.EVENT_BUS.register(new WeeddingSounds.SoundRegistry());
+        Weedding.NETWORK.registerMessage(OpenMenuExecution.OpenMenuMessageHandler.class, OpenMenuExecution.OpenMenuMessage.class, 0, Side.SERVER);
+
     }
     public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(Weedding.instance, new WeeddingGUIs.GUIHandler());

@@ -8,12 +8,15 @@ import net.minecraft.entity.SharedMonsterAttributes;
 import net.minecraft.entity.ai.*;
 import net.minecraft.entity.passive.EntitySheep;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.init.Blocks;
 import net.minecraft.init.Items;
 import net.minecraft.init.SoundEvents;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.datasync.DataParameter;
+import net.minecraft.network.datasync.DataSerializers;
+import net.minecraft.network.datasync.EntityDataManager;
 import net.minecraft.util.*;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.math.Vec3d;
@@ -27,15 +30,9 @@ import java.util.Set;
 
 public class EntityDafuk extends EntitySheep {
     private static final Set<Item> TEMPTATION_ITEMS = Sets.newHashSet(Items.CARROT, Items.POTATO, Items.BEETROOT, WeeddingItems.HEMP_FOOD);
-
+    public static final DataParameter<Boolean> IS_CHEST = EntityDataManager.createKey(EntityDafuk.class, DataSerializers.BOOLEAN);
     public EntityDafuk(World worldIn) {
         super(worldIn);
-    }
-
-    private boolean IsChest = false;
-
-    public boolean isChest() {
-        return IsChest;
     }
 
 
@@ -46,19 +43,25 @@ public class EntityDafuk extends EntitySheep {
         this.getEntityAttribute(SharedMonsterAttributes.MOVEMENT_SPEED).setBaseValue(0.25);
     }
 
+    public Boolean isChest() {
+        return this.dataManager.get(IS_CHEST);
+    }
+
+    public void setIsChest(boolean isChest) {
+        this.dataManager.set(IS_CHEST, isChest);
+    }
+
     @Override
     public EnumActionResult applyPlayerInteraction(EntityPlayer player, Vec3d vec, EnumHand hand) {
         ItemStack itemHand = player.getHeldItem(hand);
-        if (player instanceof EntityPlayerMP) {
-            AchievementHelper.completeAchievement(player, "hookah", "dafuk");
-        }
+        AchievementHelper.completeAchievement(player, "hookah", "dafuk");
         if (itemHand.getItem().equals(Item.getItemFromBlock(Blocks.WHITE_SHULKER_BOX))) {
+            AchievementHelper.completeAchievement(player, "hookah", "dafuk_shulker");
             itemHand.setCount(0);
-            IsChest = true;
             if (isChild()) {
                 AchievementHelper.completeAchievement(player, "hookah", "dafuk_loader");
             }
-
+            this.setIsChest(true);
             return EnumActionResult.SUCCESS;
 
         }
@@ -97,6 +100,12 @@ public class EntityDafuk extends EntitySheep {
         this.playSound(SoundEvents.ENTITY_SHEEP_STEP, 0.15F, 1.0F);
     }
 
+    @Override
+    protected void entityInit() {
+        this.dataManager.register(IS_CHEST, Boolean.FALSE);
+        super.entityInit();
+    }
+
     @Nullable
     @Override
     protected ResourceLocation getLootTable() {
@@ -122,5 +131,22 @@ public class EntityDafuk extends EntitySheep {
     public EntityDafuk createChild(EntityAgeable ageable) {
         return new EntityDafuk(this.world);
     }
+
+
+    @Override
+    public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+        compound = super.writeToNBT(compound);
+        compound.setBoolean("Chest", this.isChest());
+        return compound;
+    }
+
+    @Override
+    public void readFromNBT(NBTTagCompound compound) {
+        super.readFromNBT(compound);
+        if (compound.hasKey("Chest")) {
+            this.setIsChest(compound.getBoolean("Chest"));
+        }
+    }
+
 
 }

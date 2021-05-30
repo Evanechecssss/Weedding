@@ -5,6 +5,8 @@ import net.minecraftforge.fml.common.SidedProxy;
 import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
+import net.minecraftforge.fml.common.network.NetworkRegistry;
+import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
 import org.apache.logging.log4j.Logger;
 import top.evanechecssss.weedding.network.proxy.CommonProxy;
 import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
@@ -16,7 +18,7 @@ public class Weedding {
     public static Logger logger;
     @Mod.Instance(WeeddingInfo.MODID)
     public static Weedding instance;
-
+    public static final SimpleNetworkWrapper NETWORK = NetworkRegistry.INSTANCE.newSimpleChannel("weedding");
     @Mod.EventHandler
     public void preInit(FMLPreInitializationEvent event) {
         logger = event.getModLog();
