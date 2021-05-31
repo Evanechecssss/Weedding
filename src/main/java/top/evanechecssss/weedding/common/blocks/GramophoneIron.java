@@ -16,6 +16,8 @@ import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.network.NetworkManager;
+import net.minecraft.network.play.server.SPacketUpdateTileEntity;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.*;
 import net.minecraft.util.math.AxisAlignedBB;
@@ -91,87 +93,6 @@ public class GramophoneIron extends HorizontalBlockBase {
         worldIn.spawnParticle(EnumParticleTypes.NOTE, x, pos.getY() + 18 * 0.0625, z, 0, 0.2, 0);
     }
 
-    public static class GramophoneTE extends TileEntity {
-        private ItemStack record = ItemStack.EMPTY;
-
-        public GramophoneTE() {
-
-        }
-
-        public void readFromNBT(NBTTagCompound compound) {
-            super.readFromNBT(compound);
-
-            if (compound.hasKey("RecordItem")) {
-                this.setRecord(new ItemStack(compound.getCompoundTag("RecordItem")));
-            }
-        }
-
-        public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-            if (!this.record.isEmpty()) {
-                compound.setTag("RecordItem", this.record.serializeNBT());
-            }
-            return super.writeToNBT(compound);
-        }
-
-        public ItemStack getRecord() {
-            return record;
-        }
-
-        public void setRecord(ItemStack recordStack) {
-            this.record = recordStack;
-            markDirty();
-        }
-
-    }
-
-    public static class GramophoneTERender extends TileEntitySpecialRenderer<GramophoneTE> {
-        public GramophoneTERender() {
-            super();
-        }
-
-
-        @Override
-        public void render(GramophoneTE te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-            EntityItem ITEM_RENDER = new EntityItem(Minecraft.getMinecraft().world, 0, 0, 0, te.getRecord());
-            ITEM_RENDER.hoverStart = 0F;
-            GlStateManager.pushMatrix();
-            {
-                GlStateManager.translate(x, y + 5 * 0.0625, z);
-                GlStateManager.rotate(90, 1, 0, 0);
-                Minecraft.getMinecraft().getRenderManager().renderEntity(ITEM_RENDER, 0, 0, 0, 0F, 0F, false);
-            }
-            GlStateManager.popMatrix();
-
-        }
-    }
-
-    public static class GramophoneMessage implements IMessage {
-
-        private ItemStack itemSend;
-        private BlockPos posSend;
-
-        public GramophoneMessage() {
-        }
-
-        public GramophoneMessage(ItemStack itemSend, BlockPos posSend) {
-            this.itemSend = itemSend;
-            this.posSend = posSend;
-        }
-
-        @Override
-        public void fromBytes(ByteBuf buf) {
-            this.itemSend = ByteBufUtils.readItemStack(buf);
-            this.posSend = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
-        }
-
-        @Override
-        public void toBytes(ByteBuf buf) {
-            ByteBufUtils.writeItemStack(buf, itemSend);
-            buf.writeInt(posSend.getX());
-            buf.writeInt(posSend.getY());
-            buf.writeInt(posSend.getZ());
-        }
-    }
 
     @Override
     public void breakBlock(World worldIn, BlockPos pos, IBlockState state) {
@@ -212,21 +133,6 @@ public class GramophoneIron extends HorizontalBlockBase {
 
     }
 
-    public static class GramophoneMessageHandler implements IMessageHandler<GramophoneMessage, IMessage> {
-        public static void PlayRecordClient(ItemStack itemStack, EntityPlayer player, BlockPos pos) {
-            player.world.playRecord(pos, ((ItemRecord) itemStack.getItem()).getSound());
-        }
-
-        @Override
-        public IMessage onMessage(GramophoneMessage message, MessageContext ctx) {
-            EntityPlayerMP entity = ctx.getServerHandler().player;
-            EntityPlayerSP entityPlayerSP = Minecraft.getMinecraft().player;
-            entity.getServerWorld().addScheduledTask(() -> {
-                PlayRecordClient(message.itemSend, entityPlayerSP, message.posSend);
-            });
-            return null;
-        }
-    }
 
     @Override
     public ItemStack getItem(World worldIn, BlockPos pos, IBlockState state) {
@@ -298,5 +204,116 @@ public class GramophoneIron extends HorizontalBlockBase {
         return BlockRenderLayer.CUTOUT;
     }
 
+    public static class GramophoneTE extends TileEntity {
+        private ItemStack record = ItemStack.EMPTY;
 
+        public GramophoneTE() {
+
+        }
+
+        public void readFromNBT(NBTTagCompound compound) {
+            super.readFromNBT(compound);
+
+            if (compound.hasKey("RecordItem")) {
+                this.setRecord(new ItemStack(compound.getCompoundTag("RecordItem")));
+            }
+        }
+
+        public NBTTagCompound writeToNBT(NBTTagCompound compound) {
+            if (!this.record.isEmpty()) {
+                compound.setTag("RecordItem", this.record.serializeNBT());
+            }
+            return super.writeToNBT(compound);
+        }
+
+        public ItemStack getRecord() {
+            return record;
+        }
+
+        public void setRecord(ItemStack recordStack) {
+            this.record = recordStack;
+            markDirty();
+        }
+
+        @Override
+        public NBTTagCompound getUpdateTag() {
+            return this.writeToNBT(new NBTTagCompound());
+        }
+
+        @Override
+        public SPacketUpdateTileEntity getUpdatePacket() {
+            return new SPacketUpdateTileEntity(this.pos, this.getBlockMetadata(), this.getUpdateTag());
+        }
+
+        @Override
+        public void onDataPacket(NetworkManager net, SPacketUpdateTileEntity packet) {
+            this.readFromNBT(packet.getNbtCompound());
+        }
+
+    }
+
+    public static class GramophoneTERender extends TileEntitySpecialRenderer<GramophoneTE> {
+        public GramophoneTERender() {
+            super();
+        }
+
+
+        @Override
+        public void render(GramophoneTE te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+            EntityItem ITEM_RENDER = new EntityItem(Minecraft.getMinecraft().world, 0, 0, 0, te.getRecord());
+            ITEM_RENDER.hoverStart = 0F;
+            GlStateManager.pushMatrix();
+            {
+                GlStateManager.translate(x, y + 5 * 0.0625, z);
+                GlStateManager.rotate(90, 1, 0, 0);
+                Minecraft.getMinecraft().getRenderManager().renderEntity(ITEM_RENDER, 0, 0, 0, 0F, 0F, false);
+            }
+            GlStateManager.popMatrix();
+
+        }
+    }
+
+    public static class GramophoneMessage implements IMessage {
+
+        private ItemStack itemSend;
+        private BlockPos posSend;
+
+        public GramophoneMessage() {
+        }
+
+        public GramophoneMessage(ItemStack itemSend, BlockPos posSend) {
+            this.itemSend = itemSend;
+            this.posSend = posSend;
+        }
+
+        @Override
+        public void fromBytes(ByteBuf buf) {
+            this.itemSend = ByteBufUtils.readItemStack(buf);
+            this.posSend = new BlockPos(buf.readInt(), buf.readInt(), buf.readInt());
+        }
+
+        @Override
+        public void toBytes(ByteBuf buf) {
+            ByteBufUtils.writeItemStack(buf, itemSend);
+            buf.writeInt(posSend.getX());
+            buf.writeInt(posSend.getY());
+            buf.writeInt(posSend.getZ());
+        }
+    }
+
+    public static class GramophoneMessageHandler implements IMessageHandler<GramophoneMessage, IMessage> {
+        public static void PlayRecordClient(ItemStack itemStack, EntityPlayer player, BlockPos pos) {
+            player.world.playRecord(pos, ((ItemRecord) itemStack.getItem()).getSound());
+        }
+
+        @Override
+        public IMessage onMessage(GramophoneMessage message, MessageContext ctx) {
+            EntityPlayerMP entity = ctx.getServerHandler().player;
+            EntityPlayerSP entityPlayerSP = Minecraft.getMinecraft().player;
+            entity.getServerWorld().addScheduledTask(() -> {
+                PlayRecordClient(message.itemSend, entityPlayerSP, message.posSend);
+            });
+            return null;
+        }
+    }
 }

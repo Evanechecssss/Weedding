@@ -1,4 +1,4 @@
-package top.evanechecssss.weedding.tiles;
+package top.evanechecssss.weedding.common.tiles;
 
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.nbt.NBTTagCompound;

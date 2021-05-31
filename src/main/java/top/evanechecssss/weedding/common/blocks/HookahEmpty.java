@@ -27,8 +27,8 @@ import net.minecraftforge.fml.common.registry.GameRegistry;
 import top.evanechecssss.weedding.Weedding;
 import top.evanechecssss.weedding.common.blocks.help.IHookah;
 import top.evanechecssss.weedding.common.blocks.types.HookahEmptyTypes;
+import top.evanechecssss.weedding.common.tiles.HookahEmptyTE;
 import top.evanechecssss.weedding.init.WeeddingGUIs;
-import top.evanechecssss.weedding.tiles.HookahEmptyTE;
 import top.evanechecssss.weedding.utils.base.blocks.BlockBase;
 
 public class HookahEmpty extends BlockBase implements IHookah {

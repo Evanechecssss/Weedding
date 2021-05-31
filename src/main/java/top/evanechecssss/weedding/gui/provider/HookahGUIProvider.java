@@ -4,7 +4,7 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import top.evanechecssss.weedding.tiles.HookahEmptyTE;
+import top.evanechecssss.weedding.common.tiles.HookahEmptyTE;
 import top.evanechecssss.weedding.utils.gui.ContainerBase;
 import top.evanechecssss.weedding.utils.gui.ContainerGUIBase;
 import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
