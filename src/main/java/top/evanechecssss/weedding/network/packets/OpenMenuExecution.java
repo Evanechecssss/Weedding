@@ -24,11 +24,17 @@ public class OpenMenuExecution {
     private static void pressActionSP(EntityPlayerSP playerSP) {
         World world = playerSP.getEntityWorld();
         world.spawnParticle(EnumParticleTypes.EXPLOSION_LARGE, playerSP.posX, playerSP.posY, playerSP.posZ, 0, 0, 0, 10);
+
+
     }
 
     private static void pressActionMP(EntityPlayerMP playerMP) {
         World world = playerMP.getServerWorld();
-        world.addWeatherEffect(new EntityLightningBolt(world, playerMP.posX, playerMP.posY, playerMP.posZ, true));
+
+        EntityLightningBolt lightningBolt = new EntityLightningBolt(world, playerMP.posX, playerMP.posY, playerMP.posZ, true);
+
+        world.addWeatherEffect(lightningBolt);
+
     }
 
     public static class OpenMenuMessage implements IMessage {

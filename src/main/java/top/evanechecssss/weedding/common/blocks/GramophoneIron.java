@@ -8,9 +8,11 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
 import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.RenderItem;
+import net.minecraft.client.renderer.block.model.IBakedModel;
+import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.creativetab.CreativeTabs;
-import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemRecord;
@@ -45,18 +47,51 @@ public class GramophoneIron extends HorizontalBlockBase {
         GameRegistry.registerTileEntity(GramophoneTE.class, this.getRegistryName().toString());
     }
 
+    private static final AxisAlignedBB AABB_N = new AxisAlignedBB(15 * 0.0625, 0 * 0.0625, 14 * 0.0625, 2 * 0.0625, 22 * 0.0625, -2 * 0.0625);
+    private static final AxisAlignedBB AABB_W = new AxisAlignedBB(14 * 0.0625, 0 * 0.0625, 0 * 0.0625, -2 * 0.0625, 22 * 0.0625, 13 * 0.0625);
+    private static final AxisAlignedBB AABB_E = new AxisAlignedBB(1 * 0.0625, 0 * 0.0625, 15 * 0.0625, 17 * 0.0625, 22 * 0.0625, 2 * 0.0625);
+    private static final AxisAlignedBB AABB_S = new AxisAlignedBB(0 * 0.0625, 0 * 0.0625, 1 * 0.0625, 13 * 0.0625, 22 * 0.0625, 17 * 0.0625);
+    private static AxisAlignedBB MAIN = null;
+
+    @Override
+    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
+        switch (state.getValue(FACING)) {
+            case NORTH:
+                MAIN = AABB_N;
+                break;
+            case EAST:
+                MAIN = AABB_E;
+                break;
+            case WEST:
+                MAIN = AABB_W;
+                break;
+            case SOUTH:
+                MAIN = AABB_S;
+                break;
+        }
+        return MAIN;
+    }
+
+
+    @Override
+    public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
+        return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
+    }
+
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
             if (getTileEntity(world, pos).getRecord().isEmpty()) {
                 if (playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRecord) {
-                    Weedding.NETWORK.sendToServer(new GramophoneMessage(playerIn.getHeldItem(EnumHand.MAIN_HAND), pos));
+                    Weedding.NETWORK.sendToAll(new GramophoneMessage(playerIn.getHeldItem(EnumHand.MAIN_HAND).copy(), pos));
+
                     setRecord(world, pos, playerIn.getHeldItem(EnumHand.MAIN_HAND));
                     playerIn.getHeldItem(EnumHand.MAIN_HAND).setCount(0);
                 }
 
             } else {
                 dropRecord(world, pos);
+                Weedding.NETWORK.sendToAll(new GramophoneMessage(ItemStack.EMPTY, pos));
             }
             return true;
         }
@@ -166,10 +201,6 @@ public class GramophoneIron extends HorizontalBlockBase {
         }
     }
 
-    @Override
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return new AxisAlignedBB(15 * 0.0625, 0 * 0.0625, 14 * 0.0625, 2 * 0.0625, 22 * 0.0625, -2 * 0.0625);
-    }
 
     public GramophoneTE getTileEntity(World world, BlockPos pos) {
         return (GramophoneTE) world.getTileEntity(pos);
@@ -250,8 +281,10 @@ public class GramophoneIron extends HorizontalBlockBase {
             this.readFromNBT(packet.getNbtCompound());
         }
 
+
     }
 
+    @SideOnly(Side.CLIENT)
     public static class GramophoneTERender extends TileEntitySpecialRenderer<GramophoneTE> {
         public GramophoneTERender() {
             super();
@@ -260,16 +293,38 @@ public class GramophoneIron extends HorizontalBlockBase {
 
         @Override
         public void render(GramophoneTE te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
-            EntityItem ITEM_RENDER = new EntityItem(Minecraft.getMinecraft().world, 0, 0, 0, te.getRecord());
-            ITEM_RENDER.hoverStart = 0F;
-            GlStateManager.pushMatrix();
-            {
-                GlStateManager.translate(x, y + 5 * 0.0625, z);
-                GlStateManager.rotate(90, 1, 0, 0);
-                Minecraft.getMinecraft().getRenderManager().renderEntity(ITEM_RENDER, 0, 0, 0, 0F, 0F, false);
-            }
-            GlStateManager.popMatrix();
+            if (!te.getRecord().isEmpty()) {
+                IBlockState state = te.getWorld().getBlockState(te.getPos());
 
+                GlStateManager.pushMatrix();
+
+                if (state.getBlock() instanceof GramophoneIron) {
+                    EnumFacing facing = state.getValue(FACING);
+
+                    if (facing == EnumFacing.NORTH) {
+                        GlStateManager.translate(x + 8.5 / 16F, y + 5.5 / 16F, z + 6.5 / 16F);
+                    } else if (facing == EnumFacing.SOUTH) {
+                        GlStateManager.translate(x + 7.5 / 16F, y + 5.5 / 16F, z + 9.5 / 16F);
+                    } else if (facing == EnumFacing.WEST) {
+                        GlStateManager.translate(x + 6.5 / 16F, y + 5.5 / 16F, z + 7.5 / 16F);
+                    } else {
+                        GlStateManager.translate(x + 9.5 / 16F, y + 5.5 / 16F, z + 8.5 / 16F);
+                    }
+                }
+
+                GlStateManager.rotate(-90 + (System.currentTimeMillis() % 4000 / 4000F) * -360, 0, 1, 0);
+                GlStateManager.rotate(90, 1, 0, 0);
+
+                GlStateManager.scale(0.5F, 0.5F, 0.5F);
+
+                RenderItem render = Minecraft.getMinecraft().getRenderItem();
+                IBakedModel model = render.getItemModelWithOverrides(te.getRecord(), te.getWorld(), Minecraft.getMinecraft().player);
+
+                Minecraft.getMinecraft().renderEngine.bindTexture(TextureMap.LOCATION_BLOCKS_TEXTURE);
+                render.renderItem(te.getRecord(), model);
+
+                GlStateManager.popMatrix();
+            }
         }
     }
 
@@ -302,16 +357,25 @@ public class GramophoneIron extends HorizontalBlockBase {
     }
 
     public static class GramophoneMessageHandler implements IMessageHandler<GramophoneMessage, IMessage> {
-        public static void PlayRecordClient(ItemStack itemStack, EntityPlayer player, BlockPos pos) {
-            player.world.playRecord(pos, ((ItemRecord) itemStack.getItem()).getSound());
+        @SideOnly(Side.CLIENT)
+        public static void PlayRecordClient(ItemStack itemStack, BlockPos pos) {
+            EntityPlayerSP player = Minecraft.getMinecraft().player;
+            if (itemStack.getItem() instanceof ItemRecord) {
+                player.world.playRecord(pos, ((ItemRecord) itemStack.getItem()).getSound());
+            }
+
+            TileEntity entity = player.world.getTileEntity(pos);
+
+            if (entity instanceof GramophoneTE) {
+                ((GramophoneTE) entity).setRecord(itemStack);
+            }
         }
 
         @Override
         public IMessage onMessage(GramophoneMessage message, MessageContext ctx) {
             EntityPlayerMP entity = ctx.getServerHandler().player;
-            EntityPlayerSP entityPlayerSP = Minecraft.getMinecraft().player;
             entity.getServerWorld().addScheduledTask(() -> {
-                PlayRecordClient(message.itemSend, entityPlayerSP, message.posSend);
+                PlayRecordClient(message.itemSend, message.posSend);
             });
             return null;
         }
