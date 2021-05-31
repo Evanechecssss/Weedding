@@ -7,8 +7,12 @@ import net.minecraft.block.material.Material;
 import net.minecraft.block.state.IBlockState;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.entity.EntityPlayerSP;
+import net.minecraft.client.renderer.GlStateManager;
+import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -58,6 +62,35 @@ public class GramophoneIron extends HorizontalBlockBase {
         return true;
     }
 
+    @SideOnly(Side.CLIENT)
+    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
+        if (((GramophoneTE) worldIn.getTileEntity(pos)).getRecord().isEmpty()) {
+            return;
+        }
+        double x = 0;
+        double z = 0;
+        switch (stateIn.getValue(FACING)) {
+            case NORTH:
+                x = pos.getX() + 8 * 0.0625;
+                z = pos.getZ() - 5 * 0.0625;
+                break;
+            case WEST:
+                x = pos.getX() - 8 * 0.0625;
+                z = pos.getZ() + 5 * 0.0625;
+                break;
+            case EAST:
+                x = pos.getX() + 24 * 0.0625;
+                z = pos.getZ() + 5 * 0.0625;
+                break;
+            case SOUTH:
+                x = pos.getX() - 4 * 0.0625;
+                z = pos.getZ() + 24 * 0.0625;
+                break;
+
+        }
+        worldIn.spawnParticle(EnumParticleTypes.NOTE, x, pos.getY() + 18 * 0.0625, z, 0, 0.2, 0);
+    }
+
     public static class GramophoneTE extends TileEntity {
         private ItemStack record = ItemStack.EMPTY;
 
@@ -89,7 +122,27 @@ public class GramophoneIron extends HorizontalBlockBase {
             markDirty();
         }
 
+    }
 
+    public static class GramophoneTERender extends TileEntitySpecialRenderer<GramophoneTE> {
+        public GramophoneTERender() {
+            super();
+        }
+
+
+        @Override
+        public void render(GramophoneTE te, double x, double y, double z, float partialTicks, int destroyStage, float alpha) {
+            EntityItem ITEM_RENDER = new EntityItem(Minecraft.getMinecraft().world, 0, 0, 0, te.getRecord());
+            ITEM_RENDER.hoverStart = 0F;
+            GlStateManager.pushMatrix();
+            {
+                GlStateManager.translate(x, y + 5 * 0.0625, z);
+                GlStateManager.rotate(90, 1, 0, 0);
+                Minecraft.getMinecraft().getRenderManager().renderEntity(ITEM_RENDER, 0, 0, 0, 0F, 0F, false);
+            }
+            GlStateManager.popMatrix();
+
+        }
     }
 
     public static class GramophoneMessage implements IMessage {
@@ -113,25 +166,10 @@ public class GramophoneIron extends HorizontalBlockBase {
 
         @Override
         public void toBytes(ByteBuf buf) {
-            buf.writeInt(this.posSend.getX());
-            buf.writeInt(this.posSend.getY());
-            buf.writeInt(this.posSend.getZ());
             ByteBufUtils.writeItemStack(buf, itemSend);
-        }
-    }
-
-    public static class GramophoneMessageHandler implements IMessageHandler<GramophoneMessage, IMessage> {
-        @SideOnly(Side.CLIENT)
-        public static void PlayRecordClient(ItemStack itemStack, World world, BlockPos pos) {
-            world.playRecord(pos, ((ItemRecord) itemStack.getItem()).getSound());
-        }
-
-        @Override
-        public IMessage onMessage(GramophoneMessage message, MessageContext ctx) {
-            EntityPlayerSP sp = Minecraft.getMinecraft().player;
-            World world = sp.getEntityWorld();
-            PlayRecordClient(message.itemSend, world, message.posSend);
-            return null;
+            buf.writeInt(posSend.getX());
+            buf.writeInt(posSend.getY());
+            buf.writeInt(posSend.getZ());
         }
     }
 
@@ -174,30 +212,20 @@ public class GramophoneIron extends HorizontalBlockBase {
 
     }
 
-    @SideOnly(Side.CLIENT)
-    public void randomDisplayTick(IBlockState stateIn, World worldIn, BlockPos pos, Random rand) {
-        double x = 0;
-        double z = 0;
-        switch (stateIn.getValue(FACING)) {
-            case NORTH:
-                x = pos.getX() + 8 * 0.0625;
-                z = pos.getZ() - 5 * 0.0625;
-                break;
-            case WEST:
-                x = pos.getX() - 8 * 0.0625;
-                z = pos.getZ() + 5 * 0.0625;
-                break;
-            case EAST:
-                x = pos.getX() + 24 * 0.0625;
-                z = pos.getZ() + 5 * 0.0625;
-                break;
-            case SOUTH:
-                x = pos.getX() - 4 * 0.0625;
-                z = pos.getZ() + 24 * 0.0625;
-                break;
-
+    public static class GramophoneMessageHandler implements IMessageHandler<GramophoneMessage, IMessage> {
+        public static void PlayRecordClient(ItemStack itemStack, EntityPlayer player, BlockPos pos) {
+            player.world.playRecord(pos, ((ItemRecord) itemStack.getItem()).getSound());
         }
-        worldIn.spawnParticle(EnumParticleTypes.NOTE, x, pos.getY() + 18 * 0.0625, z, 0, 0.2, 0);
+
+        @Override
+        public IMessage onMessage(GramophoneMessage message, MessageContext ctx) {
+            EntityPlayerMP entity = ctx.getServerHandler().player;
+            EntityPlayerSP entityPlayerSP = Minecraft.getMinecraft().player;
+            entity.getServerWorld().addScheduledTask(() -> {
+                PlayRecordClient(message.itemSend, entityPlayerSP, message.posSend);
+            });
+            return null;
+        }
     }
 
     @Override
