@@ -30,7 +30,6 @@ public class CommonProxy {
         EntitySpawner.spawnEntities();
         MinecraftForge.EVENT_BUS.register(new WeeddingSounds.SoundRegistry());
         Weedding.NETWORK.registerMessage(OpenMenuExecution.OpenMenuMessageHandler.class, OpenMenuExecution.OpenMenuMessage.class, 0, Side.SERVER);
-        Weedding.NETWORK.registerMessage(GramophoneIron.GramophoneMessageHandler.class, GramophoneIron.GramophoneMessage.class, 1, Side.SERVER);
         Weedding.NETWORK.registerMessage(GramophoneIron.GramophoneMessageHandler.class, GramophoneIron.GramophoneMessage.class, 1, Side.CLIENT);
     }
     public void init(FMLInitializationEvent event) {
