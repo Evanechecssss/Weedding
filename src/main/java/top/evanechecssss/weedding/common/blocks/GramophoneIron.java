@@ -51,7 +51,7 @@ public class GramophoneIron extends HorizontalBlockBase {
     private static final AxisAlignedBB AABB_W = new AxisAlignedBB(14 * 0.0625, 0 * 0.0625, 0 * 0.0625, -2 * 0.0625, 22 * 0.0625, 13 * 0.0625);
     private static final AxisAlignedBB AABB_E = new AxisAlignedBB(1 * 0.0625, 0 * 0.0625, 15 * 0.0625, 17 * 0.0625, 22 * 0.0625, 2 * 0.0625);
     private static final AxisAlignedBB AABB_S = new AxisAlignedBB(0 * 0.0625, 0 * 0.0625, 1 * 0.0625, 13 * 0.0625, 22 * 0.0625, 17 * 0.0625);
-    private static AxisAlignedBB MAIN = null;
+    private static AxisAlignedBB MAIN;
 
     @Override
     public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
