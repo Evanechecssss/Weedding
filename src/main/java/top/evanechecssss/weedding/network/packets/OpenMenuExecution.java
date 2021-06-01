@@ -30,9 +30,7 @@ public class OpenMenuExecution {
 
     private static void pressActionMP(EntityPlayerMP playerMP) {
         World world = playerMP.getServerWorld();
-
         EntityLightningBolt lightningBolt = new EntityLightningBolt(world, playerMP.posX, playerMP.posY, playerMP.posZ, true);
-
         world.addWeatherEffect(lightningBolt);
 
     }
