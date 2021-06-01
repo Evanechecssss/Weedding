@@ -9,7 +9,7 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import top.evanechecssss.weedding.Weedding;
-import top.evanechecssss.weedding.common.blocks.GramophoneIron;
+import top.evanechecssss.weedding.common.blocks.GramophoneBlock;
 import top.evanechecssss.weedding.handlers.WeeddingEventHandler;
 import top.evanechecssss.weedding.init.WeeddingEntity;
 import top.evanechecssss.weedding.init.WeeddingGUIs;
@@ -30,7 +30,8 @@ public class CommonProxy {
         EntitySpawner.spawnEntities();
         MinecraftForge.EVENT_BUS.register(new WeeddingSounds.SoundRegistry());
         Weedding.NETWORK.registerMessage(OpenMenuExecution.OpenMenuMessageHandler.class, OpenMenuExecution.OpenMenuMessage.class, 0, Side.SERVER);
-        Weedding.NETWORK.registerMessage(GramophoneIron.GramophoneMessageHandler.class, GramophoneIron.GramophoneMessage.class, 1, Side.CLIENT);
+        Weedding.NETWORK.registerMessage(GramophoneBlock.GramophoneMessageHandler.class, GramophoneBlock.GramophoneMessage.class, 1, Side.SERVER);
+        Weedding.NETWORK.registerMessage(GramophoneBlock.GramophoneMessageHandler.class, GramophoneBlock.GramophoneMessage.class, 2, Side.CLIENT);
     }
     public void init(FMLInitializationEvent event) {
         NetworkRegistry.INSTANCE.registerGuiHandler(Weedding.instance, new WeeddingGUIs.GUIHandler());
