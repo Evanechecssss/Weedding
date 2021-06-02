@@ -6,7 +6,7 @@ import net.minecraftforge.fml.common.event.FMLInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.relauncher.Side;
-import top.evanechecssss.weedding.common.blocks.GramophoneBlock;
+import top.evanechecssss.weedding.common.blocks.GramophoneIron;
 import top.evanechecssss.weedding.init.WeeddingEntity;
 import top.evanechecssss.weedding.init.WeeddingKeybinds;
 import top.evanechecssss.weedding.utils.registry.BlockRegister;
@@ -24,7 +24,8 @@ public class ClientProxy extends CommonProxy {
     public void init(FMLInitializationEvent event) {
         super.init(event);
         BlockRegister.renderBlock();
-        ClientRegistry.bindTileEntitySpecialRenderer(GramophoneBlock.GramophoneTE.class, new GramophoneBlock.GramophoneTERender());
+        ClientRegistry.bindTileEntitySpecialRenderer(GramophoneIron.GramophoneTE.class, new GramophoneIron.GramophoneTERender());
+
     }
 
     @Override

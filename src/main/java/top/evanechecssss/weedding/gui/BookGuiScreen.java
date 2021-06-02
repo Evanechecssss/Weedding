@@ -21,23 +21,34 @@ import java.util.ArrayList;
 
 
 public class BookGuiScreen extends GuiScreen {
-    private static final int pageShiftX = 15;
-    private static final int pageShiftY = 15;
-    public static ResourceLocation locationTexture;
-    public static ResourceLocation locationText;
+    private static ResourceLocation locationTexture;
+    private static ResourceLocation locationText;
+    private int pageShiftX = 15;
+    private int pageShiftY = 15;
+    private int textShiftX = 0;
+    private int textShiftY = 0;
     public GuiButton buttonNext;
-    private static final int countShiftY = 6;
-    public int Page = 0;
+    private int countShiftY = 6;
+    private int Page = 0;
     public GuiButton buttonBack;
-    public static int WIDTH = 147;
-    private static final int countShiftX = WIDTH / 2;
-    private static final int wrapWidth = WIDTH - 25;
-    public static int HEIGHT = 181;
-    public static int MaxPage;
+    private int WIDTH = 147;
+    private int countShiftX = WIDTH / 2;
+    private int wrapWidth = WIDTH - 25;
+    private int HEIGHT = 181;
+    private int MaxPage;
     public ArrayList<String> BookText = new ArrayList<String>();
     private float angle = 0;
     private boolean showCount = true;
+    private boolean scaleDeformText = false;
+    private boolean scaleDeformPage = false;
     private int countColor = 1;
+    private float scaleDeformTextX;
+    private float scaleDeformTextY;
+    private float scaleDeformTextZ;
+    private float scaleDeformPageX;
+    private float scaleDeformPageY;
+    private float scaleDeformPageZ;
+    private boolean doesPause = true;
 
     public BookGuiScreen(ResourceLocation locationTexture, ResourceLocation locationText) {
         BookGuiScreen.locationTexture = locationTexture;
@@ -54,7 +65,8 @@ public class BookGuiScreen extends GuiScreen {
         Parsing();
     }
 
-    private static ArrayList<String> JsonParsing(IResourceManager resourceManager) throws IOException {
+
+    private ArrayList<String> JsonParsing(IResourceManager resourceManager) throws IOException {
         ArrayList<String> pages = new ArrayList<String>();
         IResource resource = resourceManager.getResource(locationText);
         JsonArray JSONArray = new JsonParser().parse(IOUtils.toString(resource.getInputStream(), Charset.defaultCharset())).getAsJsonObject().get("pages").getAsJsonArray();
@@ -95,16 +107,118 @@ public class BookGuiScreen extends GuiScreen {
         this.drawDefaultBackground();
         int centerX = (width - WIDTH) / 2;
         int centerY = (height - HEIGHT) / 2;
-        mc.renderEngine.bindTexture(locationTexture);
-        drawTexturedModalRect(centerX, centerY, 0, 0, WIDTH, HEIGHT);
+        GlStateManager.pushMatrix();
+        {
+            mc.renderEngine.bindTexture(locationTexture);
+            if (scaleDeformPage) {
+                GlStateManager.scale(scaleDeformPageX, scaleDeformPageY, scaleDeformPageZ);
+            }
+
+            drawTexturedModalRect(centerX, centerY, 0, 0, WIDTH, HEIGHT);
+        }
+        GlStateManager.popMatrix();
+
         if (showCount)
             fontRenderer.drawString(this.getCurrentPage() + "/" + this.getMaxPage(), centerX + countShiftX, centerY + countShiftY, countColor);
+
         GlStateManager.pushMatrix();
-        GlStateManager.translate(centerX + pageShiftX, centerY + pageShiftY, 0);
-        GlStateManager.rotate(angle, 0, 0, 1);
-        fontRenderer.drawSplitString(BookText.get(this.Page), 0, 0, wrapWidth, 1);
+        {
+            GlStateManager.translate(centerX + pageShiftX, centerY + pageShiftY, 0);
+            GlStateManager.rotate(angle, 0, 0, 1);
+            if (scaleDeformText) {
+                GlStateManager.scale(scaleDeformTextX, scaleDeformTextY, scaleDeformTextZ);
+            }
+            fontRenderer.drawSplitString(BookText.get(this.Page), textShiftX, textShiftY, wrapWidth, countColor);
+        }
         GlStateManager.popMatrix();
+
         super.drawScreen(mouseX, mouseY, partialTicks);
+    }
+
+    public BookGuiScreen setPage(int page) {
+        Page = page;
+        return this;
+    }
+
+    public BookGuiScreen setWIDTH(int WIDTH) {
+        this.WIDTH = WIDTH;
+        return this;
+    }
+
+    public BookGuiScreen setHEIGHT(int HEIGHT) {
+        this.HEIGHT = HEIGHT;
+        return this;
+    }
+
+    public BookGuiScreen setMaxPage(int maxPage) {
+        MaxPage = maxPage;
+        return this;
+    }
+
+    public BookGuiScreen setPageShiftX(int pageShiftX) {
+        this.pageShiftX = pageShiftX;
+        return this;
+    }
+
+    public BookGuiScreen setPageShiftY(int pageShiftY) {
+        this.pageShiftY = pageShiftY;
+        return this;
+    }
+
+    public BookGuiScreen setTextShiftX(int textShiftX) {
+        this.textShiftX = textShiftX;
+        return this;
+    }
+
+    public BookGuiScreen setTextShiftY(int textShiftY) {
+        this.textShiftY = textShiftY;
+        return this;
+    }
+
+    public BookGuiScreen setAngle(float angle) {
+        this.angle = angle;
+        return this;
+    }
+
+    public BookGuiScreen setCountShiftX(int countShiftX) {
+        this.countShiftX = countShiftX;
+        return this;
+    }
+
+    public BookGuiScreen setCountShiftY(int countShiftY) {
+        this.countShiftY = countShiftY;
+        return this;
+    }
+
+    public BookGuiScreen setWrapWidth(int wrapWidth) {
+        this.wrapWidth = wrapWidth;
+        return this;
+    }
+
+    public BookGuiScreen setDeformPage(float x, float y, float z) {
+        this.scaleDeformPage = true;
+        this.scaleDeformPageX = x;
+        this.scaleDeformPageY = y;
+        this.scaleDeformPageZ = z;
+        return this;
+    }
+
+    public BookGuiScreen setDeformText(float x, float y, float z) {
+        this.scaleDeformText = true;
+        this.scaleDeformTextX = x;
+        this.scaleDeformTextY = y;
+        this.scaleDeformTextZ = z;
+        return this;
+    }
+
+    public BookGuiScreen setDoesPause(boolean doesPause) {
+        this.doesPause = doesPause;
+        return this;
+    }
+
+    public BookGuiScreen addText(String text, int x, int y, int wrapWidth, int countColor) {
+        this.fontRenderer.drawSplitString(text, x, y, wrapWidth, countColor);
+        return this;
     }
 
     @Override
@@ -126,6 +240,7 @@ public class BookGuiScreen extends GuiScreen {
         return number;
     }
 
+
     @Override
     public void initGui() {
         this.buttonNext = this.addButton(new NextButton(0, (width - WIDTH) / 2 + WIDTH, (height - HEIGHT) / 2 + HEIGHT, "", true));
@@ -135,7 +250,7 @@ public class BookGuiScreen extends GuiScreen {
 
     @Override
     public boolean doesGuiPauseGame() {
-        return false;
+        return doesPause;
     }
 
     @Override
@@ -144,7 +259,7 @@ public class BookGuiScreen extends GuiScreen {
     }
 
     @Override
-    protected void actionPerformed(GuiButton button) throws IOException {
+    protected void actionPerformed(GuiButton button) {
         if (button.enabled) {
             if (button.id == 0) {
                 this.Page += 1;

@@ -1,0 +1,26 @@
+{
+  "result": {
+    "item": "weedding:gramophone_iron",
+    "data": 0
+  },
+  "pattern": [
+    "aaa",
+    "  a",
+    "bcb"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "a": {
+      "item": "minecraft:iron_ingot",
+      "data": 0
+    },
+    "b": {
+      "item": "minecraft:iron_block",
+      "data": 0
+    },
+    "c": {
+      "item": "minecraft:diamond_block",
+      "data": 0
+    }
+  }
+}

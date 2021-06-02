@@ -14,7 +14,6 @@ import net.minecraft.client.renderer.texture.TextureMap;
 import net.minecraft.client.renderer.tileentity.TileEntitySpecialRenderer;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.item.ItemRecord;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
@@ -39,12 +38,12 @@ import top.evanechecssss.weedding.utils.base.blocks.HorizontalBlockBase;
 
 import java.util.Random;
 
-public class GramophoneBlock extends HorizontalBlockBase {
+public class GramophoneIron extends HorizontalBlockBase {
 
 
-    public GramophoneBlock(String name, Material material, float hardness, float resistance, String toolClass, int toolLevel, CreativeTabs tab, SoundType type, float lightLevel, int lightOpacity) {
+    public GramophoneIron(String name, Material material, float hardness, float resistance, String toolClass, int toolLevel, CreativeTabs tab, SoundType type, float lightLevel, int lightOpacity) {
         super(name, material, hardness, resistance, toolClass, toolLevel, tab, type, lightLevel, lightOpacity);
-        GameRegistry.registerTileEntity(GramophoneTE.class, this.getRegistryName().toString());
+        GameRegistry.registerTileEntity(GramophoneTE.class, getRegistryName().toString());
     }
 
     private static final AxisAlignedBB AABB_N = new AxisAlignedBB(15 * 0.0625, 0 * 0.0625, 14 * 0.0625, 2 * 0.0625, 22 * 0.0625, -2 * 0.0625);
@@ -71,8 +70,6 @@ public class GramophoneBlock extends HorizontalBlockBase {
         }
         return MAIN;
     }
-
-
     @Override
     public IBlockState withMirror(IBlockState state, Mirror mirrorIn) {
         return state.withRotation(mirrorIn.toRotation(state.getValue(FACING)));
@@ -83,7 +80,7 @@ public class GramophoneBlock extends HorizontalBlockBase {
         if (!world.isRemote) {
             if (getTileEntity(world, pos).getRecord().isEmpty()) {
                 if (playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRecord) {
-                    Weedding.NETWORK.sendToServer(new GramophoneMessage(playerIn.getHeldItem(EnumHand.MAIN_HAND).copy(), pos));
+                    Weedding.NETWORK.sendToAll(new GramophoneMessage(playerIn.getHeldItem(EnumHand.MAIN_HAND).copy(), pos));
 
                     setRecord(world, pos, playerIn.getHeldItem(EnumHand.MAIN_HAND));
                     playerIn.getHeldItem(EnumHand.MAIN_HAND).setCount(0);
@@ -91,7 +88,7 @@ public class GramophoneBlock extends HorizontalBlockBase {
 
             } else {
                 dropRecord(world, pos);
-                Weedding.NETWORK.sendToServer(new GramophoneMessage(ItemStack.EMPTY, pos));
+                Weedding.NETWORK.sendToAll(new GramophoneMessage(ItemStack.EMPTY, pos));
             }
             return true;
         }
@@ -298,7 +295,7 @@ public class GramophoneBlock extends HorizontalBlockBase {
 
                 GlStateManager.pushMatrix();
 
-                if (state.getBlock() instanceof GramophoneBlock) {
+                if (state.getBlock() instanceof GramophoneIron) {
                     EnumFacing facing = state.getValue(FACING);
 
                     if (facing == EnumFacing.NORTH) {
@@ -359,24 +356,25 @@ public class GramophoneBlock extends HorizontalBlockBase {
     public static class GramophoneMessageHandler implements IMessageHandler<GramophoneMessage, IMessage> {
         @SideOnly(Side.CLIENT)
         public static void PlayRecordClient(ItemStack itemStack, BlockPos pos) {
-            EntityPlayerSP player = Minecraft.getMinecraft().player;
-            if (itemStack.getItem() instanceof ItemRecord) {
-                player.world.playRecord(pos, ((ItemRecord) itemStack.getItem()).getSound());
-            }
+            Minecraft.getMinecraft().addScheduledTask(() -> {
+                EntityPlayerSP player = Minecraft.getMinecraft().player;
+                if (itemStack.getItem() instanceof ItemRecord) {
+                    player.world.playRecord(pos, ((ItemRecord) itemStack.getItem()).getSound());
+                }
 
-            TileEntity entity = player.world.getTileEntity(pos);
+                TileEntity entity = player.world.getTileEntity(pos);
 
-            if (entity instanceof GramophoneTE) {
-                ((GramophoneTE) entity).setRecord(itemStack);
-            }
+                if (entity instanceof GramophoneTE) {
+                    ((GramophoneTE) entity).setRecord(itemStack);
+                }
+            });
         }
 
         @Override
         public IMessage onMessage(GramophoneMessage message, MessageContext ctx) {
-            EntityPlayerMP entity = ctx.getServerHandler().player;
-            entity.getServerWorld().addScheduledTask(() -> {
+            if (ctx.side.isClient()) {
                 PlayRecordClient(message.itemSend, message.posSend);
-            });
+            }
             return null;
         }
     }

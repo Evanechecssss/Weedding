@@ -17,11 +17,11 @@ import top.evanechecssss.weedding.utils.base.items.ItemBase;
 import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
 
 public class CustomBook extends ItemBase {
-    String textName = "";
-    ResourceLocation texture;
-    public boolean showCount;
-    public int angle;
-    public int countColor;
+    private final ResourceLocation texture;
+    private final boolean showCount;
+    private final int angle;
+    private final int countColor;
+    private String textName = "";
 
     public CustomBook(String name, int damage, int stackSize, CreativeTabs tab, String textName, ResourceLocation texture, boolean showCount, int angle, int countColor) {
         super(name, damage, stackSize, tab);
@@ -32,19 +32,7 @@ public class CustomBook extends ItemBase {
         this.countColor = countColor;
     }
 
-    @Override
-    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
-        if (!worldIn.isRemote) {
-            Weedding.logger.info("BOOK IS ACTIVE");
-
-        } else {
-            this.openBook();
-        }
-        return EnumActionResult.SUCCESS;
-    }
-
-    @SideOnly(Side.CLIENT)
-    private void openBook() {
+    public BookGuiScreen createBook() {
         String lang = "";
         if (Minecraft.getMinecraft().getLanguageManager().getCurrentLanguage().getLanguageCode().equalsIgnoreCase("en_us")) {
             lang = "en";
@@ -53,6 +41,22 @@ public class CustomBook extends ItemBase {
             lang = "ru";
         }
         ResourceLocation text = new ResourceLocation(WeeddingInfo.MODID, "information/" + lang + "/" + textName + ".json");
-        Minecraft.getMinecraft().displayGuiScreen(new BookGuiScreen(texture, text, showCount, angle, countColor));
+        return new BookGuiScreen(texture, text, showCount, angle, countColor);
     }
+
+    @Override
+    public EnumActionResult onItemUse(EntityPlayer player, World worldIn, BlockPos pos, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
+        if (!worldIn.isRemote) {
+            Weedding.logger.info("BOOK IS ACTIVE");
+        } else {
+            this.openBook();
+        }
+        return EnumActionResult.SUCCESS;
+    }
+
+    @SideOnly(Side.CLIENT)
+    private void openBook() {
+        Minecraft.getMinecraft().displayGuiScreen(createBook());
+    }
+
 }
