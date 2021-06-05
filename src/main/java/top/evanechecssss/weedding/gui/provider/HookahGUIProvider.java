@@ -13,8 +13,7 @@ public class HookahGUIProvider {
     public static ContainerBase HookahGUISet(EntityPlayer player, World world, int x, int y, int z) {
         HookahEmptyTE tileEntity = (HookahEmptyTE) world.getTileEntity(new BlockPos(x, y, z));
         ContainerBase<HookahEmptyTE> containerBase = new ContainerBase<>(player.inventory, tileEntity, true, true);
-        containerBase.addPlayerInventoryBar(player.inventory);
-
+        containerBase.addPlayerInventory(player.inventory);
         return containerBase;
     }
     public static ContainerGUIBase HookahContainerSet(EntityPlayer player, World world, int x, int y, int z) {

@@ -23,21 +23,37 @@ public class ContainerBase<T extends IHasContainer> extends Container {
     }
 
     public void addPlayerInventory(InventoryPlayer inventoryPlayer) {
-
+        this.addPlayerInventorySlots(inventoryPlayer);
+        this.addPlayerInventoryBar(inventoryPlayer);
     }
 
 
     public void addPlayerInventory(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isHorizontal) {
-
     }
 
     public void addPlayerInventorySlots(InventoryPlayer inventoryPlayer) {
+        for (int l = 0; l < 3; ++l) {
+            for (int j1 = 0; j1 < 9; ++j1) {
+                this.addSlotToContainer(new Slot(inventoryPlayer, j1 + l * 9 + 9, 7 + j1 * 18, 105 + l * 18));
+            }
+        }
 
     }
 
 
     public void addPlayerInventorySlots(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isHorizontal) {
+        for (int l = 0; l < 3; ++l) {
+            for (int j1 = 0; j1 < 9; ++j1) {
+                int x = cordX + j1 * 18;
+                int y = cordY + l * 18;
+                if (isHorizontal) {
+                    this.addSlotToContainer(new Slot(inventoryPlayer, j1 + l * 9 + 9, x, y));
+                } else {
+                    this.addSlotToContainer(new Slot(inventoryPlayer, j1 + l * 9 + 9, y, x));
+                }
 
+            }
+        }
     }
 
     public void addPlayerInventoryBar(InventoryPlayer inventoryPlayer) {
@@ -50,7 +66,14 @@ public class ContainerBase<T extends IHasContainer> extends Container {
 
 
     public void addPlayerInventoryBar(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isHorizontal) {
-
+        for (int col = 0; col < 9; ++col) {
+            int xPos = cordX + 18 * col;
+            if (isHorizontal) {
+                this.addSlotToContainer(new Slot(inventoryPlayer, col, xPos, cordY));
+            } else {
+                this.addSlotToContainer(new Slot(inventoryPlayer, col, cordY, xPos));
+            }
+        }
     }
 
     public void addContainerInventory() {
@@ -101,7 +124,7 @@ public class ContainerBase<T extends IHasContainer> extends Container {
     }
 
     private boolean idInRegion(int IdCount, int Max, int Min) {
-        if (Max - Min > IdCount) {
+        if (Max - Min + 1 <= IdCount) {
             return true;
         } else {
             Weedding.logger.error("The selected region is too small".toUpperCase());

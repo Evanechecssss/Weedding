@@ -33,6 +33,6 @@ public class CustomBook2 extends CustomBook {
     @SideOnly(Side.CLIENT)
     private void openBook() {
         Minecraft.getMinecraft().displayGuiScreen(createBook()
-                .setDoesPause(false).setDeformPage(2, 1, 1).setDeformText(2, 1, 0).setTextShiftY(65));
+                .setDoesPause(false).setDeformText(2, 1, 0).setTextShiftY(65));
     }
 }

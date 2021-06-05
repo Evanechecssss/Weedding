@@ -2,6 +2,7 @@ package top.evanechecssss.weedding.common.blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
+import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
@@ -78,7 +79,7 @@ public class HempBlock extends CropBase implements IShearable {
 
     @Override
     public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
-        return false;
+        return Minecraft.getMinecraft().world.provider.getDimension() != 1;
     }
 
     @Override

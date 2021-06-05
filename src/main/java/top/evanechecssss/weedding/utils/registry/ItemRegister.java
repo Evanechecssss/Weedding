@@ -15,22 +15,29 @@ import top.evanechecssss.weedding.init.WeeddingItems;
 @Mod.EventBusSubscriber
 public class ItemRegister {
 
+
     @SubscribeEvent
     public static void onRegistryItem(RegistryEvent.Register<Item> event) {
+
+
         for (int i = 0; i < WeeddingItems.ITEMS.length; i++) {
             event.getRegistry().register(WeeddingItems.ITEMS[i]);
         }
+
     }
+
     @SubscribeEvent
     @SideOnly(Side.CLIENT)
     public static void registerModels(ModelRegistryEvent event) {
         registerModel(WeeddingItems.ITEMS);
     }
+
     @SideOnly(Side.CLIENT)
-    public static void registerModel(Item[] items){
+    public static void registerModel(Item[] items) {
         for (Item item : items) {
             ModelBakery.registerItemVariants(item, new ModelResourceLocation(item.getRegistryName(), "inventory"));
             ModelLoader.setCustomModelResourceLocation(item, 0, new ModelResourceLocation(item.getRegistryName(), "inventory"));
         }
+
     }
 }

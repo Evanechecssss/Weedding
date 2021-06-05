@@ -4,6 +4,7 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import top.evanechecssss.weedding.api.WeeddingMisc;
+import top.evanechecssss.weedding.common.armor.ExoskeletonArmor;
 import top.evanechecssss.weedding.common.items.CustomBook;
 import top.evanechecssss.weedding.common.items.CustomBook2;
 import top.evanechecssss.weedding.common.items.HempCalik;
@@ -25,7 +26,6 @@ public class WeeddingItems {
     public static final Item HEMP_AXE = new ItemAxeBase("hemp_axe", WeeddingMisc.ToolMaterials.ZINC_METAL, 10, 10, 1, 5, WeeddingCreativeTabs.WEEDDING_CT);
     public static final Item WEEDDING_BOOK = new CustomBook("weedding_book", 1, 1, WeeddingCreativeTabs.WEEDDING_CT, "text", new ResourceLocation(WeeddingInfo.MODID, "textures/gui/book.png"), true, 0, 1);
     public static final Item WEEDDING_BOOK2 = new CustomBook2("weedding_book2", 2, 1, WeeddingCreativeTabs.WEEDDING_CT, "text2", new ResourceLocation(WeeddingInfo.MODID, "textures/gui/book2.png"), false, 5, 0x8E0900);
-
     public static final Item HS_LEGGS = new HookahSuit("hs_leggs", WeeddingMisc.ArmorMaterials.HOOKAH_SUITS, 2, EntityEquipmentSlot.LEGS);
     public static final Item HS_CHESTPLATE = new HookahSuit("hs_chestplate", WeeddingMisc.ArmorMaterials.HOOKAH_SUITS, 1, EntityEquipmentSlot.CHEST);
     public static final Item HS_HEAD = new HookahSuit("hs_head", WeeddingMisc.ArmorMaterials.HOOKAH_SUITS, 1, EntityEquipmentSlot.HEAD);
@@ -37,6 +37,9 @@ public class WeeddingItems {
     public static final Item HEMP_CHESTPLATE = new HookahSuit("hemp_chestplate", WeeddingMisc.ArmorMaterials.HEMP, 1, EntityEquipmentSlot.CHEST);
     public static final Item HEMP_HEAD = new HookahSuit("hemp_head", WeeddingMisc.ArmorMaterials.HEMP, 1, EntityEquipmentSlot.HEAD);
     public static final Item HEMP_BOOTS = new HookahSuit("hemp_boots", WeeddingMisc.ArmorMaterials.HEMP, 1, EntityEquipmentSlot.FEET);
+    public static final Item EXOSKELETON_LEGGS = new ExoskeletonArmor("leggs", WeeddingMisc.ArmorMaterials.EXOSKELETON, 2, EntityEquipmentSlot.LEGS);
+    public static final Item EXOSKELETON_CHESTPLATE = new ExoskeletonArmor("chestplate", WeeddingMisc.ArmorMaterials.EXOSKELETON, 1, EntityEquipmentSlot.CHEST);
+    public static final Item EXOSKELETON_HEAD = new ExoskeletonArmor("head", WeeddingMisc.ArmorMaterials.EXOSKELETON, 1, EntityEquipmentSlot.HEAD);
     public static final Item RECORD1 = new ItemRecordBase("smooth_bong", WeeddingSounds.SMOOTH_BONG).addInfo("Michael Jackson", "Smooth Criminal");
     public static final Item RECORD2 = new ItemRecordBase("bong_on_table", WeeddingSounds.BONG_ON_TABLE).addInfo("Grigory Leps", "A glass of vodka on the table");
     public static final Item RECORD3 = new ItemRecordBase("good_puff", WeeddingSounds.GOOD_PUFF).addInfo("Beasts", "Districts-quarters");
@@ -53,6 +56,6 @@ public class WeeddingItems {
             NGM, HEMP_SEED, HEMP_FOOD, HEMP_CALIK, HEMP_AXE, HS_LEGGS,
             HS_CHESTPLATE, HS_HEAD, HEMP_LEGGS, HEMP_CHESTPLATE, HEMP_BOOTS,
             HEMP_HEAD, HSD_HEAD, HSD_LEGGS, HSD_CHESTPLATE, HSD_BOOTS, WEEDDING_BOOK, RECORD1, RECORD2,
-            RECORD3, RECORD4, RECORD5, RECORD6, RECORD7, RECORD8, RECORD9, RECORD10, RECORD11, DAFUK_ICON, WEEDDING_BOOK2
+            RECORD3, RECORD4, RECORD5, RECORD6, RECORD7, RECORD8, RECORD9, RECORD10, RECORD11, DAFUK_ICON, WEEDDING_BOOK2, EXOSKELETON_HEAD, EXOSKELETON_LEGGS, EXOSKELETON_CHESTPLATE
     };
 }

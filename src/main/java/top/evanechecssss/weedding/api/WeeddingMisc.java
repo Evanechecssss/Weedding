@@ -22,6 +22,7 @@ public class WeeddingMisc {
         public static final ItemArmor.ArmorMaterial HEMP = EnumHelper.addArmorMaterial("hemp", "weedding:hemp", 15, new int[]{2, 5, 6, 2}, 9, SoundEvents.BLOCK_GRASS_BREAK, 0.0F);
         public static final ItemArmor.ArmorMaterial HOOKAH_SUITS = EnumHelper.addArmorMaterial("hookah_suit", "weedding:hookah_suit", 20, new int[]{1, 3, 5, 1}, 5, SoundEvents.BLOCK_NOTE_HAT, 0.1F);
         public static final ItemArmor.ArmorMaterial HOOKAH_SUIT_DISTRICT = EnumHelper.addArmorMaterial("hookah_suit_district", "weedding:hookah_suit_district", 20, new int[]{2, 4, 6, 2}, 5, SoundEvents.BLOCK_NOTE_HAT, 0.5F);
+        public static final ItemArmor.ArmorMaterial EXOSKELETON = EnumHelper.addArmorMaterial("exoskeleton", "weedding:exoskeleton", 80, new int[]{2, 4, 6, 2}, 10, SoundEvents.BLOCK_ANVIL_USE, 10F);
     }
 
     public static class Rarity {
