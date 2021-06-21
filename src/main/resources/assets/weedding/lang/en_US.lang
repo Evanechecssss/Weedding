@@ -35,25 +35,38 @@ item.weedding.kirkus_killer.name=Kirkus killer
 tile.weedding.gramophone_iron.name=Iron gramophone
 item.weedding.weedding_book.name=Shabby manuscript
 item.weedding.weedding_book2.name=Glass with an inscription
+weedding.tooltip.exo=Energy - %s
 #advancements
 advancements.weedding.hookah.root.title=WEEDDING
-advancements.weedding.hookah.root.diskription=Download the mod and start your smoky journey)
+advancements.weedding.hookah.root.description=Download the mod and start your smoky journey)
 advancements.weedding.hookah.mine_hemp.title=Lawn lover
-advancements.weedding.hookah.mine_hemp.diskription=Trim cannabis with scissors
+advancements.weedding.hookah.mine_hemp.description=Trim cannabis with scissors
 advancements.weedding.hookah.hemp_seed.title=Young snoop dog
-advancements.weedding.hookah.hemp_seed.diskription=Plant hemp, let it grow, because you need "Smoke weed everyday"
+advancements.weedding.hookah.hemp_seed.description=Plant hemp, let it grow, because you need "Smoke weed everyday"
 advancements.weedding.hookah.dafuk.title=Who is Dafuk?
 advancements.weedding.hookah.dafuk.description=get to know Dafuk closer...
 advancements.weedding.hookah.dafuk_loader.title=Child labour
 advancements.weedding.hookah.dafuk_loader.description=Make little Dafuk work
 advancements.weedding.hookah.dafuk_shulker.title=Dafuk loader
 advancements.weedding.hookah.dafuk_shulker.description=give Dafuk a white shulker and let him work for you
+advancements.weedding.hookah.gramophone_iron.title=Antiques
+advancements.weedding.hookah.gramophone_iron.description=Create an iron gramophone
+advancements.weedding.hookah.gramophone_use.title=Music connoisseur
+advancements.weedding.hookah.gramophone_use.description=In the hands of the harp, in the heart there is a song
+advancements.weedding.hookah.gramophone_col.title=Сollector of cool music
+advancements.weedding.hookah.gramophone_col.description=Collect all the weedding records
+advancements.weedding.hookah.hemp_col.title=Native in the jungle
+advancements.weedding.hookah.hemp_col.description=Become your own in the jungle
 #entity
 entity.dafuk.name=Dafuk
+entity.warlock.name=Warlock
 #key
 weedding.key.open_menu=Open the weedding menu
 #tabs
 itemGroup.weedding=weedding
+#overlays
+weedding.overlay.exo1=Show menu - %s
+weedding.overlay.exo2=Use energy - %s
 #disk
 item.record.smooth_bong.desc=Smooth bong
 item.record.bong_on_table.desc=Bong on the table
@@ -81,3 +94,5 @@ weedding.chat.message.dafuk.variant1=Jeb: What a creature you are, %s, he's a ki
 weedding.chat.message.dafuk.variant2=Notch: Aren't you ashamed? %s, you deserve it!
 weedding.chat.message.dafuk.variant3=Jeb: Well, you are nothing! %s, you must have voted for the Phantoms!
 weedding.chat.message.dafuk.variant4=Agnes: I hope you don’t do this anymore, %s , please !!!
+weedding.chat.message.exo1=§b[EXO] Hard effect activated
+weedding.chat.message.exo2=§b[EXO] Hard fly activated

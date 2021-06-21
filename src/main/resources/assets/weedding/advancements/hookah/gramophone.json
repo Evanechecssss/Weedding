@@ -1,0 +1,26 @@
+{
+  "display": {
+    "icon": {
+      "item": "weedding:gramophone_iron"
+    },
+    "title": {
+      "translate": "advancements.weedding.hookah.gramophone_iron.title"
+    },
+    "description": {
+      "translate": "advancements.weedding.hookah.gramophone_iron.description"
+    }
+  },
+  "parent": "weedding:hookah/root",
+  "criteria": {
+    "get_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "weedding:gramophone_iron"
+          }
+        ]
+      }
+    }
+  }
+}

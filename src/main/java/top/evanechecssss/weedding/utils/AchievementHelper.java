@@ -5,7 +5,7 @@ import net.minecraft.advancements.AdvancementProgress;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.EntityPlayerMP;
 import net.minecraft.util.ResourceLocation;
-import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
+import top.evanechecssss.weedding.init.WeeddingInfo;
 
 
 public class AchievementHelper {

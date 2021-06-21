@@ -1,21 +1,49 @@
 package top.evanechecssss.weedding.common.items;
 
-import net.minecraft.creativetab.CreativeTabs;
-import top.evanechecssss.weedding.utils.base.items.ItemBase;
+import net.minecraft.item.ItemStack;
+import net.minecraft.potion.PotionEffect;
+import top.evanechecssss.weedding.common.base.items.ItemBase;
+import top.evanechecssss.weedding.init.WeeddingCreativeTabs;
 
-import java.util.List;
 
 public abstract class HookahSlurry extends ItemBase {
+    private PotionEffect[] effects;
+    private int durabilityColor;
+    private double durabilityValue;
+
     public HookahSlurry(String name) {
-        super(name);
+        super(name, 1, 1, WeeddingCreativeTabs.WEEDDING_CT);
     }
 
-    public HookahSlurry(String name, int damage, int stackSize, CreativeTabs tab) {
-        super(name, damage, stackSize, tab);
+    public void setPotionEffects(PotionEffect[] effects){
+        this.effects = effects;
     }
 
-    public HookahSlurry(String name, int damage, int stackSize, CreativeTabs tab, String toolClass, int toolLevel, List<String> stringList) {
-        super(name, damage, stackSize, tab, toolClass, toolLevel, stringList);
+    public PotionEffect[] getPotionEffects(){
+        return effects;
+    }
+
+    public void setDurabilityColor(int durabilityColor){
+        this.durabilityColor = durabilityColor;
+    }
+
+    public void setDurabilityValue(double durabilityValue){
+        this.durabilityValue = durabilityValue;
+    }
+
+    @Override
+    public boolean showDurabilityBar(ItemStack stack) {
+        return true;
+    }
+
+    @Override
+    public double getDurabilityForDisplay(ItemStack stack) {
+        return durabilityValue;
+    }
+
+    @Override
+    public int getRGBDurabilityForDisplay(ItemStack stack) {
+        return durabilityColor;
     }
 
 }

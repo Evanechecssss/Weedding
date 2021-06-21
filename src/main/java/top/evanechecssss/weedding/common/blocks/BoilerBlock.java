@@ -14,7 +14,7 @@ import net.minecraft.world.IBlockAccess;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
-import top.evanechecssss.weedding.utils.base.blocks.HorizontalBlockBase;
+import top.evanechecssss.weedding.common.base.blocks.HorizontalBlockBase;
 
 import javax.annotation.Nullable;
 import java.util.List;

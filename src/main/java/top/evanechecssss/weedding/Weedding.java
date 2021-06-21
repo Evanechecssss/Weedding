@@ -7,9 +7,9 @@ import net.minecraftforge.fml.common.event.FMLPostInitializationEvent;
 import net.minecraftforge.fml.common.event.FMLPreInitializationEvent;
 import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.network.simpleimpl.SimpleNetworkWrapper;
+import top.evanechecssss.weedding.init.WeeddingInfo;
 import org.apache.logging.log4j.Logger;
 import top.evanechecssss.weedding.network.proxy.CommonProxy;
-import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
 
 @Mod(modid = WeeddingInfo.MODID, name = WeeddingInfo.NAME, version = WeeddingInfo.VERSION, acceptedMinecraftVersions = "[1.12]", updateJSON = "https://github.com/Evanechecssss/weeddingMod/blob/main/production/weeddingMod.main/mcmod.info")
 public class Weedding {

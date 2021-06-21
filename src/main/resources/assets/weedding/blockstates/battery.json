@@ -1,0 +1,30 @@
+{
+  "variants": {
+    "normal": {
+      "model": "weedding:battery"
+    },
+    "facing=north": {
+      "model": "weedding:battery"
+    },
+    "facing=east": {
+      "model": "weedding:battery",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "weedding:battery",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "weedding:battery",
+      "y": 270
+    },
+    "facing=up": {
+      "model": "weedding:battery",
+      "x": 270
+    },
+    "facing=down": {
+      "model": "weedding:battery",
+      "x": 90
+    }
+  }
+}

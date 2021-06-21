@@ -9,7 +9,7 @@ import net.minecraftforge.fml.relauncher.Side;
 import top.evanechecssss.weedding.common.blocks.GramophoneIron;
 import top.evanechecssss.weedding.init.WeeddingEntity;
 import top.evanechecssss.weedding.init.WeeddingKeybinds;
-import top.evanechecssss.weedding.utils.registry.BlockRegister;
+import top.evanechecssss.weedding.handlers.registry.BlockRegister;
 
 @Mod.EventBusSubscriber(Side.CLIENT)
 public class ClientProxy extends CommonProxy {
@@ -25,7 +25,6 @@ public class ClientProxy extends CommonProxy {
         super.init(event);
         BlockRegister.renderBlock();
         ClientRegistry.bindTileEntitySpecialRenderer(GramophoneIron.GramophoneTE.class, new GramophoneIron.GramophoneTERender());
-
     }
 
     @Override

@@ -9,29 +9,26 @@ import net.minecraftforge.fml.common.network.NetworkRegistry;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.fml.relauncher.Side;
 import top.evanechecssss.weedding.Weedding;
+import top.evanechecssss.weedding.client.overlays.ExoskeletonOverlay;
 import top.evanechecssss.weedding.common.blocks.GramophoneIron;
 import top.evanechecssss.weedding.handlers.WeeddingEventHandler;
 import top.evanechecssss.weedding.init.WeeddingEntity;
 import top.evanechecssss.weedding.init.WeeddingGUIs;
 import top.evanechecssss.weedding.init.WeeddingSounds;
 import top.evanechecssss.weedding.network.packets.OpenMenuExecution;
-import top.evanechecssss.weedding.utils.registry.BlockRegister;
-import top.evanechecssss.weedding.world.gen.WeeddingWorldGen;
-import top.evanechecssss.weedding.world.spawn.EntitySpawner;
+import top.evanechecssss.weedding.handlers.registry.BlockRegister;
+import top.evanechecssss.weedding.common.world.gen.WeeddingWorldGen;
+import top.evanechecssss.weedding.common.world.spawn.EntitySpawner;
 
 
 @Mod.EventBusSubscriber
 public class CommonProxy {
     public void preInit(FMLPreInitializationEvent event) {
-        MinecraftForge.EVENT_BUS.register(new WeeddingEventHandler());
         BlockRegister.registerBlock();
-        GameRegistry.registerWorldGenerator(new WeeddingWorldGen(), 3);
         WeeddingEntity.RegisterEntities();
         EntitySpawner.spawnEntities();
-        MinecraftForge.EVENT_BUS.register(new WeeddingSounds.SoundRegistry());
-        Weedding.NETWORK.registerMessage(OpenMenuExecution.OpenMenuMessageHandler.class, OpenMenuExecution.OpenMenuMessage.class, 0, Side.SERVER);
-        Weedding.NETWORK.registerMessage(GramophoneIron.GramophoneMessageHandler.class, GramophoneIron.GramophoneMessage.class, 1, Side.SERVER);
-        Weedding.NETWORK.registerMessage(GramophoneIron.GramophoneMessageHandler.class, GramophoneIron.GramophoneMessage.class, 2, Side.CLIENT);
+        registerHandlers();
+        registerNetMessage();
     }
 
     public void init(FMLInitializationEvent event) {
@@ -39,5 +36,20 @@ public class CommonProxy {
     }
 
     public void postInit(FMLPostInitializationEvent event) {
+    }
+
+    private static void registerHandlers(){
+        MinecraftForge.EVENT_BUS.register(new WeeddingEventHandler());
+        MinecraftForge.EVENT_BUS.register(new WeeddingSounds.SoundRegistry());
+        MinecraftForge.EVENT_BUS.register(new ExoskeletonOverlay());
+    }
+    private static void registerNetMessage(){
+        Weedding.NETWORK.registerMessage(OpenMenuExecution.OpenMenuMessageHandler.class, OpenMenuExecution.OpenMenuMessage.class, 0, Side.SERVER);
+        Weedding.NETWORK.registerMessage(GramophoneIron.GramophoneMessageHandler.class, GramophoneIron.GramophoneMessage.class, 1, Side.SERVER);
+        Weedding.NETWORK.registerMessage(GramophoneIron.GramophoneMessageHandler.class, GramophoneIron.GramophoneMessage.class, 2, Side.CLIENT);
+        Weedding.NETWORK.registerMessage(ExoskeletonOverlay.ExoskeletonMessageHandler.class, ExoskeletonOverlay.ExoskeletonMessage.class,3,Side.SERVER);
+    }
+    private static void registerWorldGen(){
+        GameRegistry.registerWorldGenerator(new WeeddingWorldGen(), 3);
     }
 }

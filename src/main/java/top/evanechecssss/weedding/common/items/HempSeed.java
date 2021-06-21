@@ -18,7 +18,7 @@ import net.minecraftforge.common.EnumPlantType;
 import net.minecraftforge.common.IPlantable;
 import top.evanechecssss.weedding.api.WeeddingMisc;
 import top.evanechecssss.weedding.init.WeeddingBlocks;
-import top.evanechecssss.weedding.utils.base.items.ItemBase;
+import top.evanechecssss.weedding.common.base.items.ItemBase;
 
 import java.util.List;
 

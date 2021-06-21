@@ -5,13 +5,12 @@ import net.minecraft.util.ResourceLocation;
 import net.minecraftforge.fml.client.registry.RenderingRegistry;
 import net.minecraftforge.fml.common.registry.EntityRegistry;
 import top.evanechecssss.weedding.Weedding;
-import top.evanechecssss.weedding.entities.EntityDafuk;
-import top.evanechecssss.weedding.entities.EntityWarlock;
-import top.evanechecssss.weedding.entities.models.DafukModel;
-import top.evanechecssss.weedding.entities.models.WarlockModel;
-import top.evanechecssss.weedding.entities.render.RenderEntityDafuk;
-import top.evanechecssss.weedding.entities.render.RenderEntityWarlock;
-import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
+import top.evanechecssss.weedding.common.entities.EntityDafuk;
+import top.evanechecssss.weedding.common.entities.EntityWarlock;
+import top.evanechecssss.weedding.common.entities.models.DafukModel;
+import top.evanechecssss.weedding.common.entities.models.WarlockModel;
+import top.evanechecssss.weedding.common.entities.render.RenderEntityDafuk;
+import top.evanechecssss.weedding.common.entities.render.RenderEntityWarlock;
 
 public class WeeddingEntity {
     public static void RegisterEntities() {

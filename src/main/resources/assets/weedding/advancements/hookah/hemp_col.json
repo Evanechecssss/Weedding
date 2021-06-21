@@ -1,0 +1,45 @@
+{
+  "display": {
+    "icon": {
+      "item": "weedding:hemp_chestplate"
+    },
+    "title": {
+      "translate": "advancements.weedding.hookah.hemp_col.title"
+    },
+    "description": {
+      "translate": "advancements.weedding.hookah.hemp_col.description"
+    },
+    "frame": "challenge"
+  },
+  "parent": "weedding:hookah/mine_hemp",
+  "rewards": {
+    "experience": 5000
+  },
+  "criteria": {
+    "get_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "weedding:hemp_head"
+          },
+          {
+            "item": "weedding:hemp_boots"
+          },
+          {
+            "item": "weedding:hemp_leggs"
+          },
+          {
+            "item": "weedding:hemp_chestplate"
+          }
+        ]
+      }
+    },
+    "jungle": {
+      "trigger": "minecraft:location",
+      "conditions": {
+        "biome": "minecraft:jungle"
+      }
+    }
+  }
+}

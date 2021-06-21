@@ -1,0 +1,19 @@
+{
+  "display": {
+    "icon": {
+      "item": "weedding:if_u_have_a_hemp"
+    },
+    "title": {
+      "translate": "advancements.weedding.hookah.gramophone_use.title"
+    },
+    "description": {
+      "translate": "advancements.weedding.hookah.gramophone_use.description"
+    }
+  },
+  "parent": "weedding:hookah/gramophone",
+  "criteria": {
+    "impossible": {
+      "trigger": "minecraft:impossible"
+    }
+  }
+}

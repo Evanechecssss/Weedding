@@ -12,6 +12,15 @@
     "frame": "goal"
   },
   "parent": "weedding:hookah/hemp_seed",
+  "rewards": {
+    "recipes": [
+      "weedding:hemp_boots",
+      "weedding:hemp_leggs",
+      "weedding:hemp_head",
+      "weedding:hemp_ch"
+    ],
+    "experience": 100
+  },
   "criteria": {
     "get_stone": {
       "trigger": "minecraft:inventory_changed",

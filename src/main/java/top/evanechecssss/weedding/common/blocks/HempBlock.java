@@ -2,8 +2,8 @@ package top.evanechecssss.weedding.common.blocks;
 
 import net.minecraft.block.SoundType;
 import net.minecraft.block.state.IBlockState;
-import net.minecraft.client.Minecraft;
 import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.init.Blocks;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemStack;
 import net.minecraft.util.BlockRenderLayer;
@@ -17,7 +17,7 @@ import net.minecraftforge.common.IShearable;
 import org.jetbrains.annotations.NotNull;
 import top.evanechecssss.weedding.init.WeeddingBlocks;
 import top.evanechecssss.weedding.init.WeeddingItems;
-import top.evanechecssss.weedding.utils.base.blocks.crop.CropBase;
+import top.evanechecssss.weedding.common.base.blocks.crop.CropBase;
 
 import java.util.Random;
 
@@ -35,7 +35,10 @@ public class HempBlock extends CropBase implements IShearable {
     public HempBlock(String name, CreativeTabs tab, SoundType type, float resistance) {
         super(name, tab, type, resistance);
     }
-
+    @Override
+    public boolean canPlaceBlockAt(World world, BlockPos pos) {
+        return world.getBlockState(pos).getBlock().isReplaceable(world, pos) && world.getBlockState(pos.down()).getBlock() == Blocks.GRASS;
+    }
     @Override
     protected Item getSeed() {
         return WeeddingItems.HEMP_SEED;
@@ -79,7 +82,7 @@ public class HempBlock extends CropBase implements IShearable {
 
     @Override
     public boolean isReplaceable(IBlockAccess worldIn, BlockPos pos) {
-        return Minecraft.getMinecraft().world.provider.getDimension() != 1;
+        return true;
     }
 
     @Override

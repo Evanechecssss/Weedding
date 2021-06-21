@@ -35,25 +35,38 @@ item.weedding.kirkus_killer.name=Киркус убийца
 tile.weedding.gramophone_iron.name=Железный граммофон
 item.weedding.weedding_book.name=Потёртый манускрипт
 item.weedding.weedding_book2.name=Стекло с надписью
+weedding.tooltip.exo=Энергия - %s
 #advancements
 advancements.weedding.hookah.root.title=WEEDDING
-advancements.weedding.hookah.root.diskription=Скачать мод и начать своё дымное приключение
+advancements.weedding.hookah.root.description=Скачать мод и начать своё дымное приключение
 advancements.weedding.hookah.mine_hemp.title=Любитель газона
-advancements.weedding.hookah.mine_hemp.diskription=Подстричь коноплю ножницами
+advancements.weedding.hookah.mine_hemp.description=Подстричь коноплю ножницами
 advancements.weedding.hookah.hemp_seed.title=Юный снупдог
-advancements.weedding.hookah.hemp_seed.diskription=Посодить коноплю, пусть растёт, потому что вам надо "Smoke weed everyday"
+advancements.weedding.hookah.hemp_seed.description=Посодить коноплю, пусть растёт, потому что вам надо "Smoke weed everyday"
 advancements.weedding.hookah.dafuk.title=Дафук - это кто?
 advancements.weedding.hookah.dafuk.description=Познакомится с Дафуком поближе...
 advancements.weedding.hookah.dafuk_loader.title=Детский труд
 advancements.weedding.hookah.dafuk_loader.description=Заставить работать маленького Дафука
 advancements.weedding.hookah.dafuk_shulker.title=Дафук грузчик
 advancements.weedding.hookah.dafuk_shulker.description=дайте Дафуку белый шалкер и заставьте работать на вас
+advancements.weedding.hookah.gramophone_iron.title=Антиквариат
+advancements.weedding.hookah.gramophone_iron.description=Создайте железный граммофон
+advancements.weedding.hookah.gramophone_use.title=Знаток музыки
+advancements.weedding.hookah.gramophone_use.description=В руках гусли, в сердце песня
+advancements.weedding.hookah.gramophone_col.title=§5Коллек§mтор§r§5ционер крутой музыки
+advancements.weedding.hookah.gramophone_col.description=Соберите все weedding пластинки
+advancements.weedding.hookah.hemp_col.title=Свой в джунглях
+advancements.weedding.hookah.hemp_col.description=Стань своим в джунглях
 #entity
 entity.dafuk.name=Дафук
+entity.warlock.name=Чернокнижник
 #key
 weedding.key.open_menu=Открыть меню виддинга
 #tabs
 itemGroup.weedding=weedding
+#overlays
+weedding.overlay.exo1=Показать меню - %s
+weedding.overlay.exo2=Использовать энергию - %s
 #disk
 item.record.smooth_bong.desc=Гладкий калик
 item.record.bong_on_table.desc=Калик на столе
@@ -81,3 +94,5 @@ weedding.chat.message.dafuk.variant1=Джеб: Ну что ты за тварь,
 weedding.chat.message.dafuk.variant2=Нотч: Как тебе не стыдно? %s, ты это заслужил!
 weedding.chat.message.dafuk.variant3=Джеб: Ну ты чисто гнида! %s, наверняка ты голосовал за фантомов!
 weedding.chat.message.dafuk.variant4=Агнес: Надеюсь ты так больше делать не будешь, %s, пожалуйста!!!
+weedding.chat.message.exo1=§b[EXO] Активирован жёсткий БАВ
+weedding.chat.message.exo2=§b[EXO] Лети, птичка

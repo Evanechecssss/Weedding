@@ -82,3 +82,4 @@ jar {
         attributes 'FMLAT': 'example_at.cfg'
     }
 }
+sourceSets { main { output.resourcesDir = output.classesDir } }

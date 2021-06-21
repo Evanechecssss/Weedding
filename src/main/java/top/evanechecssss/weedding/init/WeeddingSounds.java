@@ -5,7 +5,6 @@ import net.minecraft.util.SoundEvent;
 import net.minecraftforge.event.RegistryEvent;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.registry.ForgeRegistries;
-import top.evanechecssss.weedding.utils.reference.WeeddingInfo;
 
 public class WeeddingSounds {
     public static final SoundEvent SMOOTH_BONG = SoundRegistry.register("smooth_bong", new ResourceLocation(WeeddingInfo.MODID, "smooth_bong"));

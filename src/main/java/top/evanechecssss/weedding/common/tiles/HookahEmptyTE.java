@@ -4,7 +4,7 @@ import net.minecraft.entity.item.EntityItem;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
 import net.minecraftforge.items.ItemStackHandler;
-import top.evanechecssss.weedding.utils.gui.IHasContainer;
+import top.evanechecssss.weedding.client.gui.base.IHasContainer;
 
 public class HookahEmptyTE extends TileEntity implements IHasContainer {
     private final int size = 6;

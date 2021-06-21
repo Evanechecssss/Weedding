@@ -1,0 +1,19 @@
+{
+  "result": {
+    "item": "weedding:hemp_leggs"
+  },
+  "pattern": [
+    "bbb",
+    "a a",
+    "a a"
+  ],
+  "type": "forge:ore_shaped",
+  "key": {
+    "a": {
+      "item": "weedding:hemp_food"
+    },
+    "b": {
+      "item": "weedding:hemp"
+    }
+  }
+}

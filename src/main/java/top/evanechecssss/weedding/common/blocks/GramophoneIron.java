@@ -34,7 +34,8 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.Nullable;
 import top.evanechecssss.weedding.Weedding;
-import top.evanechecssss.weedding.utils.base.blocks.HorizontalBlockBase;
+import top.evanechecssss.weedding.utils.AchievementHelper;
+import top.evanechecssss.weedding.common.base.blocks.HorizontalBlockBase;
 
 import java.util.Random;
 
@@ -78,8 +79,10 @@ public class GramophoneIron extends HorizontalBlockBase {
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer playerIn, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (!world.isRemote) {
+
             if (getTileEntity(world, pos).getRecord().isEmpty()) {
                 if (playerIn.getHeldItem(EnumHand.MAIN_HAND).getItem() instanceof ItemRecord) {
+                    AchievementHelper.completeAchievement(playerIn, "hookah", "gramophone_use");
                     Weedding.NETWORK.sendToAll(new GramophoneMessage(playerIn.getHeldItem(EnumHand.MAIN_HAND).copy(), pos));
 
                     setRecord(world, pos, playerIn.getHeldItem(EnumHand.MAIN_HAND));

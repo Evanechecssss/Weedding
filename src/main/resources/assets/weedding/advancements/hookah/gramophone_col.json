@@ -1,0 +1,57 @@
+{
+  "display": {
+    "icon": {
+      "item": "weedding:hookah_girl"
+    },
+    "title": {
+      "translate": "advancements.weedding.hookah.gramophone_col.title"
+    },
+    "description": {
+      "translate": "advancements.weedding.hookah.gramophone_col.description"
+    },
+    "frame": "challenge"
+  },
+  "parent": "weedding:hookah/gramophone_use",
+  "criteria": {
+    "get_stone": {
+      "trigger": "minecraft:inventory_changed",
+      "conditions": {
+        "items": [
+          {
+            "item": "weedding:smooth_bong"
+          },
+          {
+            "item": "weedding:bong_on_table"
+          },
+          {
+            "item": "weedding:good_puff"
+          },
+          {
+            "item": "weedding:hookah_d"
+          },
+          {
+            "item": "weedding:hookah_girl"
+          },
+          {
+            "item": "weedding:horse"
+          },
+          {
+            "item": "weedding:horse_rhapsody"
+          },
+          {
+            "item": "weedding:horse_squad"
+          },
+          {
+            "item": "weedding:if_u_have_a_hemp"
+          },
+          {
+            "item": "weedding:my_hookah"
+          },
+          {
+            "item": "weedding:kirkus_killer"
+          }
+        ]
+      }
+    }
+  }
+}

@@ -29,7 +29,7 @@ import top.evanechecssss.weedding.common.blocks.help.IHookah;
 import top.evanechecssss.weedding.common.blocks.types.HookahEmptyTypes;
 import top.evanechecssss.weedding.common.tiles.HookahEmptyTE;
 import top.evanechecssss.weedding.init.WeeddingGUIs;
-import top.evanechecssss.weedding.utils.base.blocks.BlockBase;
+import top.evanechecssss.weedding.common.base.blocks.BlockBase;
 
 public class HookahEmpty extends BlockBase implements IHookah {
     public static final PropertyEnum<HookahEmptyTypes> COLOR = PropertyEnum.create("color", HookahEmptyTypes.class);
