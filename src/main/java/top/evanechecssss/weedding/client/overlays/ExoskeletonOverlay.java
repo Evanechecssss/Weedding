@@ -15,7 +15,6 @@ import net.minecraft.util.EnumParticleTypes;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraftforge.client.event.RenderGameOverlayEvent;
-import net.minecraftforge.client.event.RenderPlayerEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
 import net.minecraftforge.fml.common.gameevent.InputEvent;
@@ -26,9 +25,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.lwjgl.opengl.GL11;
 import top.evanechecssss.weedding.Weedding;
+import top.evanechecssss.weedding.init.WeeddingInfo;
 import top.evanechecssss.weedding.init.WeeddingItems;
 import top.evanechecssss.weedding.init.WeeddingKeybinds;
-import top.evanechecssss.weedding.init.WeeddingInfo;
 
 public class ExoskeletonOverlay extends Gui {
 
@@ -71,10 +70,7 @@ public class ExoskeletonOverlay extends Gui {
         level = full_Width * nbtLevel / 1000;
         return Math.round(level);
     }
-    @SideOnly(Side.CLIENT)
-    @SubscribeEvent(priority = EventPriority.HIGHEST, receiveCanceled = false)
-    public void renderPlayer(RenderPlayerEvent event){
-    }
+
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
     public void keyInput(InputEvent.KeyInputEvent event) {

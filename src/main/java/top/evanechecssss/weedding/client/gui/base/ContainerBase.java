@@ -2,9 +2,11 @@ package top.evanechecssss.weedding.client.gui.base;
 
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.entity.player.InventoryPlayer;
+import net.minecraft.inventory.ClickType;
 import net.minecraft.inventory.Container;
 import net.minecraft.inventory.Slot;
 import net.minecraft.item.ItemStack;
+import net.minecraft.util.text.TextComponentString;
 import net.minecraftforge.items.ItemStackHandler;
 import net.minecraftforge.items.SlotItemHandler;
 import top.evanechecssss.weedding.Weedding;
@@ -22,6 +24,7 @@ public class ContainerBase<T extends IHasContainer> extends Container {
         this.entity = entity;
         this.inventoryPlayer = inventoryPlayer;
         this.inventoryContainer = entity.getInventory();
+
     }
 
     public void addPlayerInventory(InventoryPlayer inventoryPlayer) {
@@ -58,6 +61,7 @@ public class ContainerBase<T extends IHasContainer> extends Container {
     }
 
     public void addPlayerInventorySlots(InventoryPlayer inventoryPlayer, int cordX, int cordY, boolean isHorizontal) {
+
         for (int l = 0; l < 3; ++l) {
             for (int j1 = 0; j1 < 9; ++j1) {
                 int x = cordX + j1 * 18;
@@ -110,6 +114,7 @@ public class ContainerBase<T extends IHasContainer> extends Container {
     }
 
     public void addContainerInventory(int slotIdMin, int slotIdMax, int slotsRow,int slotsColumn ,int cordX, int cordY, int shift ,boolean isHorizontal) {
+        cordX += 50;
         for (int col = slotIdMin; col < slotIdMin+slotsRow; ++col) {
             int xPos = cordX + 18 * col;
             if (isIdExist(col)) {
@@ -135,6 +140,7 @@ public class ContainerBase<T extends IHasContainer> extends Container {
 
 
     public void addContainerInventoryLine(int slotIdMin, int slotIdMax, int cordX, int cordY, boolean isHorizontal) {
+        cordX += 50;
         for (int col = 0; col < slotIdMax - slotIdMin + 1; ++col) {
             int xPos = cordX + 18 * col;
             if (isIdExist(slotIdMin + col)) {
@@ -148,8 +154,9 @@ public class ContainerBase<T extends IHasContainer> extends Container {
     }
 
     public void addContainerSlot(int Id, int cordX, int cordY) {
+
         if (isIdExist(Id)) {
-            this.addSlotToContainer(new SlotItemHandler(getInventoryEntity(), Id, cordX - 50, cordY));
+            this.addSlotToContainer(new SlotItemHandler(getInventoryEntity(), Id, cordX, cordY));
         }
     }
 
@@ -179,25 +186,38 @@ public class ContainerBase<T extends IHasContainer> extends Container {
         }
     }
 
+    @Override
+    public boolean canDragIntoSlot(Slot slotIn) {
+        return true;
+    }
+
+    @Override
+    public ItemStack slotClick(int slotId, int dragType, ClickType clickTypeIn, EntityPlayer player) {
+        player.sendMessage(new TextComponentString("" + slotId));
+        return super.slotClick(slotId, dragType, clickTypeIn, player);
+    }
 
     @Override
     public ItemStack transferStackInSlot(EntityPlayer playerIn, int index) {
-        ItemStack item = ItemStack.EMPTY;
+        ItemStack itemstack = ItemStack.EMPTY;
         Slot slot = this.inventorySlots.get(index);
-        ItemStack itemSlot = slot.getStack();
-        int size = entity.getInventoryMaxIndex();
-        if (!canTransferStack || !slot.getHasStack()) {
-            return item;
-        }
-        for (int i = size; i > 0; --i) {
-            Slot iSlot = inventorySlots.get(i);
-            if (!iSlot.getHasStack()) {
-                iSlot.putStack(itemSlot);
-                slot.putStack(item);
-                break;
+        if (slot != null && slot.getHasStack()) {
+            ItemStack itemstack1 = slot.getStack();
+            itemstack = itemstack1.copy();
+            if (index < 27) {
+                if (!this.mergeItemStack(itemstack1, 27, this.inventorySlots.size(), true)) {
+                    return ItemStack.EMPTY;
+                }
+            } else if (!this.mergeItemStack(itemstack1, 0, 27, false)) {
+                return ItemStack.EMPTY;
+            }
+            if (itemstack1.isEmpty()) {
+                slot.putStack(ItemStack.EMPTY);
+            } else {
+                slot.onSlotChanged();
             }
         }
-        return item;
+        return itemstack;
     }
 
 

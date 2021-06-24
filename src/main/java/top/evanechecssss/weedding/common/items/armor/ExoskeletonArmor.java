@@ -1,4 +1,4 @@
-package top.evanechecssss.weedding.common.armor;
+package top.evanechecssss.weedding.common.items.armor;
 
 import net.minecraft.client.model.ModelBiped;
 import net.minecraft.client.resources.I18n;
@@ -21,9 +21,9 @@ import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import org.jetbrains.annotations.Nullable;
 import top.evanechecssss.weedding.common.entities.models.ExoskeletonModel;
-import top.evanechecssss.weedding.init.WeeddingItems;
 import top.evanechecssss.weedding.init.WeeddingCreativeTabs;
 import top.evanechecssss.weedding.init.WeeddingInfo;
+import top.evanechecssss.weedding.init.WeeddingItems;
 
 import java.util.HashMap;
 import java.util.List;
@@ -31,7 +31,7 @@ import java.util.Map;
 
 public class ExoskeletonArmor extends ItemArmor {
     public static final Map<Item, ModelBiped> ARMOR_MODELS = new HashMap<>();
-
+    private boolean hasEnergy = false;
     public ExoskeletonArmor(String name, ArmorMaterial materialIn, int renderIndexIn, EntityEquipmentSlot equipmentSlotIn) {
         super(materialIn, renderIndexIn, equipmentSlotIn);
         this.setRegistryName(name);
@@ -72,21 +72,25 @@ public class ExoskeletonArmor extends ItemArmor {
 
     @Override
     public void onUpdate(ItemStack stack, World worldIn, Entity entityIn, int itemSlot, boolean isSelected) {
-        if (!stack.getItem().getRegistryName().equals("ex_chestplate")) return;
+        if (!hasEnergy) return;
         if (!stack.hasTagCompound()) stack.setTagCompound(new NBTTagCompound());
         NBTTagCompound nbt = stack.getTagCompound();
-        if(!nbt.hasKey("energy")) nbt.setInteger("energy", 500);
+        if (!nbt.hasKey("energy")) nbt.setInteger("energy", 500);
         stack.setTagCompound(nbt);
-    
+
     }
 
+    public ExoskeletonArmor setHasEnergy() {
+        this.hasEnergy = true;
+        return this;
+    }
 
     @Override
     public void addInformation(ItemStack stack, @Nullable World worldIn, List<String> tooltip, ITooltipFlag flagIn) {
         if (!stack.hasTagCompound()) return;
         NBTTagCompound nbt = stack.getTagCompound();
-        if(!nbt.hasKey("energy")) return;
-        tooltip.add(TextFormatting.GREEN +I18n.format("weedding.tooltip.exo",nbt.getInteger("energy")));
+        if (!nbt.hasKey("energy")) return;
+        tooltip.add(TextFormatting.GREEN + I18n.format("weedding.tooltip.exo", nbt.getInteger("energy")));
     }
 
     @Override

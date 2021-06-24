@@ -4,16 +4,16 @@ import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.Item;
 import net.minecraft.util.ResourceLocation;
 import top.evanechecssss.weedding.api.WeeddingMisc;
-import top.evanechecssss.weedding.common.armor.ExoskeletonArmor;
-import top.evanechecssss.weedding.common.items.CustomBook;
-import top.evanechecssss.weedding.common.items.CustomBook2;
-import top.evanechecssss.weedding.common.items.HempCalik;
-import top.evanechecssss.weedding.common.items.HempSeed;
-import top.evanechecssss.weedding.common.armor.HookahSuit;
 import top.evanechecssss.weedding.common.base.items.ItemBase;
 import top.evanechecssss.weedding.common.base.items.ItemFoodBase;
 import top.evanechecssss.weedding.common.base.items.ItemRecordBase;
 import top.evanechecssss.weedding.common.base.items.tools.ItemAxeBase;
+import top.evanechecssss.weedding.common.items.CustomBook;
+import top.evanechecssss.weedding.common.items.CustomBook2;
+import top.evanechecssss.weedding.common.items.HempCalik;
+import top.evanechecssss.weedding.common.items.HempSeed;
+import top.evanechecssss.weedding.common.items.armor.ExoskeletonArmor;
+import top.evanechecssss.weedding.common.items.armor.HookahSuit;
 
 public class WeeddingItems {
     public static final Item DAFUK_ICON = new ItemBase("dafuk_icon");
@@ -36,7 +36,7 @@ public class WeeddingItems {
     public static final Item HEMP_HEAD = new HookahSuit("hemp_head", WeeddingMisc.ArmorMaterials.HEMP, 1, EntityEquipmentSlot.HEAD);
     public static final Item HEMP_BOOTS = new HookahSuit("hemp_boots", WeeddingMisc.ArmorMaterials.HEMP, 1, EntityEquipmentSlot.FEET);
     public static final Item EXOSKELETON_LEGGS = new ExoskeletonArmor("ex_leggs", WeeddingMisc.ArmorMaterials.EXOSKELETON, 2, EntityEquipmentSlot.LEGS);
-    public static final Item EXOSKELETON_CHESTPLATE = new ExoskeletonArmor("ex_chestplate", WeeddingMisc.ArmorMaterials.EXOSKELETON, 1, EntityEquipmentSlot.CHEST);
+    public static final Item EXOSKELETON_CHESTPLATE = new ExoskeletonArmor("ex_chestplate", WeeddingMisc.ArmorMaterials.EXOSKELETON, 1, EntityEquipmentSlot.CHEST).setHasEnergy();
     public static final Item EXOSKELETON_HEAD = new ExoskeletonArmor("ex_head", WeeddingMisc.ArmorMaterials.EXOSKELETON, 1, EntityEquipmentSlot.HEAD);
     public static final Item RECORD1 = new ItemRecordBase("smooth_bong", WeeddingSounds.SMOOTH_BONG).addInfo("Michael Jackson", "Smooth Criminal");
     public static final Item RECORD2 = new ItemRecordBase("bong_on_table", WeeddingSounds.BONG_ON_TABLE).addInfo("Grigory Leps", "A glass of vodka on the table");

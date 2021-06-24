@@ -6,7 +6,6 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.text.TextComponentTranslation;
 import net.minecraft.world.World;
-import net.minecraftforge.client.event.RenderGameOverlayEvent;
 import net.minecraftforge.event.entity.player.AdvancementEvent;
 import net.minecraftforge.fml.common.eventhandler.EventPriority;
 import net.minecraftforge.fml.common.eventhandler.SubscribeEvent;
@@ -14,14 +13,12 @@ import net.minecraftforge.fml.common.gameevent.InputEvent;
 import net.minecraftforge.fml.relauncher.Side;
 import net.minecraftforge.fml.relauncher.SideOnly;
 import top.evanechecssss.weedding.Weedding;
-import top.evanechecssss.weedding.client.overlays.ExoskeletonOverlay;
 import top.evanechecssss.weedding.init.WeeddingKeybinds;
 import top.evanechecssss.weedding.network.packets.OpenMenuExecution;
 
-import java.util.Date;
-
 public class WeeddingEventHandler {
     private boolean f = false;
+
 
     @SubscribeEvent
     public void advancementCompleted(AdvancementEvent event) {
@@ -29,7 +26,6 @@ public class WeeddingEventHandler {
             AdvancementExecution.dafukLoaderExecute(event);
         }
     }
-
 
     @SideOnly(Side.CLIENT)
     @SubscribeEvent(priority = EventPriority.NORMAL, receiveCanceled = true)
@@ -60,4 +56,5 @@ public class WeeddingEventHandler {
             OpenMenuExecution.pressAction(entityPlayer);
         }
     }
+
 }

@@ -4,9 +4,9 @@ import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.util.ResourceLocation;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
-import top.evanechecssss.weedding.common.tiles.HookahEmptyTE;
 import top.evanechecssss.weedding.client.gui.base.ContainerBase;
 import top.evanechecssss.weedding.client.gui.base.ContainerGUIBase;
+import top.evanechecssss.weedding.common.tiles.HookahEmptyTE;
 import top.evanechecssss.weedding.init.WeeddingInfo;
 
 public class HookahGUIProvider {
@@ -14,7 +14,7 @@ public class HookahGUIProvider {
         HookahEmptyTE tileEntity = (HookahEmptyTE) world.getTileEntity(new BlockPos(x, y, z));
         ContainerBase<HookahEmptyTE> containerBase = new ContainerBase<>(player.inventory, tileEntity, true, true);
         containerBase.addPlayerInventory(player.inventory);
-        containerBase.addContainerSlot(1,20,20);
+        containerBase.addContainerSlot(1, 25, 23);
         return containerBase;
     }
 

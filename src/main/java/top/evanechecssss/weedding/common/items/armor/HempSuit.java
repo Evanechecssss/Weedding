@@ -1,4 +1,4 @@
-package top.evanechecssss.weedding.common.armor;
+package top.evanechecssss.weedding.common.items.armor;
 
 import net.minecraft.inventory.EntityEquipmentSlot;
 import net.minecraft.item.ItemArmor;

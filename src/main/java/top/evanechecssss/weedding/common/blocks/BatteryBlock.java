@@ -6,19 +6,15 @@ import net.minecraft.block.state.IBlockState;
 import net.minecraft.entity.item.EntityItem;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.item.ItemStack;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.tileentity.TileEntity;
 import net.minecraft.util.EnumFacing;
 import net.minecraft.util.EnumHand;
-import net.minecraft.util.ITickable;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.world.World;
 import net.minecraftforge.fml.common.registry.GameRegistry;
 import net.minecraftforge.items.ItemStackHandler;
-import org.jetbrains.annotations.Nullable;
 import top.evanechecssss.weedding.Weedding;
-import top.evanechecssss.weedding.client.gui.base.IHasContainer;
 import top.evanechecssss.weedding.common.base.blocks.HorizontalBlockBase;
+import top.evanechecssss.weedding.common.tiles.BatteryBlockTE;
 import top.evanechecssss.weedding.init.WeeddingCreativeTabs;
 import top.evanechecssss.weedding.init.WeeddingGUIs;
 
@@ -26,14 +22,14 @@ public class BatteryBlock extends HorizontalBlockBase {
 
     public BatteryBlock(String name) {
         super(name, Material.IRON, 5, 5, "pickaxe", 2, WeeddingCreativeTabs.WEEDDING_CT, SoundType.STONE, 0, 0);
-        GameRegistry.registerTileEntity(BatteryBlockTE.class, getRegistryName().toString());
+        GameRegistry.registerTileEntity(BatteryBlockTE.class, this.getRegistryName().toString());
     }
 
     @Override
     public boolean onBlockActivated(World world, BlockPos pos, IBlockState state, EntityPlayer player, EnumHand hand, EnumFacing facing, float hitX, float hitY, float hitZ) {
         if (facing.equals(EnumFacing.UP)){
-            if (world.isRemote){
-            player.openGui(Weedding.instance, WeeddingGUIs.BATTERY_GUI, world, pos.getX(), pos.getY(), pos.getZ());
+            if (!world.isRemote) {
+                player.openGui(Weedding.instance, WeeddingGUIs.BATTERY_GUI, world, pos.getX(), pos.getY(), pos.getZ());
             }
             return true;
         }
@@ -41,11 +37,12 @@ public class BatteryBlock extends HorizontalBlockBase {
     }
 
     @Override
-    public boolean hasTileEntity() {
+    public boolean hasTileEntity(IBlockState blockState) {
+
         return true;
     }
 
-    @Nullable
+
     @Override
     public BatteryBlockTE createTileEntity(World world, IBlockState state) {
         return new BatteryBlockTE();
@@ -80,43 +77,4 @@ public class BatteryBlock extends HorizontalBlockBase {
         }
     }
 
-    public static class BatteryBlockTE extends TileEntity implements ITickable, IHasContainer {
-
-        public ItemStackHandler inventory = new ItemStackHandler(2);
-        public BatteryBlockTE() {
-
-        }
-
-        @Override
-        public void update() {
-
-        }
-
-        @Override
-        public void readFromNBT(NBTTagCompound compound) {
-            if (compound.hasKey("inventory")) inventory.deserializeNBT((NBTTagCompound) compound.getTag("inventory"));
-        }
-
-        @Override
-        public NBTTagCompound writeToNBT(NBTTagCompound compound) {
-            compound = super.writeToNBT(compound);
-            compound.setTag("inventory", inventory.serializeNBT());
-            return compound;
-        }
-
-        @Override
-        public ItemStackHandler getInventory() {
-            return inventory;
-        }
-
-        @Override
-        public int getInventorySize() {
-            return 2;
-        }
-
-        @Override
-        public int getInventoryMaxIndex() {
-            return 1;
-        }
-    }
 }
